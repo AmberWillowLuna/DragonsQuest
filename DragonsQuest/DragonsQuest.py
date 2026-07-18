@@ -8,6 +8,9 @@ import tavern
 import meditation
 import spells
 import magic_learning
+import json
+import start
+import game
 from button import Button
 
 
@@ -49,14 +52,18 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
+            
             # Check button clicks
             if start_button.is_clicked(mouse_pos, event):
                 print("Start button clicked!")
+                start.start_game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock)
                 # Add your start game logic here
             if options_button.is_clicked(mouse_pos, event):
                 print("Options button clicked!")
                 # Add your options menu logic here
+            if continue_button.is_clicked(mouse_pos, event):
+                print("Continue button clicked!")
+                # Add your continue game logic here
             if exit_button.is_clicked(mouse_pos, event):
                 running = False
 

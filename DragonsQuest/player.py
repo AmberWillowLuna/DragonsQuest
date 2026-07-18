@@ -7,7 +7,7 @@ class Player:
         #18 + rand(0-5)
 
         self.maxhp = 18+random.randint(0, 4)
-        self.maxhp = self.hp
+        self.hp = self.maxhp
         self.AC = 10+random.randint(0, 2)
         self.str = 9+random.randint(0, 2)
         self.dex = 9+random.randint(0, 2)
@@ -31,8 +31,9 @@ class Player:
         self.armor = "";
         self.weapon = "";
         self.inventory = [];
+        self.upperHand= False
 
-    def BonusLoss():
+    def BonusLoss(self):
         if self.BAC>0:
             self.BAC -= 1
         if self.Bstr>0:
@@ -48,7 +49,13 @@ class Player:
         if self.Bchar>0:
             self.Bchar -= 1
 
-    def curse():
+    def heal(self, val):
+        self.hp+=val
+        if self.hp>self.maxhp:
+            self.hp=self.maxhp
+
+
+    def curse(self):
         x=random.randint(0,3);
         self.hp-=1
         if x==0:

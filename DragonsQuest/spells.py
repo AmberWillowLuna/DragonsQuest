@@ -1,11 +1,13 @@
 
 
 class spell:
-    def __init__(self, name, damage, heal, acc):
+    def __init__(self, name, damage, heal, acc, desc, casting):
         self.name = name
         self.damage = damage
         self.heal = heal
         self.acc=acc
+        self.desc=desc
+        self.casting=casting #chat text after casting 
 
     def cast(self, caster, target):
         if caster.mana >0:

@@ -15,9 +15,7 @@ class health_potion(item):
         self.heal_amount = value
 
     def action(self, player):
-        player.hp += self.heal_amount
-        if player.hp > player.maxhp:
-            player.hp = player.maxhp
+        player.heal(self.heal_amount)
         #add gui stuff
 
 class mana_potion(item):
