@@ -79,7 +79,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 print("Smith button clicked!")
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
-                meditation.Meditate(player, time, chat)
+                meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
                 lines=update_lines(player, day, time)
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
@@ -89,6 +89,13 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 print("Villager's quests button clicked!")
                 # Add your quests logic here
         # Game logic goes here
+        if time.value>15:
+            time.value=0
+            day+=1
+            if day==3:
+                print("You have reached day 3! Prepare to fight the dragon!")
+            else:
+                print(f"Day {day} begins!")
 
         # Clear the screen
         screen.fill((0, 0, 0))
@@ -111,6 +118,5 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
         # Update the display
         pygame.display.flip()
-        clock.tick(60)
     pygame.quit()
     sys.exit()

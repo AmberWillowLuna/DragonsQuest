@@ -2,7 +2,92 @@ import pygame
 import random
 import player
 
-def Meditate(player, time, chat):
+def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
+    
+    #pop up minigame for meditation - random chance to get +1 to a stat, +1 mana, +1 hp, or upper hand
+    #hold q for 3 seconds to breathe in, e for 3 seconds to breathe out, then hold space for 3 seconds to focus
+    #clock prepare
+    text1 = font.render("Hold Q for 3 seconds to breathe in", True, (255, 255, 255))
+    text2 = font.render("Hold E for 3 seconds to breathe out", True, (255, 255, 255))
+    text3 = font.render("Hold SPACE for 3 seconds to focus", True, (255, 255, 255))
+    background = pygame.Rect(300, 200, 200, 50)
+
+    running = True
+    timer0 = pygame.time.get_ticks()
+      # Key state and timer
+
+
+    counter = 0
+
+    hold_start_time = None
+    required_hold_time = 2500  # milliseconds
+
+    while running:
+        current_time = pygame.time.get_ticks()
+    
+        # Handle events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+    
+            elif event.type == pygame.KEYDOWN:
+                if counter == 0 and event.key == pygame.K_q:
+                    hold_start_time = current_time
+
+                elif counter == 1 and event.key == pygame.K_e:
+                    hold_start_time = current_time
+
+                elif counter == 2 and event.key == pygame.K_SPACE:
+                    hold_start_time = current_time
+
+            elif event.type == pygame.KEYUP:
+            # Releasing the required key resets the timer
+                if (
+                    (counter == 0 and event.key == pygame.K_q) or
+                    (counter == 1 and event.key == pygame.K_e) or
+                    (counter == 2 and event.key == pygame.K_SPACE)
+                ):
+                    hold_start_time = None
+
+            # Check if the correct key is still being held
+            keys = pygame.key.get_pressed()
+
+            if counter == 0:
+                if keys[pygame.K_q]:
+                    if hold_start_time is not None and current_time - hold_start_time >= required_hold_time:
+                        counter = 1
+                        hold_start_time = None
+                else:
+                    hold_start_time = None
+
+            elif counter == 1:
+                if keys[pygame.K_e]:
+                    if hold_start_time is not None and current_time - hold_start_time >= required_hold_time:
+                        counter = 2
+                        hold_start_time = None
+                else:
+                    hold_start_time = None
+
+            elif counter == 2:
+                if keys[pygame.K_SPACE]:
+                    if hold_start_time is not None and current_time - hold_start_time >= required_hold_time:
+                        running = False
+                else:
+                    hold_start_time = None
+
+        # ----- Draw -----
+        screen.fill((0, 0, 0))
+        pygame.draw.rect(screen, (200, 200, 20), background, 2, border_radius=10)
+       
+        if counter == 0:
+            screen.blit(text1, (SCREEN_WIDTH // 2 - text1.get_width() // 2, 100))
+        elif counter == 1:
+            screen.blit(text2, (SCREEN_WIDTH // 2 - text2.get_width() // 2, 100))
+        else:
+            screen.blit(text3, (SCREEN_WIDTH // 2 - text3.get_width() // 2, 100))
+
+        pygame.display.flip()
+
     x=random.randint(1,3)
     y=random.randint(0,5)
     z=random.randint(0,4)
