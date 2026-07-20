@@ -88,3 +88,35 @@ class rayOfDoom(spell):
             chat=(f"{player.name} does not have enough mana to cast {self.name}.")
 
             #rethink ray of doom and other spells
+
+class poisonousBreath(spell):
+    def __init__(self):
+        super().__init__("Poisonous Breath", random.randint(1,8), 0, 0, "A breath of poison that weakens the enemy.", "You exhale a cloud of poisonous gas!")
+    def cast(self, player, target, chat):
+        if player.mana > 0:
+            player.mana -= 1
+            #attack(self.acc, target, self.damage, chat)
+            #dmg after a consitiution save of target
+            # 10 is a standard value so you should technicly add it
+            saveThrow=roll_dice(20)+target.const+target.Bconst-10
+            if saveThrow < 15:
+                target.hp -= self.damage
+                if saveThrow <10:
+                    target.hp -= roll_dice(8)
+                    if saveThrow <5:
+                        target.hp -= roll_dice(8)
+        else:
+            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+
+class arcanusShot(spell):
+    def __init__(self):
+        super().__init__("Arcanus Shot", random.randint(1,6), 0, 0, "A magical projectile that pierces armor.", "You conjure a bolt of arcane energy and launch it at your foe!")
+    def cast(self, player, target, chat):
+        if player.mana > 0:
+            player.mana -= 1
+            attack(self.acc, target, self.damage, chat)
+            target.hp -= max(self.damage+player.wis+player.Bwis-10,0)
+
+
+        else:
+            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
