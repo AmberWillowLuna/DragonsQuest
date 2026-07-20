@@ -28,6 +28,7 @@
     <Compile Include="DragonsQuest.py" />
     <Compile Include="enemies.py" />
     <Compile Include="game.py" />
+    <Compile Include="ImageSprite.py" />
     <Compile Include="items.py" />
     <Compile Include="magic_learning.py" />
     <Compile Include="meditation.py" />

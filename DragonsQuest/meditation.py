@@ -1,16 +1,21 @@
 import pygame
 import random
 import player
+from ImageSprite import ImageSprite
 
 def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     
     #pop up minigame for meditation - random chance to get +1 to a stat, +1 mana, +1 hp, or upper hand
     #hold q for 3 seconds to breathe in, e for 3 seconds to breathe out, then hold space for 3 seconds to focus
     #clock prepare
-    text1 = font.render("Hold Q for 3 seconds to breathe in", True, (255, 255, 255))
-    text2 = font.render("Hold E for 3 seconds to breathe out", True, (255, 255, 255))
-    text3 = font.render("Hold SPACE for 3 seconds to focus", True, (255, 255, 255))
-    background = pygame.Rect(300, 200, 200, 50)
+    text1 = font.render("Hold Q for 2 seconds to breathe in", True, (255, 255, 255))
+    text2 = font.render("Hold E for 2 seconds to breathe out", True, (255, 255, 255))
+    text3 = font.render("Hold SPACE for 2 seconds to focus", True, (255, 255, 255))
+     
+    #make background an image
+    # Initialize the sprite
+    sprite = ImageSprite("assets/meditation.jpg", SCREEN_WIDTH, SCREEN_HEIGHT)
+
 
     running = True
     timer0 = pygame.time.get_ticks()
@@ -20,7 +25,7 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     counter = 0
 
     hold_start_time = None
-    required_hold_time = 2500  # milliseconds
+    required_hold_time = 2000  # milliseconds
 
     while running:
         current_time = pygame.time.get_ticks()
@@ -77,7 +82,9 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
 
         # ----- Draw -----
         screen.fill((0, 0, 0))
-        pygame.draw.rect(screen, (200, 200, 20), background, 2, border_radius=10)
+        sprite_group = pygame.sprite.Group()
+        sprite_group.add(sprite)
+        sprite_group.draw(screen)  # Draw the sprite on the screen
        
         if counter == 0:
             screen.blit(text1, (SCREEN_WIDTH // 2 - text1.get_width() // 2, 100))
