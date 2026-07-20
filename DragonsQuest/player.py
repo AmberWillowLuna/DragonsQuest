@@ -15,14 +15,15 @@ class Player:
         self.int = 9+random.randint(0, 2)
         self.wis = 9+random.randint(0, 2)
         self.char = 9+random.randint(0, 2)
-
-        self.BAC = 0
+        self.Bacc = 0 #bonus while aiming
+        self.BAC = 0 #bonus while defending
         self.Bstr = 0
         self.Bdex = 0
         self.Bconst = 0
         self.Bint = 0
         self.Bwis = 0
         self.Bchar = 0
+        self.dmgReduce=1 # % of dmg reduction
 
         self.spells = [];
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
@@ -48,6 +49,8 @@ class Player:
             self.Bwis -= 1
         if self.Bchar>0:
             self.Bchar -= 1
+        if self.Bacc>0:
+            self.Bacc-=1
 
     def heal(self, val):
         self.hp+=val
