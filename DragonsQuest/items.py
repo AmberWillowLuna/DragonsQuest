@@ -69,12 +69,12 @@ class magic_potion(item):
 
 class small_healing_potion(health_potion):
     def __init__(self):
-        super().__init__("small healing potion", "well a small bottle with some magical juice", 4)
+        super().__init__("tiny healing potion", "well a small bottle with some magical juice", 4)
         self.cost=20
 
 class medium_healing_potion(health_potion):
     def __init__(self):
-        super().__init__("medium healing potion", "love in a bottle, love in a bottle", 8)
+        super().__init__("healing potion", "love in a bottle, love in a bottle", 8)
         self.cost=40
 
 class big_healing_potion(health_potion):
@@ -84,5 +84,5 @@ class big_healing_potion(health_potion):
 
 class legendary_healing_potion(health_potion):
     def __init__(self):
-        super().__init__("big healing potion", "the best healing out there", 20)
+        super().__init__("legendary heal", "the best healing out there", 20)
         self.cost=80

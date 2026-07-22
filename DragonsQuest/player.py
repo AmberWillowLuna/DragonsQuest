@@ -25,6 +25,7 @@ class Player:
         self.Bwis = 0
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
+        self.gold=0
 
         self.discountA=0
         self.discountB=0

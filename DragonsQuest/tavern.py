@@ -20,13 +20,13 @@ import pygame
 import items
 import colors
 import ChatDisplay
+from game import update_lines, draw_lines
 
 def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
     chat = "You enter and sit next to stranger, he says: "
-
     roll=roll_dice(20)
     #day one
-    if time.day==1:
+    if time.day==0:
         if roll<10:
             chat+=uselessInfo[roll]
         elif roll<13:
@@ -37,7 +37,7 @@ def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
         else:
             chat+="I know a discount for smith, here it is ((&&@#&%#"
             player.discountB=1
-    elif time.day==2:
+    elif time.day==1:
         if roll<8:
             chat+=uselessInfo[roll]
         elif roll<11:
@@ -45,7 +45,7 @@ def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
             treasure=1
         else:
             chat+="The dragon is definitley a "+ dragon.type+" type of dragon. You should prepare for it"
-    elif time.day==3:
+    elif time.day==2:
         if roll<7:
             chat+=uselessInfo[roll]
         elif roll<10:
@@ -59,17 +59,26 @@ def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
         else:
             chat+="I know a discount for smith, here it is ((&&@#&%#"
             player.discountB=1
+    return chat
 
 def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon):
-    #buttons for potions
 
+
+    time.value+=1
+    
+    smallfont2=pygame.font.SysFont("Arial", 16)
+    panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
+    lines = update_lines(player, time.day, time)
+
+
+    #buttons for potions
     potions = [items.draw_random_potion(), items.draw_random_potion()]
 
-    potion1_button=button.Button(100, 100, 400, 100, potions[0].name, colors.LIGHT_BLUE, (100, 255, 100))
-    potion2_button=button.Button(100, 200, 400, 100, potions[1].name, colors.LIGHT_BLUE, (100, 255, 100))
+    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.LIGHT_BLUE, (100, 255, 100))
+    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.LIGHT_BLUE, (100, 255, 100))
 
-    stayButton = button.Button(100, 300, 400, 100, "Stay", colors.LIGHT_BLUE, (100, 255, 100))
-    backButton = button.Button(100, 400, 400, 100, "Back", colors.LIGHT_BLUE, (100, 255, 100))
+    stayButton = button.Button(50, 300, 400, 100, "Stay", colors.LIGHT_BLUE, (100, 255, 100))
+    backButton = button.Button(50, 400, 400, 100, "Back", colors.LIGHT_BLUE, (100, 255, 100))
   
     #20 useless facts
     uselessInfo= ["healing potions heal", "you should not drink more than 3 mana potions", "dark sword may bite u!", "dragons are dangerous",
@@ -79,13 +88,13 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                   "someone flirts with someone", "You can die in this battle", "Wienna flirts with Ben", "Hello handsome"
                   ]
 
-    time.value+=1
+
     treasure = 0
 
 
-    ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
+    chat=ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
 
-    
+    update_lines(player, time.day, time)
     running = True
     while running:
         current_time = pygame.time.get_ticks()
@@ -96,31 +105,38 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                 running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if potion1_button.is_clicked(pygame.mouse.get_pos(), event):
-                    if player.gold < potions[0].price:
+                    if player.gold < potions[0].cost:
                         chat = "Not enough gold!"
                         continue
                     else:
-                        player.gold -= potions[0].price
+                        player.gold -= potions[0].cost
                         player.inventory.append(potions[0])
                         potions[0]= items.draw_random_potion()
 
 
                 elif potion2_button.is_clicked(pygame.mouse.get_pos(), event):
-                    if player.gold < potions[1].price:
+                    if player.gold < potions[1].cost:
                         chat ="Not enough gold!"
                         continue
                     else:
-                        player.gold -= potions[1].price
+                        player.gold -= potions[1].cost
                         player.inventory.append(potions[1])
                         potions[1]= items.draw_random_potion()
 
                 elif stayButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat ="You stay in the tavern for a while."
-                    time.sleep(500)
                     time.value += 1
+                    lines=update_lines(player, time.day, time)
+                    screen.fill((0, 0, 0))
+                    ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
+                    draw_lines(panel, lines, smallfont2, screen)
+                    pygame.display.flip()
+                    pygame.time.wait(1000) 
+                    
                     potions = [items.draw_random_potion(), items.draw_random_potion()]
-                    ChatWithStranger(chat, player, dragon, treasure, uselessInfo)
+                    chat=ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
                     if time.value > 15:
                         time.value = 0
                         time.day += 1
@@ -134,6 +150,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                         player.gold+=20+roll_dice(10)
                         treasure=0
                     running = False
+                lines=update_lines(player, time.day, time)
                     # Add your back logic here
 
 
@@ -143,5 +160,6 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
         potion2_button.draw(screen)
         stayButton.draw(screen)
         backButton.draw(screen)
-        ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
+        ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
+        draw_lines(panel, lines, smallfont2, screen)
         pygame.display.flip()

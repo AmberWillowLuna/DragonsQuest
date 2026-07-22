@@ -22,6 +22,13 @@ def update_lines(player, day, time):
         f"Time: {time.value} / 16"
     ]
 
+def draw_lines(panel, lines, smallfont, screen):
+    y_offset = panel.y + 10
+    for line in lines:
+            line_surface = smallfont.render(line, True, (255, 255, 255))
+            screen.blit(line_surface, (panel.x + 10, y_offset))
+            y_offset += line_surface.get_height()
+
 class TimeClass:
     def __init__(self):
         self.value = 0
@@ -71,11 +78,12 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
                 meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
-                lines=update_lines(player, day, time)
+                lines=update_lines(player, time.day, time)
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
                 tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, None)
+                lines=update_lines(player, time.day, time)
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
                 print("Villager's quests button clicked!")
@@ -87,19 +95,16 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
             if time.day==3:
                 print("You have reached day 3! Prepare to fight the dragon!")
             else:
-                print(f"Day {day} begins!")
+                print(f"Day {time.day} begins!")
 
         # Clear the screen
         screen.fill((0, 0, 0))
-        
+        pygame.draw.rect(screen, (50, 50, 50), panel)
+        draw_lines(panel, lines, smallfont, screen)
         # Draw everything
         #display panel and stats:
-        pygame.draw.rect(screen, (50, 50, 50), panel)
-        y_offset = panel.y + 10
-        for line in lines:
-            line_surface = smallfont.render(line, True, (255, 255, 255))
-            screen.blit(line_surface, (panel.x + 10, y_offset))
-            y_offset += line_surface.get_height()
+
+
 
         study_button.draw(screen)
         smith_button.draw(screen)
