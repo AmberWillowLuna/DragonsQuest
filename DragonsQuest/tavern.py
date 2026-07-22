@@ -20,7 +20,7 @@ import pygame
 import items
 import colors
 import ChatDisplay
-from game import update_lines, draw_lines
+from linesF import update_lines, draw_lines
 
 def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
     chat = "You enter and sit next to stranger, he says: "

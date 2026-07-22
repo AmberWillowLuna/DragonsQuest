@@ -34,7 +34,7 @@ class spell:
 
 class fireball(spell):
     def __init__(self):
-        super().__init__("Fireball", random.randint(1,8)+random.randint(1,8), 0, 1, "A ball of fire that burns the enemy.", "You hurl a blazing fireball at your foe!")
+        super().__init__("Fireball", random.randint(1,8)+random.randint(1,8)+random.randint(1,6), 0, 1, "A ball of fire that burns the enemy.", "You hurl a blazing fireball at your foe!")
     def cast(self, player, target, chat):
         if player.mana > 0:
             player.mana -= 1
@@ -78,7 +78,7 @@ class turtleShells(spell):
 
 class rayOfDoom(spell):
     def __init__(self):
-        super().__init__("Ray of Doom", random.randint(1,20), 0, 0, "A powerful ray that deals massive damage.", "You unleash a devastating ray of doom!")
+        super().__init__("Ray of Doom", max(random.randint(1,20),5)+5, 0, 0, "A powerful ray that deals massive damage.", "You unleash a devastating ray of doom!")
     def cast(self, player, target, chat):
         if player.mana > 0:
             player.mana -= 1
@@ -90,7 +90,7 @@ class rayOfDoom(spell):
 
 class poisonousBreath(spell):
     def __init__(self):
-        super().__init__("Poisonous Breath", random.randint(1,8), 0, 0, "A breath of poison that weakens the enemy.", "You exhale a cloud of poisonous gas!")
+        super().__init__("Poisonous Breath", random.randint(1,8)+2, 0, 0, "A breath of poison that weakens the enemy.", "You exhale a cloud of poisonous gas!")
     def cast(self, player, target, chat):
         if player.mana > 0:
             player.mana -= 1
@@ -101,9 +101,9 @@ class poisonousBreath(spell):
             if saveThrow < 15:
                 target.hp -= self.damage
                 if saveThrow <10:
-                    target.hp -= basic_functions.roll_dice(8)
+                    target.hp -= basic_functions.roll_dice(8)+2
                     if saveThrow <5:
-                        target.hp -= basic_functions.roll_dice(8)
+                        target.hp -= basic_functions.roll_dice(8)+2
         else:
             chat=(f"{player.name} does not have enough mana to cast {self.name}.")
 
@@ -114,7 +114,7 @@ class arcanusShot(spell):
         if player.mana > 0:
             player.mana -= 1
             attack(self.acc, target, self.damage, chat)
-            target.hp -= max(self.damage+player.wis+player.Bwis-10,0)
+            target.hp -= max(self.damage+player.wis+(player.Bwis*2)-10,0)
 
 
         else:
