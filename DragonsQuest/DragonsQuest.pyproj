@@ -24,6 +24,8 @@
     <Compile Include="armors.py" />
     <Compile Include="basic_functions.py" />
     <Compile Include="button.py" />
+    <Compile Include="ChatDisplay.py" />
+    <Compile Include="colors.py" />
     <Compile Include="continue.py" />
     <Compile Include="dayHandler.py" />
     <Compile Include="DragonsQuest.py" />

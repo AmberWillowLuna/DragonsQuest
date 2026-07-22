@@ -95,3 +95,10 @@ class enchanted_armor(armor):
             player.hp +=damage*0.4 #negate 50% dmg
         else:
             player.hp+=damage*0.15 #or 10%
+
+class crystal_armor(armor):
+        def __init__(self, name, AC, desc, cost):
+            super().__init__("Enchanted armor", 1, "An enchanted armor that provides good protection.", 50)
+        
+        def OnHitAction(self, player, attacker, damage, chat):
+            player.hp+=damage*0.1 

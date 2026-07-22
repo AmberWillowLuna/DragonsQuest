@@ -26,6 +26,9 @@ class Player:
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
 
+        self.discountA=0
+        self.discountB=0
+
         self.spells = [];
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
         self.mana_exhaust=3;
@@ -58,6 +61,9 @@ class Player:
         if self.hp>self.maxhp:
             self.hp=self.maxhp
 
+    def discountPasses(self):
+        self.discountA=0
+        self.discountB=0
 
     def curse(self):
         x=random.randint(0,3);

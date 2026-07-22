@@ -4,17 +4,8 @@ from player import Player
 import json
 from button import Button
 import meditation
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GRAY = (200, 200, 200)
-LIGHT_GRAY = (220, 220, 220)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-LIGHT_BLUE = (173, 216, 230)
-NAVY_BLUE = (0, 0, 128)
+import tavern
+import colors
 
 def update_lines(player, day, time):
     return [
@@ -34,18 +25,18 @@ def update_lines(player, day, time):
 class TimeClass:
     def __init__(self):
         self.value = 0
+        self.day=0
 
 
 def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #creating panel of the game with stats etc
-    day=0 #on day 3 you fight the dragon
     time = TimeClass()  #time in hours but 16/ day - then sleep
     #some actions will cost 1h others 2
     chat = ""  #chat box for the player to see what happened
     #1 rectangle as background on the right upper corner
     smallfont = pygame.font.SysFont("Arial", 16)
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
-    lines = update_lines(player, day, time)
+    lines = update_lines(player, time.day, time)
 
     #2initializing options to spend time - buttons
     #study magic
@@ -55,11 +46,11 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #quest table (4 quests each day)
     #on day 3 fight the dragon
 
-    study_button =  Button(100, 50, 300, 100, "Study magic", LIGHT_BLUE, (100, 255, 100))
-    smith_button =  Button(100, 150, 300, 100, "Smith", LIGHT_BLUE, (100, 255, 100))
-    meditation_button =  Button(100, 250, 300, 100, "Meditation", LIGHT_BLUE, (100, 255, 100))
-    tavern_button =  Button(100, 350, 300, 100, "Tavern", LIGHT_BLUE, (100, 255, 100))
-    quests_button =  Button(100, 450, 300, 100, "Villager's quests", LIGHT_BLUE, (100, 255, 100))
+    study_button =  Button(100, 50, 300, 100, "Study magic", colors.LIGHT_BLUE, (100, 255, 100))
+    smith_button =  Button(100, 150, 300, 100, "Smith", colors.LIGHT_BLUE, (100, 255, 100))
+    meditation_button =  Button(100, 250, 300, 100, "Meditation", colors.LIGHT_BLUE, (100, 255, 100))
+    tavern_button =  Button(100, 350, 300, 100, "Tavern", colors.LIGHT_BLUE, (100, 255, 100))
+    quests_button =  Button(100, 450, 300, 100, "Villager's quests", colors.LIGHT_BLUE, (100, 255, 100))
 
     
 
@@ -84,6 +75,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
+                tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, None)
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
                 print("Villager's quests button clicked!")
@@ -91,8 +83,8 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
         # Game logic goes here
         if time.value>15:
             time.value=0
-            day+=1
-            if day==3:
+            time.day
+            if time.day==3:
                 print("You have reached day 3! Prepare to fight the dragon!")
             else:
                 print(f"Day {day} begins!")

@@ -12,7 +12,7 @@ import json
 import start
 import game
 from button import Button
-
+import colors
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -23,25 +23,16 @@ pygame.display.set_caption(random.choice(titles))
 font = pygame.font.SysFont("Arial", 40)
 small_font = pygame.font.SysFont("Arial", 30)
 
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GRAY = (200, 200, 200)
-LIGHT_GRAY = (220, 220, 220)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-LIGHT_BLUE = (173, 216, 230)
-NAVY_BLUE = (0, 0, 128)
+
 
 def main():
     #main tittle buttons
     # Create buttons
 
-    start_button = Button(300, 200, 200, 50, "Start", LIGHT_BLUE, (100, 255, 100))
-    continue_button = Button(300, 200, 200, 50, "Continue", LIGHT_BLUE, (100, 255, 100))
-    options_button = Button(300, 300, 200, 50, "Options", LIGHT_BLUE, (100, 100, 255))
-    exit_button = Button(300, 400, 200, 50, "Exit", LIGHT_BLUE, (255, 100, 100))
+    start_button = Button(300, 200, 200, 50, "Start", colors.LIGHT_BLUE, (100, 255, 100))
+    continue_button = Button(300, 200, 200, 50, "Continue", colors.LIGHT_BLUE, (100, 255, 100))
+    options_button = Button(300, 300, 200, 50, "Options", colors.LIGHT_BLUE, (100, 100, 255))
+    exit_button = Button(300, 400, 200, 50, "Exit", colors.LIGHT_BLUE, (255, 100, 100))
 
     clock = pygame.time.Clock()
     running = True
@@ -73,8 +64,8 @@ def main():
         exit_button.check_hover(mouse_pos)
 
         # Draw everything
-        screen.fill(NAVY_BLUE)
-        title_text = font.render("Dragon's quest", True, LIGHT_BLUE)
+        screen.fill(colors.NAVY_BLUE)
+        title_text = font.render("Dragon's quest", True, colors.LIGHT_BLUE)
         screen.blit(title_text, (SCREEN_WIDTH // 2 - title_text.get_width() // 2, 100))
 
         start_button.draw(screen)
