@@ -38,6 +38,7 @@
     <Compile Include="meditation.py" />
     <Compile Include="player.py" />
     <Compile Include="quests.py" />
+    <Compile Include="smith.py" />
     <Compile Include="spells.py" />
     <Compile Include="start.py" />
     <Compile Include="tavern.py" />

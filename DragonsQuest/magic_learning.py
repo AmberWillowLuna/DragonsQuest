@@ -48,6 +48,9 @@ def Study_magic(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, A
     #learning a spell costs 1 mana
     #spells should be rerolled each day, so you can learn different spells each day
      
+    #ADD A MINIGAMEEEE!!!!
+
+
     #info on how it works
     chat = "An old mage looks and you and says: Blue are books - you have 25% to learn then each hour and +25% each hour you spend here, gold is a scroll, you have 50% to learn it and +50% each hour... however remember that to learn it succesfully you need mana"
     #defining things for displaying player stats

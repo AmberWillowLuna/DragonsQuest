@@ -1,3 +1,4 @@
+from tkinter import W
 import pygame
 import sys
 from player import Player
@@ -10,6 +11,8 @@ import spells
 import random
 import magic_learning
 import linesF
+import weapons
+import armors
 
 class TimeClass:
     def __init__(self):
@@ -49,7 +52,10 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     AllSpells=[spells.fireball(), spells.selfCure(), spells.hyperfocus(), spells.turtleShells(), spells.rayOfDoom(), spells.poisonousBreath(), spells.arcanusShot()]
     #drawing 3 spells to learn
     StudySpells = random.sample(range(1, 7), 3)
-
+    #weapons
+    Weapons = [weapons.basic_dagger(), weapons.iron_sword(), weapons.steel_sword(), weapons.miths_hammer(), weapons.galaxyDagger(), weapons.terra_blade(), weapons.enchanted_diamond_sword(), weapons.legendary_dragon_slayer(), weapons.obanium_sword(), weapons.crystal_sword(), weapons.crystal_sword(), weapons.magic_bow(), weapons.flamethrower(), weapons.mace_of_destruction(), weapons.dark_sword(), weapons.arcanus_sword()]
+    #armors
+    Armory = [armors.leather_armor(), armors.rubin_amulet(), armors.steel_armor(), armors.dragon_scale_armor(), armors.crown_of_fools(), armors.chainmail(), armors.miths_armor(), armors.legendary_armor(), armors.grassy_armor(), armors.enchanted_armor(), armors.crystal_armor()]
 
     # Main game loop
     running = True

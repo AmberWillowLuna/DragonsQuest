@@ -1,6 +1,8 @@
 
 import random
-
+from armors import armor
+import weapons
+import armors
 
 class Player:
     def __init__(self, image=None):
@@ -34,9 +36,9 @@ class Player:
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
         self.mana_exhaust=3;
 
-        self.armor = "";
-        self.weapon = "";
-        self.inventory = [];
+        self.armor = None
+        self.weapon = weapons.basic_dagger
+        self.inventory = []
         self.upperHand= False
 
     def BonusLoss(self):

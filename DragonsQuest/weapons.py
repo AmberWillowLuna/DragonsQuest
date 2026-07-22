@@ -175,7 +175,7 @@ class arcanus_sword(weapon):
 
     def attack(self, player, target, chat, cost):
         if basic_functions.aim(player, target, self.acc):
-            target.hp -= basic_functions.roll_dice(20)+basic_functions.roll_dice(20)+basic_functions.roll_dice(20)+10
+            target.hp -= basic_functions.roll_dice(20)+basic_functions.roll_dice(20)+player.wis+player.Bwis+10
             chat=(f"{player.name} attacks {target.name} with {self.name}")
         else:
             target.hp-= basic_functions.roll_dice(8)+basic_functions.roll_dice(8)+4
