@@ -21,7 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="armory.py" />
+    <Compile Include="armors.py" />
+    <Compile Include="basic_functions.py" />
     <Compile Include="button.py" />
     <Compile Include="continue.py" />
     <Compile Include="dayHandler.py" />
@@ -37,6 +38,7 @@
     <Compile Include="spells.py" />
     <Compile Include="start.py" />
     <Compile Include="tavern.py" />
+    <Compile Include="weapons.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

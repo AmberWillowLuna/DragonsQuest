@@ -15,6 +15,7 @@ class Player:
         self.int = 9+random.randint(0, 2)
         self.wis = 9+random.randint(0, 2)
         self.char = 9+random.randint(0, 2)
+        self.acc=0 #bonus for accuracy (should be alwyas 0 but lets keep it)
         self.Bacc = 0 #bonus while aiming
         self.BAC = 0 #bonus while defending
         self.Bstr = 0

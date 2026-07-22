@@ -1,8 +1,7 @@
 
 import random
+import basic_functions
 
-def roll_dice(sides):
-    return random.randint(1, sides)
 
 def attack(bonus, target, dmg, chat, attacker):
     if random.randint(1, 20) + bonus >= target.ac:
