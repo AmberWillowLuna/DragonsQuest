@@ -13,6 +13,7 @@ import magic_learning
 import linesF
 import weapons
 import armors
+import smith
 
 class TimeClass:
     def __init__(self):
@@ -53,9 +54,9 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #drawing 3 spells to learn
     StudySpells = random.sample(range(1, 7), 3)
     #weapons
-    Weapons = [weapons.basic_dagger(), weapons.iron_sword(), weapons.steel_sword(), weapons.miths_hammer(), weapons.galaxyDagger(), weapons.terra_blade(), weapons.enchanted_diamond_sword(), weapons.legendary_dragon_slayer(), weapons.obanium_sword(), weapons.crystal_sword(), weapons.crystal_sword(), weapons.magic_bow(), weapons.flamethrower(), weapons.mace_of_destruction(), weapons.dark_sword(), weapons.arcanus_sword()]
+    AllWeapons = [weapons.basic_dagger(), weapons.iron_sword(), weapons.steel_sword(), weapons.miths_hammer(), weapons.galaxyDagger(), weapons.terra_blade(), weapons.enchanted_diamond_sword(), weapons.legendary_dragon_slayer(), weapons.obanium_sword(), weapons.crystal_sword(), weapons.crystal_sword(), weapons.magic_bow(), weapons.flamethrower(), weapons.mace_of_destruction(), weapons.dark_sword(), weapons.arcanus_sword()]
     #armors
-    Armory = [armors.leather_armor(), armors.rubin_amulet(), armors.steel_armor(), armors.dragon_scale_armor(), armors.crown_of_fools(), armors.chainmail(), armors.miths_armor(), armors.legendary_armor(), armors.grassy_armor(), armors.enchanted_armor(), armors.crystal_armor()]
+    AllArmory = [armors.leather_armor(), armors.rubin_amulet(), armors.steel_armor(), armors.dragon_scale_armor(), armors.crown_of_fools(), armors.chainmail(), armors.miths_armor(), armors.legendary_armor(), armors.grassy_armor(), armors.enchanted_armor(), armors.crystal_armor()]
 
     # Main game loop
     running = True
@@ -73,6 +74,8 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your study magic logic here
             elif smith_button.is_clicked(mouse_pos, event):
                 print("Smith button clicked!")
+                smith.Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, AllArmory, AllWeapons)
+                lines=linesF.update_lines(player, time.day, time)
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
                 meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
@@ -97,7 +100,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
         # Clear the screen
         screen.fill((0, 0, 0))
-        pygame.draw.rect(screen, (50, 50, 50), panel)
+        #pygame.draw.rect(screen, (50, 50, 50), panel)
         linesF.draw_lines(panel, lines, smallfont, screen)
         # Draw everything
         #display panel and stats:

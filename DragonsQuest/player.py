@@ -36,8 +36,8 @@ class Player:
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
         self.mana_exhaust=3;
 
-        self.armor = None
-        self.weapon = weapons.basic_dagger
+        self.armor = []
+        self.weapon = [weapons.basic_dagger()]
         self.inventory = []
         self.upperHand= False
 

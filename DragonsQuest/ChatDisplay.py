@@ -13,7 +13,7 @@ def ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     lines = textwrap.wrap(chat, width=47)
 
     # Starting position
-    y = SCREEN_HEIGHT - SCREEN_HEIGHT // 2
+    y = SCREEN_HEIGHT - SCREEN_HEIGHT // 4
 
     for line in lines:
         chat_surface = font.render(line, True, (255, 255, 255))

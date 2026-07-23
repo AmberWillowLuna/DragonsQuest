@@ -12,8 +12,17 @@ def update_lines(player, day, time):
         f"Day: {day}",
         f"Time: {time.value} / 16",
     ]
+    k.append(f"Weapons: ")
+    for weapon in player.weapon:
+        k.append(f"- {weapon.name}")
+    k.append("Armors: ")
+    for armor in player.armor:
+        k.append(f"- {armor.name}")
+    k.append(f"Spells: ")
     for spell in player.spells:
         k.append(f"  - {spell.name}")
+
+
     return k
 
 

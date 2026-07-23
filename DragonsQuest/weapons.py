@@ -8,7 +8,7 @@ class weapon:
         self.name = name
         self.acc=acc #bonus for accuracy
         self.desc=desc
-        self.cost
+        self.cost=cost
 
 class basic_dagger(weapon):
     def __init__(self):
@@ -81,7 +81,7 @@ class terra_blade(weapon):
 
 class enchanted_diamond_sword(weapon):
     def __init__(self):
-        super().__init__("Enchanted Diamond Sword", 2, "A sword made of enchanted diamond, very powerful.", 50)
+        super().__init__("Enchanted DiaxSword", 2, "A sword made of enchanted diamond, very powerful.", 50)
 
     def attack(self, player, target, chat, cost):
         if basic_functions.aim(player, target, self.acc):
@@ -92,7 +92,7 @@ class enchanted_diamond_sword(weapon):
 
 class legendary_dragon_slayer(weapon):
     def __init__(self):
-        super().__init__("Legendary Dragon Slayer", -2, "A legendary sword capable of slaying dragons, but hard to aim with it", 100)
+        super().__init__("Dragon Slayer", -2, "A legendary sword capable of slaying dragons, but hard to aim with it", 100)
 
     def attack(self, player, target, chat, cost):
         if basic_functions.aim(player, target, self.acc):
