@@ -16,6 +16,8 @@ import weapons
 import armors
 import smith
 import dragons
+import VillagersQuests
+import quests
 
 class TimeClass:
     def __init__(self):
@@ -62,6 +64,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
     TheDragon=dragons.drawRandomDragon()
 
+    DailyQuests = quests.RandomQuests()
 
     # Main game loop
     running = True
@@ -93,6 +96,8 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
                 print("Villager's quests button clicked!")
+                VillagersQuests.QuestBoard(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests)
+                lines=linesF.update_lines(player, time.day, time)
                 # Add your quests logic here
         # Game logic goes here
         if time.value>15:

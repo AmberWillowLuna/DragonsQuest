@@ -9,6 +9,7 @@ def update_lines(player, day, time):
         f"Wisdom: {player.wis + player.Bwis}",
         f"Intelligence: {player.int + player.Bint}",
         f"Charisma: {player.char + player.Bchar}",
+        f"Gold: {player.gold}",
         f"Day: {day}",
         f"Time: {time.value} / 16",
     ]
@@ -21,6 +22,9 @@ def update_lines(player, day, time):
     k.append(f"Spells: ")
     for spell in player.spells:
         k.append(f"  - {spell.name}")
+    k.append(f"Inventory: ")
+    for item in player.inventory:
+        k.append(f"  - {item.name}")
 
 
     return k

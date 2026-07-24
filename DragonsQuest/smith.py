@@ -72,21 +72,173 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
 
             if event.type == pygame.MOUSEBUTTONDOWN:
 
+                # ---------- Weapon 1 ----------
                 if weapon1_button.is_clicked(pygame.mouse.get_pos(), event):
-                    #chat = 
-                    #remember that crafting armors and weapons take time!!!
-                    i=1
+
+                    item = Allweapons[weaponary[0]]
+
+                    if player.gold >= item.cost:
+                        player.gold -= item.cost
+                        player.weapon.append(item)
+
+                        if item.cost >= 40:
+                            time.add(2 if random.randint(1,2) == 1 else 1)
+                        else:
+                            time.add(2 if random.randint(1,4) == 1 else 1)
+
+                        chat = f"You bought {item.name}."
+
+                        available = [i for i in range(1, len(Allweapons))
+                                    if Allweapons[i] not in player.weapon
+                                    and i not in weaponary]
+
+                        if available:
+                            weaponary[0] = random.choice(available)
+                            weapon1_button.text = Allweapons[weaponary[0]].name + " " + str(Allweapons[weaponary[0]].cost)
+
+                    else:
+                        chat = "Not enough gold."
+
+                # ---------- Weapon 2 ----------
                 elif weapon2_button.is_clicked(pygame.mouse.get_pos(), event):
-                    i=1
 
+                    item = Allweapons[weaponary[1]]
+
+                    if player.gold >= item.cost:
+                        player.gold -= item.cost
+                        player.weapon.append(item)
+
+                        if item.cost >= 40:
+                            time.add(2 if random.randint(1,2) == 1 else 1)
+                        else:
+                            time.add(2 if random.randint(1,4) == 1 else 1)
+
+                        chat = f"You bought {item.name}."
+
+                        available = [i for i in range(1, len(Allweapons))
+                                    if Allweapons[i] not in player.weapon
+                                    and i not in weaponary]
+
+                        if available:
+                            weaponary[1] = random.choice(available)
+                            weapon2_button.text = Allweapons[weaponary[1]].name + " " + str(Allweapons[weaponary[1]].cost)
+
+                    else:
+                        chat = "Not enough gold."
+
+                # ---------- Weapon 3 ----------
                 elif weapon3_button.is_clicked(pygame.mouse.get_pos(), event):
-                    i=1
 
+                    item = Allweapons[weaponary[2]]
+
+                    if player.gold >= item.cost:
+                        player.gold -= item.cost
+                        player.weapon.append(item)
+
+                        if item.cost >= 40:
+                            time.add(2 if random.randint(1,2) == 1 else 1)
+                        else:
+                            time.add(2 if random.randint(1,4) == 1 else 1)
+
+                        chat = f"You bought {item.name}."
+
+                        available = [i for i in range(1, len(Allweapons))
+                                    if Allweapons[i] not in player.weapon
+                                    and i not in weaponary]
+
+                        if available:
+                            weaponary[2] = random.choice(available)
+                            weapon3_button.text = Allweapons[weaponary[2]].name + " " + str(Allweapons[weaponary[2]].cost)
+
+                    else:
+                        chat = "Not enough gold."
+
+                # ---------- Armor 1 ----------
+                elif armor1_button.is_clicked(pygame.mouse.get_pos(), event):
+
+                    item = Allarmors[armory[0]]
+
+                    if player.gold >= item.cost:
+                        player.gold -= item.cost
+                        player.armor.append(item)
+
+                        if item.cost >= 40:
+                            time.add(2 if random.randint(1,2) == 1 else 1)
+                        else:
+                            time.add(2 if random.randint(1,4) == 1 else 1)
+
+                        chat = f"You bought {item.name}."
+
+                        available = [i for i in range(1, len(Allarmors))
+                                    if Allarmors[i] not in player.armor
+                                    and i not in armory]
+
+                        if available:
+                            armory[0] = random.choice(available)
+                            armor1_button.text = Allarmors[armory[0]].name + " " + str(Allarmors[armory[0]].cost)
+
+                    else:
+                        chat = "Not enough gold."
+
+                # ---------- Armor 2 ----------
+                elif armor2_button.is_clicked(pygame.mouse.get_pos(), event):
+
+                    item = Allarmors[armory[1]]
+
+                    if player.gold >= item.cost:
+                        player.gold -= item.cost
+                        player.armor.append(item)
+
+                        if item.cost >= 40:
+                            time.add(2 if random.randint(1,2) == 1 else 1)
+                        else:
+                            time.add(2 if random.randint(1,4) == 1 else 1)
+
+                        chat = f"You bought {item.name}."
+
+                        available = [i for i in range(1, len(Allarmors))
+                                    if Allarmors[i] not in player.armor
+                                    and i not in armory]
+
+                        if available:
+                            armory[1] = random.choice(available)
+                            armor2_button.text = Allarmors[armory[1]].name + " " + str(Allarmors[armory[1]].cost)
+
+                    else:
+                        chat = "Not enough gold."
+
+                # ---------- Stay ----------
+                elif Reroll_button.is_clicked(pygame.mouse.get_pos(), event):
+
+                    time.add(1)
+
+                    while True:
+                        weaponary = random.sample(range(1, len(Allweapons)), 3)
+
+                        if all(Allweapons[i] not in player.weapon for i in weaponary):
+                            break
+
+                    while True:
+                        armory = random.sample(range(1, len(Allarmors)), 2)
+
+                        if all(Allarmors[i] not in player.armor for i in armory):
+                            break
+
+                    weapon1_button.text = Allweapons[weaponary[0]].name + " " + str(Allweapons[weaponary[0]].cost)
+                    weapon2_button.text = Allweapons[weaponary[1]].name + " " + str(Allweapons[weaponary[1]].cost)
+                    weapon3_button.text = Allweapons[weaponary[2]].name + " " + str(Allweapons[weaponary[2]].cost)
+
+                    armor1_button.text = Allarmors[armory[0]].name + " " + str(Allarmors[armory[0]].cost)
+                    armor2_button.text = Allarmors[armory[1]].name + " " + str(Allarmors[armory[1]].cost)
+
+                    chat = "The smith brings out new equipment."
+
+                # ---------- Back ----------
                 elif backButton.is_clicked(pygame.mouse.get_pos(), event):
-                    chat ="You leave smith's hut."
+                    chat = "You leave the smith's hut."
                     running = False
-                lines=linesF.update_lines(player, time.day, time)
-                    # Add your back logic here
+
+                lines = linesF.update_lines(player, time.day, time)
 
 
         #drawing

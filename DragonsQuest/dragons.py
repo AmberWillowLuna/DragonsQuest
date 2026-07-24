@@ -60,10 +60,13 @@ class dragon:
         return
     def Attack3():
         return
-    def damage(self, value, limb):
+    def damage(self, value, limb, chat):
         self.hp-=value*self.dmgReduce
         if(limb==self.weak_spot):
             self.hp-=4+basic_functions.roll_dice(4)
+            chat+=" That was a weak spot here!"
+        return chat
+
 
 
 

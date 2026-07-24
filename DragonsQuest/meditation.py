@@ -10,7 +10,6 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     #clock prepare
     text1 = font.render("Hold Q for 2 seconds to breathe in", True, (255, 255, 255))
     text2 = font.render("Hold E for 2 seconds to breathe out", True, (255, 255, 255))
-    text3 = font.render("Hold SPACE for 2 seconds to focus", True, (255, 255, 255))
      
     #make background an image
     # Initialize the sprite
@@ -25,7 +24,7 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     counter = 0
 
     hold_start_time = None
-    required_hold_time = 2000  # milliseconds
+    required_hold_time = 1350  # milliseconds
 
     while running:
         current_time = pygame.time.get_ticks()
@@ -42,15 +41,11 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
                 elif counter == 1 and event.key == pygame.K_e:
                     hold_start_time = current_time
 
-                elif counter == 2 and event.key == pygame.K_SPACE:
-                    hold_start_time = current_time
-
             elif event.type == pygame.KEYUP:
             # Releasing the required key resets the timer
                 if (
                     (counter == 0 and event.key == pygame.K_q) or
-                    (counter == 1 and event.key == pygame.K_e) or
-                    (counter == 2 and event.key == pygame.K_SPACE)
+                    (counter == 1 and event.key == pygame.K_e)
                 ):
                     hold_start_time = None
 
@@ -68,17 +63,10 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
             elif counter == 1:
                 if keys[pygame.K_e]:
                     if hold_start_time is not None and current_time - hold_start_time >= required_hold_time:
-                        counter = 2
-                        hold_start_time = None
-                else:
-                    hold_start_time = None
-
-            elif counter == 2:
-                if keys[pygame.K_SPACE]:
-                    if hold_start_time is not None and current_time - hold_start_time >= required_hold_time:
                         running = False
                 else:
                     hold_start_time = None
+
 
         # ----- Draw -----
         screen.fill((0, 0, 0))
@@ -88,10 +76,9 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
        
         if counter == 0:
             screen.blit(text1, (SCREEN_WIDTH // 2 - text1.get_width() // 2, 100))
-        elif counter == 1:
-            screen.blit(text2, (SCREEN_WIDTH // 2 - text2.get_width() // 2, 100))
         else:
-            screen.blit(text3, (SCREEN_WIDTH // 2 - text3.get_width() // 2, 100))
+            screen.blit(text2, (SCREEN_WIDTH // 2 - text2.get_width() // 2, 100))
+
 
         pygame.display.flip()
 

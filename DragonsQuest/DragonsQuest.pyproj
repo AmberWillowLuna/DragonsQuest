@@ -39,11 +39,13 @@
     <Compile Include="magic_learning.py" />
     <Compile Include="meditation.py" />
     <Compile Include="player.py" />
+    <Compile Include="Prep4Battle.py" />
     <Compile Include="quests.py" />
     <Compile Include="smith.py" />
     <Compile Include="spells.py" />
     <Compile Include="start.py" />
     <Compile Include="tavern.py" />
+    <Compile Include="VillagersQuests.py" />
     <Compile Include="weapons.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
