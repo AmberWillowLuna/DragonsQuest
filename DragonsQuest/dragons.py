@@ -39,7 +39,7 @@ class dragon:
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
-        self.weak_spot=spots[random.randint(0,len(spots))]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.ult=0
 
     def WhichAttack(self, player, chat):

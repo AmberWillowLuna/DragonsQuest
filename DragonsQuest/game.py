@@ -100,6 +100,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
             time.day
             if time.day==3:
                 print("You have reached day 3! Prepare to fight the dragon!")
+                #Fight the dragon!!!!!!!
             else:
                 print(f"Day {time.day} begins!")
 
