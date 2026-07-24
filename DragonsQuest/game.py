@@ -1,6 +1,7 @@
 from tkinter import W
 import pygame
 import sys
+from dragons import dragon
 from player import Player
 import json
 from button import Button
@@ -14,6 +15,7 @@ import linesF
 import weapons
 import armors
 import smith
+import dragons
 
 class TimeClass:
     def __init__(self):
@@ -58,6 +60,9 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #armors
     AllArmory = [armors.leather_armor(), armors.rubin_amulet(), armors.steel_armor(), armors.dragon_scale_armor(), armors.crown_of_fools(), armors.chainmail(), armors.miths_armor(), armors.legendary_armor(), armors.grassy_armor(), armors.enchanted_armor(), armors.crystal_armor()]
 
+    TheDragon=dragons.drawRandomDragon()
+
+
     # Main game loop
     running = True
     while running: 
@@ -83,7 +88,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
-                tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, None)
+                tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):

@@ -28,6 +28,8 @@
     <Compile Include="colors.py" />
     <Compile Include="continue.py" />
     <Compile Include="dayHandler.py" />
+    <Compile Include="dragonbaltte.py" />
+    <Compile Include="dragons.py" />
     <Compile Include="DragonsQuest.py" />
     <Compile Include="enemies.py" />
     <Compile Include="game.py" />

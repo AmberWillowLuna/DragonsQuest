@@ -64,6 +64,11 @@ class Player:
         if self.hp>self.maxhp:
             self.hp=self.maxhp
 
+    def damage(self, value):
+        self.hp-=value*self.dmgReduce
+        if self.hp<=0:
+            self.AC=0
+
     def discountPasses(self):
         self.discountA=0
         self.discountB=0
