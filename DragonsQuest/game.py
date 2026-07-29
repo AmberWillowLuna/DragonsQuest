@@ -2,6 +2,7 @@ from tkinter import W
 import pygame
 import sys
 from dragons import dragon
+from enemies import drawRandomEnemy
 from player import Player
 import json
 from button import Button
@@ -66,6 +67,8 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
     DailyQuests = quests.RandomQuests()
 
+    enemy=drawRandomEnemy()
+
     # Main game loop
     running = True
     while running: 
@@ -96,7 +99,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
                 print("Villager's quests button clicked!")
-                VillagersQuests.QuestBoard(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests)
+                VillagersQuests.QuestBoard(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests, enemy)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your quests logic here
         # Game logic goes here

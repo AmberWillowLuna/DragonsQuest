@@ -28,7 +28,8 @@ class Player:
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
         self.gold=0
-
+        self.currentWeapon = None
+        self.currentArmor = None
         self.discountA=0
         self.discountB=0
 

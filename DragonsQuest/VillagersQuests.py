@@ -5,10 +5,11 @@ import colors
 import ChatDisplay
 import linesF
 import quests      # contains Quest and RandomQuests()
+import Battle
 
 
 def QuestBoard(player, time, chat,
-               screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests):
+               screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests, enemy):
 
     chat = "The village notice board is filled with requests."
 
@@ -40,7 +41,7 @@ def QuestBoard(player, time, chat,
 
     fightQuest = button.Button(
         20, 340, 500, 80,
-        "Monster Hunt (Coming Soon)",
+        "Monster Hunt (-)",
         colors.RED,
         (255,120,120)
     )
@@ -86,11 +87,10 @@ def QuestBoard(player, time, chat,
                         )
 
                 elif quest2.is_clicked(mouse, event):
-
-                    if DailyQuests[1].finished:
+                    if DailyQuests[2].finished:
                         chat = "You have already completed this quest."
                     else:
-                        DailyQuests[1].run(
+                        DailyQuests[2].run(
                             screen,
                             SCREEN_WIDTH,
                             SCREEN_HEIGHT,
@@ -98,7 +98,6 @@ def QuestBoard(player, time, chat,
                             player,
                             time
                         )
-
                 elif quest3.is_clicked(mouse, event):
 
                     if DailyQuests[2].finished:
@@ -112,6 +111,12 @@ def QuestBoard(player, time, chat,
                             player,
                             time
                         )
+                elif fightQuest.is_clicked(mouse, event):
+                    if enemy.hp<=0:
+                        chat = "You have already killed this enemy."
+                    else:
+                        Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
+           player, enemy, chat)
 
                 elif fightQuest.is_clicked(mouse, event):
                     chat = "Monster hunting is not implemented yet."

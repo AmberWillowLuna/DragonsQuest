@@ -173,3 +173,21 @@ class gremlin(dragons.dragon):
         else:
             chat = "You dodge the gremlin's leap!"
         return chat
+
+import random
+
+def drawRandomEnemy():
+    roll = random.randint(1, 6)
+
+    if roll == 1:
+        return spider()
+    elif roll == 2:
+        return goblin()
+    elif roll == 3:
+        return wolf()
+    elif roll == 4:
+        return gremlin()
+    elif roll == 5:
+        return bandit()
+    else:
+        return werewolf()
