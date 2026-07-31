@@ -1,23 +1,31 @@
+from types import NoneType
 import pygame
 import button
 import ChatDisplay
 import linesF
 import colors
 import basic_functions
+import BattlePicker
+import spell_battle
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 
+
+
 def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
            player, enemy, chat):
-
+    BattlePicker.ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
+                    player, chat)
     font = pygame.font.SysFont("Arial", 24)
     smallfont = pygame.font.SysFont("Arial", 16)
-
+    spell_disp=False
     panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
 
     actions_left = 2
+
+    SpellButtons=spell_battle.PlayerSpellsToButtons(player)
 
     attackButton = button.Button(
         20, 20, 220, 60,
@@ -81,41 +89,22 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
             if attackButton.is_clicked(mouse, event):
 
-                if player.currentWeapon is None:
-                    chat = "No weapon equipped."
-                    #get to choose!
 
-                else:
+                chat = player.currentWeapon.attack(player, enemy, chat)
 
-                    limb = enemy.weak_spot
-                    roll = basic_functions.roll_dice(20)
 
-                    if roll + player.acc + player.Bacc > enemy.AC + enemy.BAC:
-
-                        dmg = basic_functions.roll_dice(
-                            player.currentWeapon.damage
-                        )
-
-                        enemy.damage(dmg, limb)
-
-                        chat = (
-                            f"You hit the {enemy.type} dragon "
-                            f"for {dmg} damage."
-                        )
-
-                    else:
-                        chat = "Your attack misses."
-
-                    actions_left -= 1
+                actions_left -= 1
 
             ###############################
             # SPELL
             ###############################
 
             elif spellButton.is_clicked(mouse, event):
-
-                chat = "Spell system not implemented yet."
-                actions_left -= 1
+                if spell_disp==False:
+                    spell_disp=True
+                else:
+                    spell_disp==False
+                chat = "spells shown"
 
             ###############################
             # ITEM
@@ -133,6 +122,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             elif defendButton.is_clicked(mouse, event):
 
                 player.BAC += 2
+                player.BACC+=2
                 chat = "You prepare for incoming attacks."
 
                 actions_left -= 1
@@ -155,8 +145,26 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             # Enemy turn
             ######################################
 
+            elif spell_disp:
+                spell_used = False
+
+                for spell, b in SpellButtons:
+
+                    if b.is_clicked(mouse, event):
+
+                        chat = spell.cast(player, enemy, chat)
+
+                        spell_disp = False
+                        spell_used = True
+
+                        break
+
+                if spell_used:
+                    actions_left -= 1
+                    continue
+
             if enemy.hp <= 0:
-                chat = f"You defeated the {enemy.type} dragon!"
+                chat = f"You defeated the {enemy.type} !"
                 return True
 
             if actions_left <= 0:
@@ -166,7 +174,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                 chat = enemy.WhichAttack(player, chat)
 
                 player.BonusLoss()
-                enemy.BonusLoss()
+                #enemy.BonusLoss()
 
                 if player.hp <= 0:
                     chat = "You were defeated."
@@ -189,6 +197,10 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         ]
 
         screen.fill(BLACK)
+        if spell_disp:
+
+            for _, b in SpellButtons:
+                b.draw(screen)
 
         attackButton.draw(screen)
         spellButton.draw(screen)

@@ -6,7 +6,7 @@ import basic_functions
 class spider(dragons.dragon):
     def __init__(self):
         self.type="spider"
-        super().__init__(12, 12,7,8,8,8,9,10,10)
+        super().__init__(12, 12,7,8,8,8,9,10,10, 20)
         self.ult=1
 
     def Attack1(self, player, chat):
@@ -32,7 +32,7 @@ class spider(dragons.dragon):
 class goblin(dragons.dragon):
     def __init__(self):
         self.type = "goblin"
-        super().__init__(24, 24, 9, 11, 9, 8, 8, 8, 12)
+        super().__init__(24, 24, 9, 11, 9, 8, 8, 8, 12, 25)
         self.ult = 1
 
     def Attack1(self, player, chat):
@@ -63,7 +63,7 @@ class goblin(dragons.dragon):
 class werewolf(dragons.dragon):
     def __init__(self):
         self.type = "werewolf"
-        super().__init__(40, 40, 16, 13, 15, 8, 8, 7, 14)
+        super().__init__(40, 40, 16, 13, 15, 8, 8, 7, 14, 120)
         self.ult = 1
 
     def Attack1(self, player, chat):
@@ -90,7 +90,7 @@ class werewolf(dragons.dragon):
 class wolf(dragons.dragon):
     def __init__(self):
         self.type = "wolf"
-        super().__init__(20, 20, 12, 13, 11, 8, 6, 5, 13)
+        super().__init__(20, 20, 12, 13, 11, 8, 6, 5, 13, 40)
         self.ult = 1
 
     def Attack1(self, player, chat):
@@ -121,7 +121,7 @@ class wolf(dragons.dragon):
 class bandit(dragons.dragon):
     def __init__(self):
         self.type = "bandit"
-        super().__init__(24, 24, 11, 12, 11, 10, 10, 12, 13)
+        super().__init__(24, 24, 11, 12, 11, 10, 10, 12, 13, 35)
         self.ult = 1
 
     def Attack1(self, player, chat):
@@ -151,7 +151,7 @@ class bandit(dragons.dragon):
 class gremlin(dragons.dragon):
     def __init__(self):
         self.type = "gremlin"
-        super().__init__(8, 8, 6, 14, 7, 10, 12, 10, 11)
+        super().__init__(8, 8, 6, 14, 7, 10, 12, 10, 11, 40)
         self.ult = 1
 
     def Attack1(self, player, chat):

@@ -18,7 +18,7 @@ def drawRandomDragon():
 
 
 class dragon:
-    def __init__(self, maxhp, hp, str1, dex, const, wis, char, int1, AC):
+    def __init__(self, maxhp, hp, str1, dex, const, wis, char, int1, AC, gold):
         self.maxhp=maxhp
         self.hp=hp
         self.str=str1
@@ -41,6 +41,7 @@ class dragon:
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.ult=0
+        self.gold=gold
 
     def WhichAttack(self, player, chat):
         roll=basic_functions.roll_dice(20)
@@ -74,7 +75,7 @@ class dragon:
 class BlueDragon(dragon):
     def __init__(self):
         self.type="icey blue"
-        super().__init__( 120, 120,15,8,14,10,9,10,13) #AC 14?
+        super().__init__( 120, 120,15,8,14,10,9,10,13, 200) #AC 14?
 
     def Attack1(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
@@ -103,6 +104,24 @@ class BlueDragon(dragon):
         chat = "dragon makes a frozen shell upon his body to protect itself! "
         return chat
 
+    def BonusLoss(self):
+        if self.BAC>0:
+            self.BAC -= 1
+        if self.Bstr>0:
+            self.Bstr -= 1
+        if self.Bdex>0:
+            self.Bdex -= 1
+        if self.Bconst>0:
+            self.Bconst -= 1
+        if self.Bint>0:
+            self.Bint -= 1
+        if self.Bwis>0:
+            self.Bwis -= 1
+        if self.Bchar>0:
+            self.Bchar -= 1
+        if self.Bacc>0:
+            self.Bacc-=1
+
 
 
 
@@ -111,19 +130,19 @@ class BlueDragon(dragon):
 class GreyDragon(dragon):
     def __init__(self):
         self.type="grey psychic"
-        super().__init__(120, 120,12,8,13,13,13,13,13) #AC 14?
+        super().__init__(120, 120,12,8,13,13,13,13,13, 200) #AC 14?
 
 #firery red dragon - weak for obanium and cristal
 class RedDragon(dragon):
     def __init__(self):
         self.type="firery red"
-        super().__init__(120, 120,15,8,13,10,9,10,13) #AC 14?
+        super().__init__(120, 120,15,8,13,10,9,10,13, 200) #AC 14?
 
 #greenish dragon - weak for darkness and poison - very low const
 class GreenDragon(dragon):
     def __init__(self):
         self.type="greenish "
-        super().__init__(120, 120,15,8,5,10,9,10,16) #AC 14?
+        super().__init__(120, 120,15,8,5,10,9,10,16, 200) #AC 14?
 
 
 #white great dragon - no weaknesses - only 8% to find - but secondary attack attacks const
@@ -131,4 +150,4 @@ class GreenDragon(dragon):
 class WhiteDragon(dragon):
     def __init__(self):
         self.type="great white"
-        super().__init__(120, 120,15,8,14,10,9,10,10) #AC 14?
+        super().__init__(120, 120,15,8,14,10,9,10,10, 250) #AC 14?

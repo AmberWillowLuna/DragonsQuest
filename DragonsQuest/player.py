@@ -8,6 +8,8 @@ class Player:
     def __init__(self, image=None):
         #18 + rand(0-5)
 
+        self.name = "Player " #maybe implement other in future
+
         self.maxhp = 18+random.randint(0, 4)
         self.hp = self.maxhp
         self.AC = 10+random.randint(0, 2)
@@ -37,7 +39,9 @@ class Player:
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
         self.mana_exhaust=3;
 
-        self.armor = []
+        self.limb="torso"
+
+        self.armor = [armors.basicClothes()]
         self.weapon = [weapons.basic_dagger()]
         self.inventory = []
         self.upperHand= False

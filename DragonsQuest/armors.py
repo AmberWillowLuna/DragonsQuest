@@ -16,6 +16,10 @@ class armor():
     def OnHitAction(self, player, attacker, damage, chat):
         pass
 
+class basicClothes(armor):
+    def __init__(self):
+        super().__init__("Leather armor", 0, "Any armor is better than no armor", 0)
+
 class leather_armor(armor):
     def __init__(self):
         super().__init__("Leather armor", 1, "Any armor is better than no armor", 16)

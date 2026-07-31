@@ -1,3 +1,6 @@
+
+
+
 def update_lines(player, day, time):
     k= [
         f"Player Stats:",
@@ -10,9 +13,13 @@ def update_lines(player, day, time):
         f"Intelligence: {player.int + player.Bint}",
         f"Charisma: {player.char + player.Bchar}",
         f"Gold: {player.gold}",
-        f"Day: {day}",
-        f"Time: {time.value} / 16",
+        
+        
     ]
+    if time is not None:
+        f"Day: {day}",
+        k.append(f"Time: {time.value} / 16")
+
     k.append(f"Weapons: ")
     for weapon in player.weapon:
         k.append(f"- {weapon.name}")

@@ -24,6 +24,7 @@
     <Compile Include="armors.py" />
     <Compile Include="basic_functions.py" />
     <Compile Include="Battle.py" />
+    <Compile Include="BattlePicker.py" />
     <Compile Include="button.py" />
     <Compile Include="ChatDisplay.py" />
     <Compile Include="colors.py" />
@@ -44,6 +45,7 @@
     <Compile Include="quests.py" />
     <Compile Include="smith.py" />
     <Compile Include="spells.py" />
+    <Compile Include="spell_battle.py" />
     <Compile Include="start.py" />
     <Compile Include="tavern.py" />
     <Compile Include="VillagersQuests.py" />

@@ -4,11 +4,11 @@ import basic_functions
 
 
 def attack(bonus, target, dmg, chat, attacker):
-    if random.randint(1, 20) + bonus >= target.ac:
+    if random.randint(1, 20) + bonus >= target.AC:
                 target.hp -= dmg*target.dmgReduce
-                chat=(f"{attacker.name} casts on {target.name}, dealing {dmg} damage!")
+                chat=(f"{attacker.name} casts on {target.type}, dealing {dmg} damage!")
     else:
-        chat=(f"{attacker.name}'s missed {target.name}!")
+        chat=(f"{attacker.name}'s missed {target.type}!")
 
 class spell:
     def __init__(self, name, damage, heal, acc, desc, casting):
@@ -24,7 +24,7 @@ class spell:
             caster.mana -= 1
             target.hp -= self.damage
             caster.hp += self.heal
-            print(f"{caster.name} casts {self.name} on {target.name}, dealing {self.damage} damage!")
+            print(f"{caster.name} casts {self.name} on {target.type}, dealing {self.damage} damage!")
         else:
             print(f"{caster.name} does not have enough mana to cast {self.name}.")
 
@@ -34,88 +34,166 @@ class spell:
 
 class fireball(spell):
     def __init__(self):
-        super().__init__("Fireball", random.randint(1,8)+random.randint(1,8)+random.randint(1,6), 0, 1, "A ball of fire that burns the enemy.", "You hurl a blazing fireball at your foe!")
+        super().__init__(
+            "Fireball",
+            random.randint(1,8)+random.randint(1,8)+random.randint(1,6),
+            0,
+            1,
+            "A ball of fire that burns the enemy.",
+            "You hurl a blazing fireball!"
+        )
+
     def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            attack(self.acc, target, self.damage, chat)
-        else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+        return attack(self.acc, target, self.damage, chat, player)
+
 
 class selfCure(spell):
     def __init__(self):
-        super().__init__("Self Cure", 0, random.randint(1,4)+random.randint(1,4)+2, 0, "Heals the caster.", "You feel rejuvenated as you heal yourself!")
+        super().__init__(
+            "Self Cure",
+            0,
+            random.randint(1,4)+random.randint(1,4)+2,
+            0,
+            "Heals the caster.",
+            "You feel rejuvenated!"
+        )
+
     def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            player.hp += self.heal
-            chat=(f"{player.name} casts {self.name} and heals for {self.heal} HP!")
-        else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+        player.heal(self.heal)
+        return f"{player.name} heals {self.heal} HP."
 
 
 class hyperfocus(spell):
     def __init__(self):
-        super().__init__("Hyperfocus", 0, 0, 2, "Increases accuracy for the next attack.", "You focus your mind and prepare for a precise strike!")
+        super().__init__(
+            "Hyperfocus",
+            0,
+            0,
+            2,
+            "Increases accuracy.",
+            "You focus completely."
+        )
+
     def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            player.Bacc += 4
-            chat=(f"{player.name} casts {self.name} and gains +{self.acc} accuracy for the next attack!")
-        else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+        player.Bacc += 4
+        return f"{player.name} gains +4 accuracy."
+
 
 class turtleShells(spell):
     def __init__(self):
-        super().__init__("Turtle Shells", 0, 0, 0, "Increases armor class for the next turn.", "You harden your defenses like a turtle's shell!")
+        super().__init__(
+            "Turtle Shells",
+            0,
+            0,
+            0,
+            "Increase armor.",
+            "Your skin hardens."
+        )
+
     def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            player.BAC += 4
-            chat=(f"{player.name} casts {self.name} and gains +{self.acc} armor class for the next turn!")
-        else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+        player.BAC += 4
+        return f"{player.name} gains +4 AC."
+
 
 class rayOfDoom(spell):
     def __init__(self):
-        super().__init__("Ray of Doom", max(random.randint(1,20),5)+5, 0, 0, "A powerful ray that deals massive damage.", "You unleash a devastating ray of doom!")
-    def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            attack(self.acc, target, self.damage, chat)
-        else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+        super().__init__(
+            "Ray of Doom",
+            max(random.randint(1,20),5)+5,
+            0,
+            0,
+            "A devastating ray.",
+            "A ray of destruction erupts!"
+        )
 
-            #rethink ray of doom and other spells
+    def cast(self, player, target, chat):
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+        return attack(self.acc, target, self.damage, chat, player)
+
 
 class poisonousBreath(spell):
     def __init__(self):
-        super().__init__("Poisonous Breath", random.randint(1,8)+2, 0, 0, "A breath of poison that weakens the enemy.", "You exhale a cloud of poisonous gas!")
+        super().__init__(
+            "Poisonous Breath",
+            random.randint(1,8)+2,
+            0,
+            0,
+            "Poison attack.",
+            "You breathe poisonous fumes."
+        )
+
     def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            #attack(self.acc, target, self.damage, chat)
-            #dmg after a consitiution save of target
-            # 10 is a standard value so you should technicly add it
-            saveThrow=basic_functions.roll_dice(20)+target.const+target.Bconst-10
-            if saveThrow < 15:
-                target.hp -= self.damage
-                if saveThrow <10:
-                    target.hp -= basic_functions.roll_dice(8)+2
-                    if saveThrow <5:
-                        target.hp -= basic_functions.roll_dice(8)+2
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+
+        dmg = 0
+
+        save = basic_functions.roll_dice(20) + target.const + target.Bconst - 10
+
+        if save < 15:
+            dmg += self.damage
+
+            if save < 10:
+                dmg += basic_functions.roll_dice(8)+2
+
+            if save < 5:
+                dmg += basic_functions.roll_dice(8)+2
+
+        if dmg > 0:
+            chat = f"{player.name} engulfs {target.type} in poisonous gas!"
+            target.damage(dmg, player.limb, chat)
         else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+            chat = f"{target.type} resists the poison."
+
+        return chat
+
 
 class arcanusShot(spell):
     def __init__(self):
-        super().__init__("Arcanus Shot", random.randint(1,12), 0, 0, "A magical projectile that pierces armor.", "You conjure a bolt of arcane energy and launch it at your foe!")
-    def cast(self, player, target, chat):
-        if player.mana > 0:
-            player.mana -= 1
-            attack(self.acc, target, self.damage, chat)
-            target.hp -= max(self.damage+player.wis+(player.Bwis*2)-10,0)
+        super().__init__(
+            "Arcanus Shot",
+            random.randint(1,12),
+            0,
+            0,
+            "An arcane projectile.",
+            "A bolt of arcane energy flies forward."
+        )
 
+    def cast(self, player, target, chat):
+        if player.mana <= 0:
+            return f"{player.name} does not have enough mana."
+
+        player.mana -= 1
+
+        if random.randint(1,20) + self.acc >= target.AC + target.BAC:
+
+            dmg = self.damage + max(player.wis + player.Bwis*2 - 10, 0)
+
+            chat = f"{player.name} fires an Arcanus Shot!"
+            target.damage(dmg, player.limb, chat)
 
         else:
-            chat=(f"{player.name} does not have enough mana to cast {self.name}.")
+            chat = f"{player.name}'s Arcanus Shot missed!"
+
+        return chat
