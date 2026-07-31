@@ -87,10 +87,10 @@ def QuestBoard(player, time, chat,
                         )
 
                 elif quest2.is_clicked(mouse, event):
-                    if DailyQuests[2].finished:
+                    if DailyQuests[1].finished:
                         chat = "You have already completed this quest."
                     else:
-                        DailyQuests[2].run(
+                        DailyQuests[1].run(
                             screen,
                             SCREEN_WIDTH,
                             SCREEN_HEIGHT,
