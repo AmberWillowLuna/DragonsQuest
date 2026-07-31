@@ -141,9 +141,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                     chat = "You failed to escape."
                     actions_left = 0
 
-            ######################################
-            # Enemy turn
-            ######################################
+
 
             elif spell_disp:
                 spell_used = False
@@ -162,6 +160,9 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                 if spell_used:
                     actions_left -= 1
                     continue
+            ######################################
+            # Enemy turn
+            ######################################
 
             if enemy.hp <= 0:
                 chat = f"You defeated the {enemy.type} !"
@@ -171,7 +172,19 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             if actions_left <= 0:
 
                 actions_left = 2
+                pygame.time.wait(500)
+                ChatDisplay.ClearChat(screen, SCREEN_WIDTH, SCREEN_HEIGHT)
+                chat = "enemy's turn"
+                ChatDisplay.ChatDisplay(
+                    chat,
+                    screen,
+                    SCREEN_WIDTH,
+                    SCREEN_HEIGHT,
+                    smallfont
+                )
 
+                pygame.display.flip()
+                pygame.time.wait(500)
                 chat = enemy.WhichAttack(player, chat)
 
                 player.BonusLoss()

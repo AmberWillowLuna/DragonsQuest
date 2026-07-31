@@ -54,6 +54,7 @@ class dragon:
             self.ult=1
         else:
             chat = self.Attack1(player, chat)
+        return chat
 
     def Attack1():
         return

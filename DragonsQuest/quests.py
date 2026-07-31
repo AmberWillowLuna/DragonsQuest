@@ -105,7 +105,7 @@ class Quest:
                             ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
                             linesF.draw_lines(panel, lines, smallfont2, screen)
                             pygame.display.flip()
-                            pygame.time.wait(1500)
+                            pygame.time.wait(750)
                             running=False
                         else:
                             time.add(1)

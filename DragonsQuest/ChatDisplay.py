@@ -2,6 +2,14 @@ import button
 import pygame
 import textwrap
 
+def ClearChat(screen, SCREEN_WIDTH, SCREEN_HEIGHT):
+            pygame.draw.rect(
+            screen,
+            (0, 0, 0),
+            (0, SCREEN_HEIGHT, 0, SCREEN_WIDTH)
+             )
+            pygame.display.flip()
+
 def ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     if chat is not None:
         pygame.draw.rect(

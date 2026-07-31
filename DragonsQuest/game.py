@@ -24,11 +24,14 @@ class TimeClass:
     def __init__(self):
         self.value = 0
         self.day=0
+        self.q=False
     def add(self, amount):
         self.value+=amount
         if self.value>15:
             self.value=0
             self.day+=1
+            self.q=True
+            
 
 def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #creating panel of the game with stats etc
@@ -111,6 +114,11 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 #Fight the dragon!!!!!!!
             else:
                 print(f"Day {time.day} begins!")
+
+        if time.q==True:
+            time.q=False
+            DailyQuests = quests.RandomQuests()
+            #reset quests and
 
         # Clear the screen
         screen.fill((0, 0, 0))

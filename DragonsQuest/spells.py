@@ -186,7 +186,7 @@ class arcanusShot(spell):
 
         player.mana -= 1
 
-        if random.randint(1,20) + self.acc >= target.AC + target.BAC:
+        if random.randint(1,20) + self.acc+5 >= target.AC + target.BAC:
 
             dmg = self.damage + max(player.wis + player.Bwis*2 - 10, 0)
 
