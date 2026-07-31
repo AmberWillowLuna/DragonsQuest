@@ -165,6 +165,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
             if enemy.hp <= 0:
                 chat = f"You defeated the {enemy.type} !"
+                player.gold+=enemy.gold
                 return True
 
             if actions_left <= 0:
