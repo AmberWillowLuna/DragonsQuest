@@ -212,28 +212,28 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         pygame.draw.rect(
             screen,
             (40,40,40),
-            (280,30,350,30)
+            (280,30,250,30)
         )
 
         pygame.draw.rect(
             screen,
             (200,30,30),
             (280,30,
-             max(0,350*enemy.hp/enemy.maxhp),
+             max(0,250*enemy.hp/enemy.maxhp),
              30)
         )
 
         pygame.draw.rect(
             screen,
             (40,40,40),
-            (280,80,350,30)
+            (280,80,250,30)
         )
 
         pygame.draw.rect(
             screen,
             (30,180,30),
             (280,80,
-             max(0,350*player.hp/player.maxhp),
+             max(0,250*player.hp/player.maxhp),
              30)
         )
 
