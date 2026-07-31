@@ -68,6 +68,25 @@ class dragon:
             chat+=" That was a weak spot here!"
         return chat
 
+    def BonusLoss(self):
+        if self.BAC>0:
+            self.BAC -= 1
+        if self.Bstr>0:
+            self.Bstr -= 1
+        if self.Bdex>0:
+            self.Bdex -= 1
+        if self.Bconst>0:
+            self.Bconst -= 1
+        if self.Bint>0:
+            self.Bint -= 1
+        if self.Bwis>0:
+            self.Bwis -= 1
+        if self.Bchar>0:
+            self.Bchar -= 1
+        if self.Bacc>0:
+            self.Bacc-=1
+
+
 
 
 
@@ -104,23 +123,6 @@ class BlueDragon(dragon):
         chat = "dragon makes a frozen shell upon his body to protect itself! "
         return chat
 
-    def BonusLoss(self):
-        if self.BAC>0:
-            self.BAC -= 1
-        if self.Bstr>0:
-            self.Bstr -= 1
-        if self.Bdex>0:
-            self.Bdex -= 1
-        if self.Bconst>0:
-            self.Bconst -= 1
-        if self.Bint>0:
-            self.Bint -= 1
-        if self.Bwis>0:
-            self.Bwis -= 1
-        if self.Bchar>0:
-            self.Bchar -= 1
-        if self.Bacc>0:
-            self.Bacc-=1
 
 
 

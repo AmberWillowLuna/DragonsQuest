@@ -175,7 +175,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                 chat = enemy.WhichAttack(player, chat)
 
                 player.BonusLoss()
-                #enemy.BonusLoss()
+                enemy.BonusLoss()
 
                 if player.hp <= 0:
                     chat = "You were defeated."
