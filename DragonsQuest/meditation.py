@@ -8,8 +8,8 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     #pop up minigame for meditation - random chance to get +1 to a stat, +1 mana, +1 hp, or upper hand
     #hold q for 3 seconds to breathe in, e for 3 seconds to breathe out, then hold space for 3 seconds to focus
     #clock prepare
-    text1 = font.render("Hold Q for 2 seconds to breathe in", True, (255, 255, 255))
-    text2 = font.render("Hold E for 2 seconds to breathe out", True, (255, 255, 255))
+    text1 = font.render("Hold Q for 1 seconds to breathe in", True, (255, 255, 255))
+    text2 = font.render("Hold E for 1 seconds to breathe out", True, (255, 255, 255))
      
     #make background an image
     # Initialize the sprite
@@ -24,7 +24,7 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     counter = 0
 
     hold_start_time = None
-    required_hold_time = 1350  # milliseconds
+    required_hold_time = 500  # milliseconds
 
     while running:
         current_time = pygame.time.get_ticks()
@@ -120,10 +120,11 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     elif y == 5 and player.char < 12:
         player.char += 1
 
-    time.value+=1
+    time.add(1)
     chat = "You have meditated for a while, your mind feels refreshed"
 
     if z==0:
-        time.value+=1
+        time.add(1)
         chat = "You have meditated for way long than you wanted to, but you feel more relaxed"
         player.heal(2)
+    return chat

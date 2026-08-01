@@ -31,3 +31,6 @@ class Button:
             return self.rect.collidepoint(pos)
         return False
 
+    def setText(self, text):
+        self.text = text
+

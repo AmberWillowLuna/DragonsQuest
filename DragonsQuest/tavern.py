@@ -127,7 +127,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
 
                 elif stayButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat ="You stay in the tavern for a while."
-                    time.value += 1
+                    time.add(1)
                     lines=update_lines(player, time.day, time)
                     screen.fill((0, 0, 0))
                     ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
@@ -137,9 +137,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                     
                     potions = [items.draw_random_potion(), items.draw_random_potion()]
                     chat=ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
-                    if time.value > 15:
-                        time.value = 0
-                        time.day += 1
+                    if time.q == True:
                         running=False
                         treasure=0
                     # Add your stay logic here

@@ -38,8 +38,7 @@ class dragon:
         self.Bwis = 0
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
-        spots=["head", "arms", "legs", "torso", "wings", "tail"]
-        self.weak_spot=spots[random.randint(0,len(spots)-1)]
+        
         self.ult=0
         self.gold=gold
 
@@ -96,6 +95,8 @@ class BlueDragon(dragon):
     def __init__(self):
         self.type="icey blue"
         super().__init__( 120, 120,15,8,14,10,9,10,13, 200) #AC 14?
+        spots=["head", "arms", "legs", "torso", "wings", "tail"]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
 
     def Attack1(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
@@ -132,18 +133,24 @@ class BlueDragon(dragon):
 #psychic grey dragon - mostly attacks wis and const saving throws 
 class GreyDragon(dragon):
     def __init__(self):
+        spots=["head", "arms", "legs", "torso", "wings", "tail"]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="grey psychic"
         super().__init__(120, 120,12,8,13,13,13,13,13, 200) #AC 14?
 
 #firery red dragon - weak for obanium and cristal
 class RedDragon(dragon):
     def __init__(self):
+        spots=["head", "arms", "legs", "torso", "wings", "tail"]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="firery red"
         super().__init__(120, 120,15,8,13,10,9,10,13, 200) #AC 14?
 
 #greenish dragon - weak for darkness and poison - very low const
 class GreenDragon(dragon):
     def __init__(self):
+        spots=["head", "arms", "legs", "torso", "wings", "tail"]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="greenish "
         super().__init__(120, 120,15,8,5,10,9,10,16, 200) #AC 14?
 
@@ -152,5 +159,7 @@ class GreenDragon(dragon):
 #and all dmg hits a bit higher
 class WhiteDragon(dragon):
     def __init__(self):
+        spots=["head", "arms", "legs", "torso", "wings", "tail"]
+        self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="great white"
         super().__init__(120, 120,15,8,14,10,9,10,10, 250) #AC 14?

@@ -19,6 +19,7 @@ import smith
 import dragons
 import VillagersQuests
 import quests
+import Battle
 
 class TimeClass:
     def __init__(self):
@@ -92,7 +93,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
-                meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
+                chat = meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
@@ -106,18 +107,16 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your quests logic here
         # Game logic goes here
-        if time.value>15:
-            time.value=0
-            time.day
-            if time.day==3:
-                print("You have reached day 3! Prepare to fight the dragon!")
+
+        if time.day==3:
+                Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, TheDragon, chat)
+                time.day=4
                 #Fight the dragon!!!!!!!
-            else:
-                print(f"Day {time.day} begins!")
 
         if time.q==True:
             time.q=False
             DailyQuests = quests.RandomQuests()
+            enemy=drawRandomEnemy()
             #reset quests and
 
         # Clear the screen

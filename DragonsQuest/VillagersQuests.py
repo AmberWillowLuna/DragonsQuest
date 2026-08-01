@@ -41,7 +41,7 @@ def QuestBoard(player, time, chat,
 
     fightQuest = button.Button(
         20, 340, 500, 80,
-        "Monster Hunt (-)",
+        f"Monster Hunt: {enemy.type}",
         colors.RED,
         (255,120,120)
     )
@@ -116,10 +116,8 @@ def QuestBoard(player, time, chat,
                         chat = "You have already killed this enemy."
                     else:
                         Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
-           player, enemy, chat)
-
-                elif fightQuest.is_clicked(mouse, event):
-                    chat = "Monster hunting is not implemented yet."
+                        player, enemy, chat)
+                        time.add(2)
 
                 elif backButton.is_clicked(mouse, event):
                     chat = "You leave the quest board."
