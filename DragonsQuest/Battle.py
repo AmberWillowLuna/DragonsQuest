@@ -11,6 +11,17 @@ import spell_battle
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+def PlayerItemsToButtons(player):
+    ItemButtons = []
+    for item in player.inventory:
+        b = button.Button(
+            20, 20, 220, 60,
+            f"{item.name}",
+            colors.LIGHT_BLUE,
+            (100,255,100)
+        )
+        ItemButtons.append((item, b))
+    return ItemButtons
 
 def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
            player, enemy, chat):
@@ -19,6 +30,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
     font = pygame.font.SysFont("Arial", 24)
     smallfont = pygame.font.SysFont("Arial", 16)
     spell_disp=False
+    item_disp = False
     panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
 
     AllAimPlaces=["head", "arms", "legs", "torso", "wings", "tail"]
@@ -31,6 +43,8 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
     )
 
     actions_left = 2
+
+    ItemButtons=PlayerItemsToButtons(player)
 
     SpellButtons=spell_battle.PlayerSpellsToButtons(player)
 
@@ -116,16 +130,18 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                     spell_disp=True
                 else:
                     spell_disp==False
-                chat += " spells shown"
+                chat += " spells shown / hidden"
 
             ###############################
             # ITEM
             ###############################
 
             elif itemButton.is_clicked(mouse, event):
-
-                chat += " Item system not implemented yet."
-                actions_left -= 1
+                if item_disp==False:
+                    item_disp=True
+                else:
+                    item_disp==False
+                chat += " Items shown / hidden"
 
 
             ###############################
@@ -178,6 +194,24 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                         break
 
                 if spell_used:
+                    actions_left -= 1
+                    continue
+
+            elif item_disp:
+                item_used = False
+
+                for item, b in ItemButtons:
+
+                    if b.is_clicked(mouse, event):
+
+                        chat = item.action(player)
+
+                        item_disp = False
+                        item_used = True
+
+                        break
+
+                if item_used:
                     actions_left -= 1
                     continue
             ######################################
