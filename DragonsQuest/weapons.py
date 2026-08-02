@@ -16,6 +16,7 @@ class basic_dagger(weapon):
         super().__init__("Basic Dagger", 0, "A simple dagger. Not very effective.", 0)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(4)
             chat = f"{player.name} attacks {target.type} with {self.name}."
@@ -30,6 +31,7 @@ class iron_sword(weapon):
         super().__init__("Iron Sword", 0, "A sturdy iron sword.", 5)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(6)
             chat = f"{player.name} attacks {target.type} with {self.name}."
@@ -44,6 +46,7 @@ class steel_sword(weapon):
         super().__init__("Steel Sword", 0, "A sharp steel sword.", 10)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(8)
             chat = f"{player.name} attacks {target.type} with {self.name}."
@@ -58,6 +61,7 @@ class miths_hammer(weapon):
         super().__init__("Smith's Hammer", 0, "A heavy hammer used by blacksmiths.", 15)
 
     def attack(self, player, target, chat):
+
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(10)
             chat = f"{player.name} smashes {target.type} with {self.name}."
@@ -72,6 +76,7 @@ class galaxyDagger(weapon):
         super().__init__("Galaxy Dagger", 0, "A dagger forged from the stars.", 20)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(4) + basic_functions.roll_dice(4) + 4
             chat = f"{player.name} attacks {target.type} with {self.name}."
@@ -86,6 +91,7 @@ class terra_blade(weapon):
         super().__init__("Terra Blade", 1, "A blade infused with the power of the earth.", 30)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12)
             chat = f"{player.name} strikes with {self.name}."
@@ -102,6 +108,7 @@ class enchanted_diamond_sword(weapon):
         super().__init__("Enchanted Diamond Sword", 2, "A powerful enchanted blade.", 50)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = max(basic_functions.roll_dice(20), 5)
             chat = f"{player.name} attacks with {self.name}."
@@ -116,6 +123,7 @@ class legendary_dragon_slayer(weapon):
         super().__init__("Dragon Slayer", -2, "A legendary anti-dragon sword.", 100)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20) + basic_functions.roll_dice(10)
             chat = f"{player.name} unleashes {self.name}!"
@@ -130,6 +138,7 @@ class obanium_sword(weapon):
         super().__init__("Obanium Sword", 1, "Forged from rare Obanium.", 60)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12)
             chat = f"{player.name} attacks with {self.name}."
@@ -144,6 +153,7 @@ class crystal_sword(weapon):
         super().__init__("Crystal Sword", 2, "A razor-sharp crystal blade.", 90)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(12)
             chat = f"{player.name} attacks with {self.name}."
@@ -158,6 +168,7 @@ class magic_bow(weapon):
         super().__init__("Magic Bow", 4, "A bow with magical guidance.", 40)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12)
             chat = f"{player.name} shoots an arrow."
@@ -172,6 +183,7 @@ class flamethrower(weapon):
         super().__init__("Flamethrower", -1, "Sprays devastating flames.", 80)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(10) + basic_functions.roll_dice(10) + basic_functions.roll_dice(10)
             chat = f"{player.name} engulfs {target.type} in flames!"
@@ -188,6 +200,7 @@ class mace_of_destruction(weapon):
         super().__init__("Mace of Destruction", 0, "A weapon of overwhelming force.", 72)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20)
             chat = f"{player.name} crushes {target.type}."
@@ -202,6 +215,7 @@ class dark_sword(weapon):
         super().__init__("Dark Sword", 0, "Powerful but cursed.", 45)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12) + basic_functions.roll_dice(12)
             chat = f"{player.name} channels dark power!"
@@ -218,6 +232,7 @@ class arcanus_sword(weapon):
         super().__init__("Arcanus Sword", 3, "An ancient arcane blade.", 150)
 
     def attack(self, player, target, chat):
+        chat = "smash... \n"
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20) + player.wis + player.Bwis + 10
             chat = f"{player.name} unleashes arcane energy!"

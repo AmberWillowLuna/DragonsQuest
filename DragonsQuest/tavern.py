@@ -69,7 +69,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
     smallfont2=pygame.font.SysFont("Arial", 16)
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = update_lines(player, time.day, time)
-
+    chat  = "You arrive at the tavern "
 
     #buttons for potions
     potions = [items.draw_random_potion(), items.draw_random_potion()]
@@ -128,14 +128,19 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                 elif stayButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat ="You stay in the tavern for a while."
                     time.add(1)
+
                     lines=update_lines(player, time.day, time)
                     screen.fill((0, 0, 0))
                     ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
                     draw_lines(panel, lines, smallfont2, screen)
                     pygame.display.flip()
-                    pygame.time.wait(1000) 
+                    pygame.time.wait(500) 
                     
                     potions = [items.draw_random_potion(), items.draw_random_potion()]
+                    
+                    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.LIGHT_BLUE, (100, 255, 100))
+                    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.LIGHT_BLUE, (100, 255, 100))
+
                     chat=ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
                     if time.q == True:
                         running=False
@@ -144,7 +149,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                 elif backButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat ="You leave the tavern."
                     if treasure==1:
-                        chat+="You have found the treasure!"
+                        chat+=" You have found the treasure!"
                         player.gold+=20+roll_dice(10)
                         treasure=0
                     running = False
@@ -161,3 +166,5 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
         ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
         draw_lines(panel, lines, smallfont2, screen)
         pygame.display.flip()
+
+    return chat

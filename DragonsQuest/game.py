@@ -98,7 +98,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
-                tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
+                chat = tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
@@ -111,12 +111,16 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
         if time.day==3:
                 Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, TheDragon, chat)
                 time.day=4
+                if TheDragon.hp<=0:
+                    chat=" You have defeated the dragon! You win the game!"
                 #Fight the dragon!!!!!!!
-
+        #NEW DAY - QUESTS RESETS
         if time.q==True:
             time.q=False
             DailyQuests = quests.RandomQuests()
             enemy=drawRandomEnemy()
+            StudySpells = random.sample(range(1, 7), 3)
+
             #reset quests and
 
         # Clear the screen
