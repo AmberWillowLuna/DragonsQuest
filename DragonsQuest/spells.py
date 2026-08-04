@@ -6,9 +6,9 @@ import basic_functions
 def attack(bonus, target, dmg, chat, attacker):
     if random.randint(1, 20) + bonus >= target.AC:
                 target.hp -= dmg*target.dmgReduce
-                chat=(f"{attacker.name} casts on {target.type}, dealing {dmg} damage!")
+                chat.value=(f"{attacker.name} casts on {target.type}, dealing {dmg} damage!")
     else:
-        chat=(f"{attacker.name}'s missed {target.type}!")
+        chat.value=(f"{attacker.name}'s missed {target.type}!")
 
 class spell:
     def __init__(self, name, damage, heal, acc, desc, casting):
@@ -17,16 +17,13 @@ class spell:
         self.heal = heal
         self.acc=acc #bonus for accuracy
         self.desc=desc
-        self.casting=casting #chat text after casting 
+        self.casting=casting #chat +text after casting 
 
     def cast(self, caster, target):
         if caster.mana >0:
             caster.mana -= 1
             target.hp -= self.damage
             caster.hp += self.heal
-            print(f"{caster.name} casts {self.name} on {target.type}, dealing {self.damage} damage!")
-        else:
-            print(f"{caster.name} does not have enough mana to cast {self.name}.")
 
 #make 7 classes of spells possible to lerarn:
 #fireball, self cure, hyperfocus, turtle shells, ray of doom, poisonous breath, arcanus shot
@@ -45,10 +42,11 @@ class fireball(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value = f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
-        return attack(self.acc, target, self.damage, chat, player)
+        attack(self.acc, target, self.damage, chat, player)
 
 
 class selfCure(spell):
@@ -64,11 +62,12 @@ class selfCure(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
         player.heal(self.heal)
-        return f"{player.name} heals {self.heal} HP."
+        chat.value= f"{player.name} heals {self.heal} HP."
 
 
 class hyperfocus(spell):
@@ -84,11 +83,12 @@ class hyperfocus(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
         player.Bacc += 4
-        return f"{player.name} gains +4 accuracy."
+        chat.value= f"{player.name} gains +4 accuracy."
 
 
 class turtleShells(spell):
@@ -104,11 +104,12 @@ class turtleShells(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
         player.BAC += 4
-        return f"{player.name} gains +4 AC."
+        chat.value= f"{player.name} gains +4 AC."
 
 
 class rayOfDoom(spell):
@@ -124,10 +125,11 @@ class rayOfDoom(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
-        return attack(self.acc, target, self.damage, chat, player)
+        attack(self.acc, target, self.damage, chat, player)
 
 
 class poisonousBreath(spell):
@@ -143,7 +145,8 @@ class poisonousBreath(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
 
@@ -161,12 +164,12 @@ class poisonousBreath(spell):
                 dmg += basic_functions.roll_dice(8)+2
 
         if dmg > 0:
-            chat = f"{player.name} engulfs {target.type} in poisonous gas!"
+            chat += f"{player.name} engulfs {target.type} in poisonous gas!"
             target.damage(dmg, player.limb, chat)
         else:
-            chat = f"{target.type} resists the poison."
+            chat += f"{target.type} resists the poison."
 
-        return chat
+
 
 
 class arcanusShot(spell):
@@ -182,7 +185,8 @@ class arcanusShot(spell):
 
     def cast(self, player, target, chat):
         if player.mana <= 0:
-            return f"{player.name} does not have enough mana."
+            chat.value= f"{player.name} does not have enough mana."
+            return
 
         player.mana -= 1
 
@@ -190,10 +194,9 @@ class arcanusShot(spell):
 
             dmg = self.damage + max(player.wis + player.Bwis*2 - 10, 0)
 
-            chat = f"{player.name} fires an Arcanus Shot!"
+            chat += f"{player.name} fires an Arcanus Shot!"
             target.damage(dmg, player.limb, chat)
 
         else:
-            chat = f"{player.name}'s Arcanus Shot missed!"
+            chat += f"{player.name}'s Arcanus Shot missed!"
 
-        return chat

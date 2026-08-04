@@ -11,7 +11,8 @@ import Battle
 def QuestBoard(player, time, chat,
                screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests, enemy):
 
-    chat = "The village notice board is filled with requests."
+    chat.value=" "
+    chat += "The village notice board is filled with requests."
 
     smallfont2 = pygame.font.SysFont("Arial", 16)
 
@@ -75,7 +76,7 @@ def QuestBoard(player, time, chat,
                 if quest1.is_clicked(mouse, event):
 
                     if DailyQuests[0].finished:
-                        chat = "You have already completed this quest."
+                        chat += "You have already completed this quest."
                     else:
                         DailyQuests[0].run(
                             screen,
@@ -83,12 +84,13 @@ def QuestBoard(player, time, chat,
                             SCREEN_HEIGHT,
                             font,
                             player,
-                            time
+                            time,
+                            chat
                         )
 
                 elif quest2.is_clicked(mouse, event):
                     if DailyQuests[1].finished:
-                        chat = "You have already completed this quest."
+                        chat += "You have already completed this quest."
                     else:
                         DailyQuests[1].run(
                             screen,
@@ -96,12 +98,13 @@ def QuestBoard(player, time, chat,
                             SCREEN_HEIGHT,
                             font,
                             player,
-                            time
+                            time,
+                            chat
                         )
                 elif quest3.is_clicked(mouse, event):
 
                     if DailyQuests[2].finished:
-                        chat = "You have already completed this quest."
+                        chat += "You have already completed this quest."
                     else:
                         DailyQuests[2].run(
                             screen,
@@ -109,18 +112,19 @@ def QuestBoard(player, time, chat,
                             SCREEN_HEIGHT,
                             font,
                             player,
-                            time
+                            time,
+                            chat
                         )
                 elif fightQuest.is_clicked(mouse, event):
                     if enemy.hp<=0:
-                        chat = "You have already killed this enemy."
+                        chat += "You have already killed this enemy."
                     else:
                         Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                         player, enemy, chat)
                         time.add(2)
 
                 elif backButton.is_clicked(mouse, event):
-                    chat = "You leave the quest board."
+                    chat += "You leave the quest board."
                     running = False
 
                 lines = linesF.update_lines(player, time.day, time)
@@ -133,13 +137,7 @@ def QuestBoard(player, time, chat,
         fightQuest.draw(screen)
         backButton.draw(screen)
 
-        ChatDisplay.ChatDisplay(
-            chat,
-            screen,
-            SCREEN_WIDTH,
-            SCREEN_HEIGHT,
-            smallfont2
-        )
+        chat.Display()
 
         linesF.draw_lines(
             panel,

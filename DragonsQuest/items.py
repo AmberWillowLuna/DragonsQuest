@@ -1,4 +1,4 @@
-import re
+
 import basic_functions
 
 def draw_random_potion():

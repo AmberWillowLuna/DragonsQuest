@@ -6,22 +6,12 @@ import linesF
 import colors
 import basic_functions
 import BattlePicker
-import spell_battle
+import buttons_disp_battle
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-def PlayerItemsToButtons(player):
-    ItemButtons = []
-    for item in player.inventory:
-        b = button.Button(
-            20, 20, 220, 60,
-            f"{item.name}",
-            colors.LIGHT_BLUE,
-            (100,255,100)
-        )
-        ItemButtons.append((item, b))
-    return ItemButtons
+
 
 def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
            player, enemy, chat):
@@ -29,9 +19,11 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                     player, chat)
     font = pygame.font.SysFont("Arial", 24)
     smallfont = pygame.font.SysFont("Arial", 16)
-    spell_disp=False
+    spell_disp = False
     item_disp = False
     panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
+    chat.value= " You have encountered a " + enemy.type + " ! \n"
+    chat.Display()
 
     AllAimPlaces=["head", "arms", "legs", "torso", "wings", "tail"]
 
@@ -44,9 +36,9 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
     actions_left = 2
 
-    ItemButtons=PlayerItemsToButtons(player)
+    ItemButtons=buttons_disp_battle.PlayerItemsToButtons(player)
 
-    SpellButtons=spell_battle.PlayerSpellsToButtons(player)
+    SpellButtons=buttons_disp_battle.PlayerSpellsToButtons(player)
 
     attackButton = button.Button(
         20, 20, 220, 60,
@@ -82,7 +74,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         colors.RED,
         (255,120,120)
     )
-    ctr=12000
+
     running = True
 
     while running:
@@ -94,10 +86,10 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         itemButton.check_hover(mouse)
         defendButton.check_hover(mouse)
         fleeButton.check_hover(mouse)
-        if ctr<12000:
-            ctr+=1
-        if(actions_left==2 and ctr==12000):
-            chat=" You have 2 actions left this round."
+
+        if(actions_left==3):
+            chat+=" You have 2 actions left this round."
+            actions_left=2
 
         for event in pygame.event.get():
 
@@ -115,7 +107,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             if attackButton.is_clicked(mouse, event):
 
 
-                chat += player.currentWeapon.attack(player, enemy, chat)
+                player.currentWeapon.attack(player, enemy, chat)
 
 
                 actions_left -= 1
@@ -128,9 +120,11 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             elif spellButton.is_clicked(mouse, event):
                 if spell_disp==False:
                     spell_disp=True
+                    item_disp=False
+                    chat.value= " spells shown "
                 else:
-                    spell_disp==False
-                chat += " spells shown / hidden"
+                    spell_disp=False
+                    chat.value= " spells hidden "
 
             ###############################
             # ITEM
@@ -139,9 +133,11 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             elif itemButton.is_clicked(mouse, event):
                 if item_disp==False:
                     item_disp=True
+                    spell_disp=False
+                    chat.value= " items shown "
                 else:
-                    item_disp==False
-                chat += " Items shown / hidden"
+                    item_disp=False
+                    chat.value= " Items hidden"
 
 
             ###############################
@@ -151,8 +147,8 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             elif defendButton.is_clicked(mouse, event):
 
                 player.BAC += 2
-                player.BACC+=2
-                chat += " You prepare for incoming attacks."
+                player.Bacc+=2
+                chat.value= " You prepare for incoming attacks."
 
                 actions_left -= 1
 
@@ -186,7 +182,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
                     if b.is_clicked(mouse, event):
 
-                        chat = spell.cast(player, enemy, chat)
+                        spell.cast(player, enemy, chat)
 
                         spell_disp = False
                         spell_used = True
@@ -204,11 +200,13 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
                     if b.is_clicked(mouse, event):
 
-                        chat = item.action(player)
+                        item.action(player)
 
                         item_disp = False
                         item_used = True
-
+                        ItemButtons.remove((item, b))
+                        if item in player.inventory:
+                            player.inventory.remove(item)
                         break
 
                 if item_used:
@@ -222,22 +220,22 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                 chat += f" You defeated the {enemy.type} !"
                 player.gold+=enemy.gold
                 screen.fill(BLACK)
-                ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont)
+                chat.Display()
                 pygame.display.flip()
                 pygame.time.wait(1000)
                 return True
 
             if actions_left <= 0:
 
-                actions_left = 2
+                actions_left = 3
                 ctr=0
-                chat+= " new round begins... \n"
+                chat.value= " new round begins... \n"
                 pygame.time.wait(200)
                 chat += " enemy's turn \n "
 
                 pygame.display.flip()
                 pygame.time.wait(200)
-                chat += enemy.WhichAttack(player, chat)
+                enemy.WhichAttack(player, chat)
 
                 player.BonusLoss()
                 enemy.BonusLoss()
@@ -274,7 +272,10 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
             for _, b in SpellButtons:
                 b.draw(screen)
-
+        
+        if item_disp:
+            for _, b in ItemButtons:
+                b.draw(screen)
         attackButton.draw(screen)
         spellButton.draw(screen)
         itemButton.draw(screen)
@@ -317,12 +318,6 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
             screen
         )
 
-        ChatDisplay.ChatDisplay(
-            chat,
-            screen,
-            SCREEN_WIDTH,
-            SCREEN_HEIGHT,
-            smallfont
-        )
+        chat.Display()
 
         pygame.display.flip()

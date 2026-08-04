@@ -9,7 +9,7 @@ import linesF
 def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
 
     smallfont = pygame.font.SysFont("Arial", 18)
-
+    chat.value = "Choose your equipment (weapon and armor) before the battle."
     # ---------- Layout ----------
     LEFT_WIDTH = SCREEN_WIDTH - 260      # reserve right panel
     RIGHT_X = LEFT_WIDTH
@@ -149,14 +149,14 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
 
                 if b.is_clicked(mouse, event):
                     selected_weapon = w
-                    chat = f"Selected weapon: {w.name}"
+                    chat += f"Selected weapon: {w.name}"
 
             # Armor
             for a, b in armor_buttons:
 
                 if b.is_clicked(mouse, event):
                     selected_armor = a
-                    chat = f"Selected armor: {a.name}"
+                    chat += f"Selected armor: {a.name}"
 
             # Items
             for item, b in item_buttons:
@@ -167,7 +167,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
 
                     player.inventory.remove(item)
 
-                    chat = f"You used {item.name}"
+                    chat += f"You used {item.name}"
 
                     break
 
@@ -175,11 +175,11 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
             if confirmButton.is_clicked(mouse, event):
 
                 if selected_weapon is None:
-                    chat = "Choose a weapon."
+                    chat += "Choose a weapon."
                     continue
 
                 if selected_armor is None:
-                    chat = "Choose an armor."
+                    chat += "Choose an armor."
                     continue
 
                 player.currentWeapon = selected_weapon
@@ -247,12 +247,6 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
             (RIGHT_X, SCREEN_HEIGHT-100, 260, 100)
         )
 
-        ChatDisplay.ChatDisplay(
-            chat,
-            screen,
-            SCREEN_WIDTH,              
-            SCREEN_HEIGHT,
-            smallfont
-        )
+        chat.Display()
 
         pygame.display.flip()

@@ -91,8 +91,3 @@ class Player:
             self.spells.remove(random.choice(self.spells))
 
 
-            #print("You feel a dark presence around you. Your health has decreased by 1.")
-            #add gui stuff
-        # image filename, e.g. "10D.jpg", "JC.jpg", "Joker.jpg"
-        #self.image = image or f"{sym}.jpg"
-       # self.face_down = True  # hidden ("?") until the player reveals it

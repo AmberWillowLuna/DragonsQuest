@@ -14,10 +14,10 @@ class spider(dragons.dragon):
     def Attack1(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
             player.damage(basic_functions.roll_dice(6))
-            chat="Spider attacks and hits you!"
+            chat.value="Spider attacks and hits you!"
         else:
-            chat ="Spider attacks but misses!"
-        return chat
+            chat +="Spider attacks but misses!"
+
 
     def Attack2(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc+4>player.AC+player.BAC:
@@ -27,8 +27,8 @@ class spider(dragons.dragon):
                 player.damage(basic_functions.roll_dice(6))
                 chat+=" Poison deals additional damage!"     
         else:
-            chat ="Spider spits but misses!"
-        return chat
+            chat +="Spider spits but misses!"
+
     
 #goblin - medium
 class goblin(dragons.dragon):
@@ -45,7 +45,7 @@ class goblin(dragons.dragon):
             chat += "Goblin slashes you with a rusty dagger!"
         else:
             chat += "Goblin misses!"
-        return chat
+
 
     def Attack2(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc > player.AC+player.BAC:
@@ -59,8 +59,8 @@ class goblin(dragons.dragon):
             else:
                 chat += " But fails to steal anything."
         else:
-            chat = "Goblin fumbles while trying to rob you."
-        return chat
+            chat += "Goblin fumbles while trying to rob you."
+
 
 
 #werewolf - hard
@@ -78,7 +78,7 @@ class werewolf(dragons.dragon):
             chat += "Werewolf slashes you with its claws!"
         else:
             chat += "Werewolf misses!"
-        return chat
+
 
     def Attack2(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc > player.AC+player.BAC:
@@ -88,7 +88,7 @@ class werewolf(dragons.dragon):
             chat += f"Werewolf bites you! The infection deals {dmg} damage."
         else:
             chat += "Werewolf lunges but misses!"
-        return chat
+
 
 
 #wolf -medium
@@ -107,7 +107,7 @@ class wolf(dragons.dragon):
             chat += "Wolf bites you!"
         else:
             chat += "Wolf misses!"
-        return chat
+
 
     def Attack2(self, player, chat):
         dmg = basic_functions.roll_dice(12)
@@ -123,7 +123,7 @@ class wolf(dragons.dragon):
 
         player.damage(dmg)
         
-        return chat
+
 
 #bandit - hard medium
 class bandit(dragons.dragon):
@@ -140,7 +140,7 @@ class bandit(dragons.dragon):
             chat += "Bandit stabs you!"
         else:
             chat += "Bandit misses!"
-        return chat
+
 
     def Attack2(self, player, chat):
         test = basic_functions.roll_dice(20) + player.int + player.Bint-10
@@ -150,12 +150,12 @@ class bandit(dragons.dragon):
             player.damage(dmg)
             chat += "Bandit tricks you into a vulnerable position!"
         elif test > 15:
-            self.damage(basic_functions.roll_dice(4), chat)
+            self.hp-=basic_functions.roll_dice(4)
             chat += "You outsmart the bandit, and it hurts itself!"
         else:
             chat += "You see through the bandit's trick."
 
-        return chat
+
 
 #gremlin - easy
 class gremlin(dragons.dragon):
@@ -184,7 +184,7 @@ class gremlin(dragons.dragon):
             chat += "Gremlin jumps onto your back and scratches you!"
         else:
             chat += "You dodge the gremlin's leap!"
-        return chat
+
 
 import random
 

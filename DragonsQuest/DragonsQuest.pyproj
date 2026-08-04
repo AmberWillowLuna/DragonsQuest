@@ -28,9 +28,6 @@
     <Compile Include="button.py" />
     <Compile Include="ChatDisplay.py" />
     <Compile Include="colors.py" />
-    <Compile Include="continue.py" />
-    <Compile Include="dayHandler.py" />
-    <Compile Include="dragonbaltte.py" />
     <Compile Include="dragons.py" />
     <Compile Include="DragonsQuest.py" />
     <Compile Include="enemies.py" />
@@ -41,11 +38,10 @@
     <Compile Include="magic_learning.py" />
     <Compile Include="meditation.py" />
     <Compile Include="player.py" />
-    <Compile Include="Prep4Battle.py" />
     <Compile Include="quests.py" />
     <Compile Include="smith.py" />
     <Compile Include="spells.py" />
-    <Compile Include="spell_battle.py" />
+    <Compile Include="buttons_disp_battle.py" />
     <Compile Include="start.py" />
     <Compile Include="tavern.py" />
     <Compile Include="VillagersQuests.py" />

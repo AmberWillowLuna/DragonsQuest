@@ -15,7 +15,7 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     # Initialize the sprite
     sprite = ImageSprite("assets/meditation.jpg", SCREEN_WIDTH, SCREEN_HEIGHT)
 
-
+    chat.value=" "
     running = True
     timer0 = pygame.time.get_ticks()
       # Key state and timer
@@ -121,10 +121,10 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
         player.char += 1
 
     time.add(1)
-    chat = "You have meditated for a while, your mind feels refreshed"
+    chat += "You have meditated for a while, your mind feels refreshed"
 
     if z==0:
         time.add(1)
-        chat = "You have meditated for way long than you wanted to, but you feel more relaxed"
+        chat += "You have meditated for way long than you wanted to, but you feel more relaxed"
         player.heal(2)
     return chat

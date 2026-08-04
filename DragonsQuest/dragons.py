@@ -45,15 +45,15 @@ class dragon:
     def WhichAttack(self, player, chat):
         roll=basic_functions.roll_dice(20)
         if roll<14:
-            chat = self.Attack1(player, chat)
+            self.Attack1(player, chat)
         elif roll<20:
-            chat = self.Attack2(player, chat)
+            self.Attack2(player, chat)
         elif self.ult==0:
-            chat = self.Attack3(player, chat)
+            self.Attack3(player, chat)
             self.ult=1
         else:
-            chat = self.Attack1(player, chat)
-        return chat
+            self.Attack1(player, chat)
+
 
     def Attack1():
         return
@@ -66,7 +66,7 @@ class dragon:
         if(limb==self.weak_spot):
             self.hp-=4+basic_functions.roll_dice(4)
             chat+=" That was a weak spot here!"
-        return chat
+
 
     def BonusLoss(self):
         if self.BAC>0:
@@ -100,15 +100,15 @@ class BlueDragon(dragon):
 
     def Attack1(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
-            chat = "Blue dragon attacks with an ice spike!"
+            chat += "Blue dragon attacks with an ice spike!"
             player.damage(basic_functions.roll_dice(12))
         else:
-            chat="dragon misses an ice spike shot"
-        return chat
+            chat+="dragon misses an ice spike shot"
+
 
     def Attack2(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
-            chat = "Dragon covers you with freezing avalance"
+            chat += "Dragon covers you with freezing avalance"
             player.damage(basic_functions.roll_dice(8))
             if basic_functions.roll_dice(20)+player.const+player.Bconst-10<15:
                 player.damage(basic_functions.roll_dice(12))
@@ -117,13 +117,13 @@ class BlueDragon(dragon):
                 player.damage(basic_functions.roll_dice(4))
                 chat += " that hurts a bit!"
         else:
-            chat = "freezing avalance had not delt you any damage"
-        return chat
+            chat += "freezing avalance had not delt you any damage"
+
 
     def Attack3(self, player, chat):
         self.dmgReduce=0.8
-        chat = "dragon makes a frozen shell upon his body to protect itself! "
-        return chat
+        chat += "dragon makes a frozen shell upon his body to protect itself! "
+
 
 
 

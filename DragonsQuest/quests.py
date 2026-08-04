@@ -1,4 +1,5 @@
 # make a quests class that will make GUI inside the classes 
+from calendar import c
 import pygame
 import button
 import ChatDisplay
@@ -24,17 +25,16 @@ class Quest:
         self.progress = 0      # how many times you've failed
         self.max_help = 5      # DC can be lowered by at most 5
 
-        self.chat = ""
 
     def run(self, screen, SCREEN_WIDTH, SCREEN_HEIGHT,
-        font, player, time):
+        font, player, time, chat):
         time.add(1)
         smallfont2 = pygame.font.SysFont("Arial", 16)
 
         panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
         lines = linesF.update_lines(player, time.day, time)
 
-        chat = self.description
+        chat += self.description
 
         buttonA = button.Button(
             40, 120, 450, 80,
@@ -80,16 +80,17 @@ class Quest:
                         if self.resolve_option(self.OptionA, player, time):
                             player.gold += self.price
                             self.finished = 1
-                            chat = f"Quest completed!\nYou received {self.price} gold."
+                            chat.value= f"Quest completed!\nYou received {self.price} gold."
                             lines=linesF.update_lines(player, time.day, time)
                             screen.fill((0, 0, 0))
-                            ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
+                            chat.Display()
                             linesF.draw_lines(panel, lines, smallfont2, screen)
                             pygame.display.flip()
                             pygame.time.wait(1500)
                             running=False
                         else:
-                            chat = (
+                            time.add(1)
+                            chat += (
                                 "You failed.\n"
                                 "The task will become a little easier next time."
                             )
@@ -99,17 +100,17 @@ class Quest:
                         if self.resolve_option(self.OptionB, player, time):
                             player.gold += self.price
                             self.finished = 1
-                            chat = f"Quest completed!\nYou received {self.price} gold."
+                            chat.value = f"Quest completed!\nYou received {self.price} gold."
                             lines=linesF.update_lines(player, time.day, time)
                             screen.fill((0, 0, 0))
-                            ChatDisplay.ChatDisplay(chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont2)
+                            chat.Display()
                             linesF.draw_lines(panel, lines, smallfont2, screen)
                             pygame.display.flip()
                             pygame.time.wait(750)
                             running=False
                         else:
                             time.add(1)
-                            chat = (
+                            chat += (
                                 "You failed.\n"
                                 "The task will become a little easier next time."
                             )
@@ -137,13 +138,7 @@ class Quest:
             buttonB.draw(screen)
             backButton.draw(screen)
 
-            ChatDisplay.ChatDisplay(
-                chat,
-                screen,
-                SCREEN_WIDTH,
-                SCREEN_HEIGHT,
-                smallfont2
-            )
+            chat.Display()
 
             linesF.draw_lines(
                 panel,

@@ -14,7 +14,7 @@ class armor():
         player.armor = None
 
     def OnHitAction(self, player, attacker, damage, chat):
-        pass
+        return
 
 class basicClothes(armor):
     def __init__(self):
@@ -32,7 +32,7 @@ class rubin_amulet(armor):
     def OnHitAction(self, player, attacker, damage, chat):
         if basic_functions.roll_dice(20) > 12:
             player.hp += damage #negate dmg
-            chat = (f"{player.name}'s rubin amulet glows and negates the damage from {attacker.name}'s attack!")
+            chat += (f"{player.name}'s rubin amulet glows and negates the damage from {attacker.name}'s attack!")
 
 class steel_armor(armor):
     def __init__(self):
@@ -52,7 +52,7 @@ class crown_of_fools(armor):
     def OnHitAction(self, player, attacker, damage, chat):
         if basic_functions.roll_dice(20) > 15:
             player.hp -= basic_functions.roll_dice(4) #reflect 1 dmg to attacker
-            chat = (f"{player.name}'s crown of fools glows and reflects some damage back to {player.name}!")
+            chat += (f"{player.name}'s crown of fools glows and reflects some damage back to {player.name}!")
 
 class chainmail(armor):
     def __init__(self):

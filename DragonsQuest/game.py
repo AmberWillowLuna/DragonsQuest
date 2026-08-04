@@ -20,6 +20,7 @@ import dragons
 import VillagersQuests
 import quests
 import Battle
+import ChatDisplay
 
 class TimeClass:
     def __init__(self):
@@ -37,10 +38,11 @@ class TimeClass:
 def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #creating panel of the game with stats etc
     time = TimeClass()  #time in hours but 16/ day - then sleep
-    #some actions will cost 1h others 2
-    chat = ""  #chat box for the player to see what happened
-    #1 rectangle as background on the right upper corner
+    #some actions will cost 1h others 
     smallfont = pygame.font.SysFont("Arial", 16)
+    chat = ChatDisplay.ChatDisplay(screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont)  #chat +box for the player to see what happened
+    #1 rectangle as background on the right upper corner
+
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
 
@@ -93,12 +95,12 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
-                chat = meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
+                meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
-                chat = tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
+                tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
                 lines=linesF.update_lines(player, time.day, time)
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
@@ -112,7 +114,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, TheDragon, chat)
                 time.day=4
                 if TheDragon.hp<=0:
-                    chat=" You have defeated the dragon! You win the game!"
+                    chat.VALUE=" You have defeated the dragon! You win the game!"
                 #Fight the dragon!!!!!!!
         #NEW DAY - QUESTS RESETS
         if time.q==True:
@@ -131,7 +133,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
         #display panel and stats:
 
 
-
+        chat.Display()
         study_button.draw(screen)
         smith_button.draw(screen)
         meditation_button.draw(screen)
