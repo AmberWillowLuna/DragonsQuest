@@ -20,7 +20,7 @@ class basic_dagger(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(4)
             chat += f"{player.name} attacks {target.type} with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed {target.type} with {self.name}!"
         return chat
@@ -35,7 +35,7 @@ class iron_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(6)
             chat += f"{player.name} attacks {target.type} with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed {target.type} with {self.name}!"
         return chat
@@ -50,7 +50,7 @@ class steel_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(8)
             chat += f"{player.name} attacks {target.type} with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed {target.type} with {self.name}!"
         return chat
@@ -65,7 +65,7 @@ class miths_hammer(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(10)
             chat += f"{player.name} smashes {target.type} with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed {target.type} with {self.name}!"
         return chat
@@ -80,7 +80,7 @@ class galaxyDagger(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(4) + basic_functions.roll_dice(4) + 4
             chat += f"{player.name} attacks {target.type} with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed {target.type} with {self.name}!"
         return chat
@@ -99,7 +99,7 @@ class terra_blade(weapon):
             dmg = basic_functions.roll_dice(4)
             chat += f"{player.name} barely clips {target.type} with {self.name}."
 
-        target.damage(dmg, player.limb, chat)
+        target.damage(dmg, player.limb, chat, self.name)
         return chat
 
 
@@ -112,7 +112,7 @@ class enchanted_diamond_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = max(basic_functions.roll_dice(20), 5)
             chat += f"{player.name} attacks with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed!"
         return chat
@@ -127,7 +127,7 @@ class legendary_dragon_slayer(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20) + basic_functions.roll_dice(10)
             chat += f"{player.name} unleashes {self.name}!"
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed!"
         return chat
@@ -142,7 +142,7 @@ class obanium_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12)
             chat += f"{player.name} attacks with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed!"
         return chat
@@ -157,7 +157,7 @@ class crystal_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(12)
             chat += f"{player.name} attacks with {self.name}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed!"
         return chat
@@ -172,7 +172,7 @@ class magic_bow(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12)
             chat += f"{player.name} shoots an arrow."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name}'s arrow misses!"
         return chat
@@ -191,7 +191,7 @@ class flamethrower(weapon):
             dmg = basic_functions.roll_dice(10)
             chat += f"{player.name}'s flames partially hit."
 
-        target.damage(dmg, player.limb, chat)
+        target.damage(dmg, player.limb, chat, self.name)
         return chat
 
 
@@ -204,7 +204,7 @@ class mace_of_destruction(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20)
             chat += f"{player.name} crushes {target.type}."
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{player.name} missed!"
         return chat
@@ -219,11 +219,16 @@ class dark_sword(weapon):
         if basic_functions.aim(player, target, self.acc):
             dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12) + basic_functions.roll_dice(12)
             chat += f"{player.name} channels dark power!"
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
-            selfdmg = basic_functions.roll_dice(6)
-            player.damage(selfdmg)
-            chat += f"The darkness backfires for {selfdmg} damage!"
+            if player.armor!="Rubin Amulet" and player.armor!="Crown of fools":
+                selfdmg = basic_functions.roll_dice(6)
+                player.damage(selfdmg)
+                chat += f"The darkness backfires for {selfdmg} damage!"
+            else:
+                selfdmg=basic_functions.roll_dice(2)
+                player.damage(selfdmg)
+                chat += f"{player.name}'s armor almost protects from the dark backlash."
         return chat
 
 
@@ -234,11 +239,11 @@ class arcanus_sword(weapon):
     def attack(self, player, target, chat):
         chat += "smash... \n"
         if basic_functions.aim(player, target, self.acc):
-            dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20) + player.wis + player.Bwis + 10
+            dmg = basic_functions.roll_dice(20) + basic_functions.roll_dice(20) + player.wis + player.Bwis
             chat += f"{player.name} unleashes arcane energy!"
         else:
             dmg = basic_functions.roll_dice(8) + basic_functions.roll_dice(8) + 4
             chat += f"The arcane blast partially connects."
 
-        target.damage(dmg, player.limb, chat)
+        target.damage(dmg, player.limb, chat, self.name)
         return chat

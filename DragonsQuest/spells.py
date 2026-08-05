@@ -3,12 +3,7 @@ import random
 import basic_functions
 
 
-def attack(bonus, target, dmg, chat, attacker):
-    if random.randint(1, 20) + bonus >= target.AC:
-                target.hp -= dmg*target.dmgReduce
-                chat.value=(f"{attacker.name} casts on {target.type}, dealing {dmg} damage!")
-    else:
-        chat.value=(f"{attacker.name}'s missed {target.type}!")
+
 
 class spell:
     def __init__(self, name, damage, heal, acc, desc, casting):
@@ -24,6 +19,15 @@ class spell:
             caster.mana -= 1
             target.hp -= self.damage
             caster.hp += self.heal
+
+    def attack(self, bonus, target, dmg, chat, attacker):
+        if random.randint(1, 20) + self.acc+ attacker.acc +attacker.Bacc >= target.AC+ target.BAC:
+                hitpoints = dmg*target.dmgReduce
+                chat.value=(f"{attacker.name} casts on {target.type}, dealing {hitpoints} damage!")
+                target.damage(hitpoints, attacker.limb, chat, self.name)
+                
+        else:
+            chat.value=(f"{attacker.name}'s missed {target.type}!")
 
 #make 7 classes of spells possible to lerarn:
 #fireball, self cure, hyperfocus, turtle shells, ray of doom, poisonous breath, arcanus shot
@@ -46,7 +50,7 @@ class fireball(spell):
             return
 
         player.mana -= 1
-        attack(self.acc, target, self.damage, chat, player)
+        self.attack(self.acc, target, self.damage, chat, player)
 
 
 class selfCure(spell):
@@ -129,7 +133,7 @@ class rayOfDoom(spell):
             return
 
         player.mana -= 1
-        attack(self.acc, target, self.damage, chat, player)
+        self.attack(self.acc, target, self.damage, chat, player)
 
 
 class poisonousBreath(spell):
@@ -165,7 +169,7 @@ class poisonousBreath(spell):
 
         if dmg > 0:
             chat += f"{player.name} engulfs {target.type} in poisonous gas!"
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
         else:
             chat += f"{target.type} resists the poison."
 
@@ -195,7 +199,7 @@ class arcanusShot(spell):
             dmg = self.damage + max(player.wis + player.Bwis*2 - 10, 0)
 
             chat += f"{player.name} fires an Arcanus Shot!"
-            target.damage(dmg, player.limb, chat)
+            target.damage(dmg, player.limb, chat, self.name)
 
         else:
             chat += f"{player.name}'s Arcanus Shot missed!"
