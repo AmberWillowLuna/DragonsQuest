@@ -37,6 +37,7 @@
     <Compile Include="linesF.py" />
     <Compile Include="magic_learning.py" />
     <Compile Include="meditation.py" />
+    <Compile Include="options.py" />
     <Compile Include="player.py" />
     <Compile Include="quests.py" />
     <Compile Include="smith.py" />
@@ -46,6 +47,10 @@
     <Compile Include="tavern.py" />
     <Compile Include="VillagersQuests.py" />
     <Compile Include="weapons.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="achievements.json" />
+    <Content Include="settings.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

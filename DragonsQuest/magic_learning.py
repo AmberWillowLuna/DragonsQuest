@@ -47,8 +47,7 @@ def Study_magic(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, A
     #learning a spell costs 1 mana
     #spells should be rerolled each day, so you can learn different spells each day
      
-    #ADD A MINIGAMEEEE!!!!
-
+    scale = 1.0*SCREEN_WIDTH/640
 
     #info on how it works
     chat += "An old mage looks and you and says: Blue are books - you have 25% to learn then each hour and +25% each hour you spend here, gold is a scroll, you have 50% to learn it and +50% each hour... however remember that to learn it succesfully you need mana"
@@ -57,11 +56,11 @@ def Study_magic(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, A
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
     #make buttons for spell learning
-    spell1_button=button.Button(20, 100, 440, 100, AllSpells[StudySpells[0]].name, colors.LIGHT_BLUE, (100, 255, 100))
-    spell2_button=button.Button(20, 200, 440, 100, AllSpells[StudySpells[1]].name, colors.LIGHT_BLUE, (100, 255, 100))
-    spell3_button=button.Button(20, 300, 440, 100, AllSpells[StudySpells[2]].name, colors.GOLD, (100, 255, 100))
+    spell1_button=button.Button(10*scale, 50*scale, 220*scale, 50*scale, AllSpells[StudySpells[0]].name, colors.NAVY_BLUE, colors.GREEN)
+    spell2_button=button.Button(10*scale, 110*scale, 220*scale, 50*scale, AllSpells[StudySpells[1]].name, colors.NAVY_BLUE, colors.GREEN)
+    spell3_button=button.Button(10*scale, 170*scale, 220*scale, 50*scale, AllSpells[StudySpells[2]].name, colors.GOLD, colors.GREEN)
     learning_points=learningPoints() #how many tries u made
-    backButton= button.Button(50, 400, 400, 100, "Back", colors.LIGHT_BLUE, (100, 255, 100))
+    backButton= button.Button(10*scale, 230*scale, 220*scale, 50*scale, "Back", colors.NAVY_BLUE, colors.GREEN)
     #main loop
     running = True
     while running:

@@ -1,7 +1,7 @@
 import pygame
+import colors
 
 
-BLACK = (0, 0, 0)
 font = pygame.font.SysFont("Arial", 36)
 small_font = pygame.font.SysFont("Arial", 30)
 
@@ -16,9 +16,9 @@ class Button:
     def draw(self, surface):
         color = self.hover_color if self.is_hovered else self.color
         pygame.draw.rect(surface, color, self.rect, border_radius=10)
-        pygame.draw.rect(surface, BLACK, self.rect, 2, border_radius=10)
+        pygame.draw.rect(surface, colors.GREEN, self.rect, 2, border_radius=10)
 
-        text_surface = font.render(self.text, True, BLACK)
+        text_surface = font.render(self.text, True, colors.WHITE)
         text_rect = text_surface.get_rect(center=self.rect.center)
         surface.blit(text_surface, text_rect)
 

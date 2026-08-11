@@ -46,6 +46,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
 
+    scale = 1.0*SCREEN_WIDTH/640
     #2initializing options to spend time - buttons
     #study magic
     #smith
@@ -54,11 +55,11 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #quest table (4 quests each day)
     #on day 3 fight the dragon
 
-    study_button =  Button(100, 50, 300, 100, "Study magic", colors.LIGHT_BLUE, (100, 255, 100))
-    smith_button =  Button(100, 150, 300, 100, "Smith", colors.LIGHT_BLUE, (100, 255, 100))
-    meditation_button =  Button(100, 250, 300, 100, "Meditation", colors.LIGHT_BLUE, (100, 255, 100))
-    tavern_button =  Button(100, 350, 300, 100, "Tavern", colors.LIGHT_BLUE, (100, 255, 100))
-    quests_button =  Button(100, 450, 300, 100, "Villager's quests", colors.LIGHT_BLUE, (100, 255, 100))
+    study_button =  Button(50*scale, 10*scale, 150*scale, 50*scale, "Study magic", colors.NAVY_BLUE, colors.GREEN)
+    smith_button =  Button(50*scale, 80*scale, 150*scale, 50*scale, "Smith", colors.NAVY_BLUE, colors.GREEN)
+    meditation_button =  Button(50*scale, 150*scale, 150*scale, 50*scale, "Meditation", colors.NAVY_BLUE, colors.GREEN)
+    tavern_button =  Button(50*scale, 220*scale, 150*scale, 50*scale, "Tavern", colors.NAVY_BLUE, colors.GREEN)
+    quests_button =  Button(50*scale, 290*scale, 150*scale, 50*scale, "Villager's quests", colors.NAVY_BLUE, colors.GREEN)
     #make 7 classes of spells possible to lerarn:
     #fireball, self cure, hyperfocus, turtle shells, ray of doom, poisonous breath, arcanus shot
     AllSpells=[spells.fireball(), spells.selfCure(), spells.hyperfocus(), spells.turtleShells(), spells.rayOfDoom(), spells.poisonousBreath(), spells.arcanusShot()]
