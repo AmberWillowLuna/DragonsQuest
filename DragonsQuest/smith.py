@@ -28,6 +28,7 @@ def Buy(player, chat, Allweapons, weaponary, weapon_size, b):
 def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmors, Allweapons):
     chat.ClearChat()
     time.add(1)
+    scale = 1.0*SCREEN_WIDTH/640
     # roulette of armors and weapons all:
     weapon_size=len(Allweapons)
     armors_size=len(Allarmors)
@@ -49,15 +50,16 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
     #buttons for smith
-    weapon1_button=button.Button(20, 0, 440, 60, Allweapons[weaponary[0]].name+" "+str(Allweapons[weaponary[0]].cost), colors.LIGHT_BLUE, (100, 255, 100))
-    weapon2_button=button.Button(20, 75, 440, 60, Allweapons[weaponary[1]].name+" "+str(Allweapons[weaponary[1]].cost) , colors.LIGHT_BLUE, (100, 255, 100))
-    weapon3_button=button.Button(20, 150, 440, 60,Allweapons[weaponary[2]].name+" "+str(Allweapons[weaponary[2]].cost) , colors.LIGHT_BLUE, (100, 255, 100))
 
-    armor1_button=button.Button(20, 225, 440, 60, Allarmors[armory[0]].name+" "+str(Allarmors[armory[0]].cost), colors.LIGHT_BLUE, (100, 255, 100))
-    armor2_button=button.Button(20, 300, 440, 60, Allarmors[armory[1]].name+" "+str(Allarmors[armory[1]].cost), colors.LIGHT_BLUE, (100, 255, 100))
+    weapon1_button=button.Button(10 *scale, 12*scale, 220*scale, 30*scale, Allweapons[weaponary[0]].name+" "+str(Allweapons[weaponary[0]].cost), colors.NAVY_BLUE, colors.GREEN)
+    weapon2_button=button.Button(10 *scale, 52*scale, 220*scale, 30*scale, Allweapons[weaponary[1]].name+" "+str(Allweapons[weaponary[1]].cost) , colors.NAVY_BLUE, colors.GREEN)
+    weapon3_button=button.Button(10 *scale, 92*scale, 220*scale, 30*scale,Allweapons[weaponary[2]].name+" "+str(Allweapons[weaponary[2]].cost) , colors.NAVY_BLUE, colors.GREEN)
 
-    Reroll_button = button.Button(20, 375, 440, 60, "Stay", colors.LIGHT_BLUE, (100, 255, 100))
-    backButton =  button.Button(20, 450, 440, 60, "Back", colors.LIGHT_BLUE, (100, 255, 100))
+    armor1_button=button.Button(10 *scale, 132*scale, 220*scale, 30*scale, Allarmors[armory[0]].name+" "+str(Allarmors[armory[0]].cost), colors.NAVY_BLUE, colors.GREEN)
+    armor2_button=button.Button(10 *scale, 172*scale, 220*scale, 30*scale, Allarmors[armory[1]].name+" "+str(Allarmors[armory[1]].cost), colors.NAVY_BLUE, colors.GREEN)
+
+    Reroll_button = button.Button(10 *scale, 212*scale, 220*scale, 30*scale, "Stay", colors.NAVY_BLUE, colors.GREEN)
+    backButton =  button.Button(10 *scale, 252*scale, 220*scale, 30*scale, "Back", colors.NAVY_BLUE, colors.GREEN)
 
     running = True
     while running:

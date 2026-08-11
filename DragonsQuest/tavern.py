@@ -73,11 +73,11 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
     #buttons for potions
     potions = [items.draw_random_potion(), items.draw_random_potion()]
 
-    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.LIGHT_BLUE, (100, 255, 100))
-    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.LIGHT_BLUE, (100, 255, 100))
+    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
+    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
-    stayButton = button.Button(50, 300, 400, 100, "Stay", colors.LIGHT_BLUE, (100, 255, 100))
-    backButton = button.Button(50, 400, 400, 100, "Back", colors.LIGHT_BLUE, (100, 255, 100))
+    stayButton = button.Button(50, 300, 400, 100, "Stay", colors.NAVY_BLUE, colors.GREEN)
+    backButton = button.Button(50, 400, 400, 100, "Back", colors.NAVY_BLUE, colors.GREEN)
   
     #20 useless facts
     uselessInfo= ["healing potions heal", "you should not drink more than 3 mana potions", "dark sword may bite u!", "dragons are dangerous",
