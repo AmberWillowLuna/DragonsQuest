@@ -105,7 +105,7 @@ class terra_blade(weapon):
 
 class enchanted_diamond_sword(weapon):
     def __init__(self):
-        super().__init__("Enchanted Diamond Sword", 2, "A powerful enchanted blade.", 50)
+        super().__init__("Enchanted Sword", 2, "A powerful enchanted blade.", 50)
 
     def attack(self, player, target, chat):
         chat += "smash... \n"

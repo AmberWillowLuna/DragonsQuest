@@ -35,26 +35,26 @@ class Quest:
         lines = linesF.update_lines(player, time.day, time)
 
         chat += self.description
-
+        scale = 1.0*SCREEN_WIDTH/640
         buttonA = button.Button(
-            40, 120, 450, 80,
+            20*scale, 80*scale, 225*scale, 40*scale,
             self.text1,
             GREEN,
-            (140, 255, 140)
+            (0, 255, 0)
         )
 
         buttonB = button.Button(
-            40, 220, 450, 80,
+            20*scale, 140*scale, 225*scale, 40*scale,
             self.text2,
             GREEN,
-            (140, 255, 140)
+            (0, 255, 0)
         )
 
         backButton = button.Button(
-            40, 360, 450, 80,
+            20*scale, 200*scale, 225*scale, 40*scale,
             "Back",
             RED,
-            (255, 150, 150)
+            (0, 255, 0)
         )
 
         running = True

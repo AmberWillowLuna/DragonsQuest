@@ -81,15 +81,13 @@ def main():
             
             # Check button clicks
             if start_button.is_clicked(mouse_pos, event):
-                print("Start button clicked!")
                 start.start_game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock)
                 # Add your start game logic here
             if options_button.is_clicked(mouse_pos, event):
-                print("Options button clicked!")
                 options.options(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock)
                 # Add your options menu logic here
             if continue_button.is_clicked(mouse_pos, event):
-                print("Continue button clicked!")
+                i=-1
                 # Add your continue game logic here
             if exit_button.is_clicked(mouse_pos, event):
                 running = False

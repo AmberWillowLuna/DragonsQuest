@@ -113,6 +113,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                         player.gold -= potions[0].cost
                         player.inventory.append(potions[0])
                         potions[0]= items.draw_random_potion()
+                        potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
 
 
                 elif potion2_button.is_clicked(pygame.mouse.get_pos(), event):
@@ -123,6 +124,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                         player.gold -= potions[1].cost
                         player.inventory.append(potions[1])
                         potions[1]= items.draw_random_potion()
+                        potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
                 elif stayButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat.value ="You stay in the tavern for a while."
@@ -137,8 +139,8 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                     
                     potions = [items.draw_random_potion(), items.draw_random_potion()]
                     
-                    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.LIGHT_BLUE, (100, 255, 100))
-                    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.LIGHT_BLUE, (100, 255, 100))
+                    potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
+                    potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
                     ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
                     if time.q == True:

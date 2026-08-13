@@ -19,39 +19,41 @@ def QuestBoard(player, time, chat,
     panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
 
+    scale = 1.0*SCREEN_WIDTH/640
+
     quest1 = button.Button(
-        20, 40, 500, 80,
+        10*scale, 20*scale, 300*scale, 40*scale,
         f"{DailyQuests[0].name} ({DailyQuests[0].price}g)",
-        colors.LIGHT_BLUE,
-        (100,255,100)
+        colors.NAVY_BLUE,
+        colors.GREEN
     )
 
     quest2 = button.Button(
-        20, 140, 500, 80,
+        10*scale, 70*scale,  300*scale, 40*scale,
         f"{DailyQuests[1].name} ({DailyQuests[1].price}g)",
-        colors.LIGHT_BLUE,
-        (100,255,100)
+        colors.NAVY_BLUE,
+        colors.GREEN
     )
 
     quest3 = button.Button(
-        20, 240, 500, 80,
+        10*scale, 120*scale,  300*scale, 40*scale,
         f"{DailyQuests[2].name} ({DailyQuests[2].price}g)",
-        colors.LIGHT_BLUE,
-        (100,255,100)
+        colors.NAVY_BLUE,
+        colors.GREEN
     )
 
     fightQuest = button.Button(
-        20, 340, 500, 80,
+        10*scale, 170*scale,  300*scale, 40*scale,
         f"Monster Hunt: {enemy.type}",
         colors.RED,
-        (255,120,120)
+        colors.GOLD
     )
 
     backButton = button.Button(
-        50, 450, 400, 80,
+        15*scale, 225*scale,  250*scale, 40*scale,
         "Back",
-        colors.LIGHT_BLUE,
-        (100,255,100)
+        colors.NAVY_BLUE,
+        colors.GREEN
     )
 
     running = True
