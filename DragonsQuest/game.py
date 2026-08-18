@@ -39,14 +39,16 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #creating panel of the game with stats etc
     time = TimeClass()  #time in hours but 16/ day - then sleep
     #some actions will cost 1h others 
-    smallfont = pygame.font.SysFont("Arial", 16)
-    chat = ChatDisplay.ChatDisplay(screen, SCREEN_WIDTH, SCREEN_HEIGHT, smallfont)  #chat +box for the player to see what happened
+    
+    scale = 1.0*SCREEN_WIDTH/640
+    smallfont = pygame.font.SysFont("Arial", int(8*scale))
+    chatFont = pygame.font.SysFont("Arial", int(16*scale))
+
+    chat = ChatDisplay.ChatDisplay(screen, SCREEN_WIDTH, SCREEN_HEIGHT, chatFont)  #chat +box for the player to see what happened
     #1 rectangle as background on the right upper corner
 
     panel=pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
     lines = linesF.update_lines(player, time.day, time)
-
-    scale = 1.0*SCREEN_WIDTH/640
     #2initializing options to spend time - buttons
     #study magic
     #smith

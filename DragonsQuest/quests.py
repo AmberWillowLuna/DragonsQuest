@@ -204,8 +204,8 @@ def RandomQuests():
           "Several large trees have fallen across the main trade road. Merchants are offering a reward to anyone who can reopen the path."),
 
     Quest(("int",14),("time",2),
-          "Search the library",
-          "Spend two hours searching",
+          "Search the library", # here 100% to get one and 60% to get two types of dragons weaknesses
+          "Spend two hours searching", #here 100% to get all types of dragons weaknesses and get achievement
           25,
           "Ancient Library",
           "The village librarian believes an ancient tome contains forgotten knowledge. Rumor says it may reveal information about different dragon species and their weaknesses."),
@@ -233,7 +233,7 @@ def RandomQuests():
 
     Quest(("dex",15),("time",2),
           "Sneak into the old warehouse",
-          "Wait until everyone leaves",
+          "Wait until everyone leaves", #you should learn type of dragon weakness (60%) or any other useless fact from tavern
           30,
           "Warehouse Job",
           "A suspicious warehouse may contain stolen supplies. You can sneak inside now or wait until it is empty."),
@@ -260,7 +260,7 @@ def RandomQuests():
           "A frightened horse escaped from the stable and is running through the countryside. Bring it back before it injures itself."),
 
     Quest(("char",15),("str",14),
-          "Negotiate with a merchant",
+          "Negotiate with a merchant",  #you should be able to get a type of dragon weakness from negotiating with a merchant 60%?
           "Blackmail merchant",
           35,
           "Merchant's Deal",
@@ -295,7 +295,7 @@ def RandomQuests():
           "A greedy noble has hoarded medicine while villagers are suffering. Recover the supplies without attracting attention."),
 
     Quest(("int",15),("char",15),
-          "Solve a noble's dispute",
+          "Solve a noble's dispute", #you should be able to get a type of dragon weakness from both sides (60% maybe?)
           "Persuade both sides",
           40,
           "Noble Dispute",

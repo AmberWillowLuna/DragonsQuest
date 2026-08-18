@@ -26,24 +26,25 @@ class ChatDisplay:
     def Display(self):
         if self is not None:
             pygame.draw.rect(
-            self.screen,
-            (0, 0, 0),
-            (0, self.SCREEN_HEIGHT - 100, self.SCREEN_WIDTH, 100)
+                self.screen,
+                (0, 0, 0),
+                (0, self.SCREEN_HEIGHT, 0, self.SCREEN_HEIGHT)
             )
 
         # Wrap the text to a maximum of 47 characters per line
+        lines = textwrap.wrap(self.value, width=40)
 
-            lines = textwrap.wrap(self.value, width=40)
+        # Calculate the starting y position for the middle of the screen
+        # This positions the chat starting from 2/3rds of the screen height
+        y = (self.SCREEN_HEIGHT * 2 // 3)  # Adjust this value to fine-tune the position
 
-            # Starting position
-            y = self.SCREEN_HEIGHT - self.SCREEN_HEIGHT // 4
+        for line in lines:
+            chat_surface = self.font.render(line, True, (255, 255, 255))
 
-            for line in lines:
-                chat_surface = self.font.render(line, True, (255, 255, 255))
+            # Center-align the text horizontally
+            rect = chat_surface.get_rect()
+            rect.centerx = self.SCREEN_WIDTH*2 // 3  # Center horizontally
+            rect.centery = y  # Center vertically for each line
 
-                rect = chat_surface.get_rect()
-                rect.topright = (self.SCREEN_WIDTH - 10, y)
-
-                self.screen.blit(chat_surface, rect)
-
-                y += self.font.get_linesize()
+            self.screen.blit(chat_surface, rect)
+            y += self.font.get_linesize()
