@@ -1,9 +1,49 @@
 {
+  "first things first": 0,
+  "abracarabra": 0,
+  "Boooring": 0,
+  "Boooringer": 0,
+  "Boooringest": 0,
+  "Budda's friend": 0,
+  "Calm in a storm": 0,
+  "weak spot": 0,
+  "weakness": 0,
+  "Questinggg": 0,
+  "What was that?": 0,
+  "Intresting...": 0,
+  "Thats usefull!": 0,
+  "Weapon collectioner": 0,
+  "Armor collectioner": 0,
+  "Master of the elements": 0,
+  "Thats sorta unfair but whatever": 0,
+  "Magic in your veins!": 0,
+  "Bad trip": 0,
+  "Hyper heal": 0,
+  "Legendary weapon": 0,
+  "Not that game 1": 0,
+  "Not that game 2": 0,
+  "Legendary armor": 0,
+  "Wild beast": 0,
+  "Self harm is bad": 0,
+  "THIEEEF!": 0,
+  "Ouch, you traidor!": 0,
+  "Lucky coins": 0,
+  "Silent thief": 0,
+  "Im a failure!": 0,
+  "Mage potencial": 0,
+  "The chosen one": 0,
   "icey_dragon": 0,
   "grey_psychic": 0,
   "firery_dragon": 0,
   "greenish_dragon": 0,
   "four of a kind": 0,
+  "Dragon slayer": 0,
+  "quests": [],
+  "Number of killed dragons": 0
+}
+/*
+
+{
   "first things first": 0, //do first quest
   "abracarabra": 0, //learn first spell
   "Boooring": 0, //do 1/4 of quests (orginal!)
@@ -14,12 +54,11 @@
   "weak spot": 0, //hit dragons weak spot
   "weakness": 0, //hit dragons weakness (weapon or spell)
   "Questinggg": 0, // do 3/4 of quests (orginal!)
-  "quests": [],
   "What was that?": 0, //drink magic potion
-  "Intresting...":  0, //learn one type of dragon weakness from quests different than library
+  "Intresting...": 0, //learn one type of dragon weakness from quests different than library
   "Thats usefull!": 0, //get to know what types of dragon do all at once
-  "Weapon collectioner": 0,
-  "Armor collectioner": 0,
+  "Weapon collectioner": 0, //get 3 weapons at once
+  "Armor collectioner": 0, //get 3 armors at once
   "Master of the elements": 0, //learn 3 spells in one run
   "Thats sorta unfair but whatever": 0, //use any healing potion
   "Magic in your veins!": 0, //drink mana potion
@@ -38,6 +77,13 @@
   "Im a failure!": 0, //fail a quest twice in a row
   "Mage potencial": 0, //learn spell first try
   "The chosen one": 0, //kill the final boss
-  "Dragon slayer": 0, //kill 5 dragons in one run
+  "icey_dragon": 0,
+  "grey_psychic": 0,
+  "firery_dragon": 0,
+  "greenish_dragon": 0,
+  "four of a kind": 0, //kill 4 different types of dragons
+  "Dragon slayer": 0, //kill 5 dragons 
+  "quests": [],
   "Number of killed dragons": 0
 }
+*/
