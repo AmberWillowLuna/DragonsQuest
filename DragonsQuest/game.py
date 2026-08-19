@@ -1,6 +1,7 @@
 from tkinter import W
 import pygame
 import sys
+from achievementManage import AchievementManage
 from dragons import dragon
 from enemies import drawRandomEnemy
 from player import Player
@@ -78,6 +79,9 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
     enemy=drawRandomEnemy()
 
+    #meditation 5 times in a row achievement counter
+    Mctr = 0
+
     # Main game loop
     running = True
     while running: 
@@ -91,25 +95,33 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 print("Study magic button clicked!")
                 magic_learning.Study_magic(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, AllSpells,StudySpells)
                 lines=linesF.update_lines(player, time.day, time)
+                Mctr = 0
                 # Add your study magic logic here
             elif smith_button.is_clicked(mouse_pos, event):
                 print("Smith button clicked!")
                 smith.Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, AllArmory, AllWeapons)
                 lines=linesF.update_lines(player, time.day, time)
+                Mctr = 0
                 # Add your smith logic here
             elif meditation_button.is_clicked(mouse_pos, event):
                 meditation.Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font)
                 lines=linesF.update_lines(player, time.day, time)
+                Mctr +=1
+                if Mctr==5:
+                    AchievementManage.Achieve("Zen master")
+
                 # Add your meditation logic here
             elif tavern_button.is_clicked(mouse_pos, event):
                 print("Tavern button clicked!")
                 tavern.Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, TheDragon)
                 lines=linesF.update_lines(player, time.day, time)
+                Mctr = 0
                 # Add your tavern logic here
             elif quests_button.is_clicked(mouse_pos, event):
                 print("Villager's quests button clicked!")
                 VillagersQuests.QuestBoard(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, DailyQuests, enemy)
                 lines=linesF.update_lines(player, time.day, time)
+                Mctr = 0
                 # Add your quests logic here
         # Game logic goes here
 

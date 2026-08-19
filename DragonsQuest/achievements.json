@@ -4,8 +4,8 @@
   "Boooring": 0,
   "Boooringer": 0,
   "Boooringest": 0,
-  "Budda's friend": 0,
-  "Calm in a storm": 0,
+  "Budda's friend": 1,
+  "Zen master": 0,
   "weak spot": 0,
   "weakness": 0,
   "Questinggg": 0,
@@ -14,8 +14,8 @@
   "Thats usefull!": 0,
   "Weapon collectioner": 0,
   "Armor collectioner": 0,
-  "Master of the elements": 0,
-  "Thats sorta unfair but whatever": 0,
+  "book of spells": 0,
+  "Art of alchemy": 0,
   "Magic in your veins!": 0,
   "Bad trip": 0,
   "Hyper heal": 0,
@@ -38,52 +38,10 @@
   "greenish_dragon": 0,
   "four of a kind": 0,
   "Dragon slayer": 0,
-  "quests": [],
+  "quests": [
+    "Village Brawl",
+    "Missing Backpack",
+    "Merchant's Deal"
+  ],
   "Number of killed dragons": 0
 }
-/*
-
-{
-  "first things first": 0, //do first quest
-  "abracarabra": 0, //learn first spell
-  "Boooring": 0, //do 1/4 of quests (orginal!)
-  "Boooringer": 0, //do 1/2 of quests (orginal!)"
-  "Boooringest": 0, //do all quests (orginal!)"
-  "Budda's friend": 0, //meditate
-  "Calm in a storm": 0, //meditate 5 times in a row
-  "weak spot": 0, //hit dragons weak spot
-  "weakness": 0, //hit dragons weakness (weapon or spell)
-  "Questinggg": 0, // do 3/4 of quests (orginal!)
-  "What was that?": 0, //drink magic potion
-  "Intresting...": 0, //learn one type of dragon weakness from quests different than library
-  "Thats usefull!": 0, //get to know what types of dragon do all at once
-  "Weapon collectioner": 0, //get 3 weapons at once
-  "Armor collectioner": 0, //get 3 armors at once
-  "Master of the elements": 0, //learn 3 spells in one run
-  "Thats sorta unfair but whatever": 0, //use any healing potion
-  "Magic in your veins!": 0, //drink mana potion
-  "Bad trip": 0, //drink too much mana potions
-  "Hyper heal": 0, //drink legendary heal
-  "Legendary weapon": 0, //get legendary weapon Arcanus sword
-  "Not that game 1": 0, //get terrablade
-  "Not that game 2": 0, //get dark sword
-  "Legendary armor": 0, //get legendary armor
-  "Wild beast": 0, //kill a werewolf
-  "Self harm is bad": 0, //experience bandit hitting himself
-  "THIEEEF!": 0, //get robbed by a goblin
-  "Ouch, you traidor!": 0, //get hit by ur own sword
-  "Lucky coins": 0, //kill a gremlin
-  "Silent thief": 0, //heal while steal medicine quest
-  "Im a failure!": 0, //fail a quest twice in a row
-  "Mage potencial": 0, //learn spell first try
-  "The chosen one": 0, //kill the final boss
-  "icey_dragon": 0,
-  "grey_psychic": 0,
-  "firery_dragon": 0,
-  "greenish_dragon": 0,
-  "four of a kind": 0, //kill 4 different types of dragons
-  "Dragon slayer": 0, //kill 5 dragons 
-  "quests": [],
-  "Number of killed dragons": 0
-}
-*/

@@ -1,4 +1,4 @@
-
+from achievementManage import AchievementManage
 import basic_functions
 
 def draw_random_potion():
@@ -34,6 +34,10 @@ class health_potion(item):
         self.heal_amount = value
 
     def action(self, player):
+        if self.heal_amount==20:
+            AchievementManage.Achieve("Hyper heal")
+
+        AchievementManage.Achieve("Art of alchemy")
         player.heal(self.heal_amount)
         #add gui stuff
 
@@ -44,11 +48,13 @@ class mana_potion(item):
         self.cost=24+basic_functions.roll_dice(8)
 
     def action(self, player):
+        AchievementManage.Achieve("Magic in your veins!")
         player.mana += self.mana_amount
         player.mana = min(player.mana, 3)
         player.mana_exhaust-=1
         if player.mana_exhaust==0:
             player.mana_exhaust=3
+            AchievementManage.Achieve("Bad trip")
             player.curse();
         #add gui stuff
 
@@ -64,6 +70,7 @@ class magic_potion(item):
         player.Bwis+=5
         player.Bint+=5
         player.Bchar+=5
+        AchievementManage.Achieve("What was that?")
         #add gui stuff
 
 

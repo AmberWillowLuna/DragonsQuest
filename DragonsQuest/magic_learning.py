@@ -5,6 +5,7 @@ import button
 import linesF
 import colors
 import ChatDisplay
+from achievementManage import AchievementManage
 
 
 class learningPoints:
@@ -37,6 +38,10 @@ def Learning(chat, AllSpells, StudySpells, player, time, b, learning_points):
                 player.mana-=1
                 chat += f"You have learnt the spell {AllSpells[StudySpells[b]].name}"
                 player.spells.append(AllSpells[StudySpells[b]])
+
+                AchievementManage.Achieve("abracarabra")
+                if player.spells>=3:
+                    AchievementManage.Achieve("book of spells")
             else:
                 chat += "You tried to learn the spell but failed"
 

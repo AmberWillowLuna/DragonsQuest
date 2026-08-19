@@ -1,5 +1,6 @@
 import basic_functions
 import random
+from achievementManage import AchievementManage
 
 def drawRandomDragon():
     roll=random.randint(1,100)
@@ -64,7 +65,8 @@ class dragon:
     def damage(self, value, limb, chat, weapon):
         self.hp-=value*self.dmgReduce
         if(limb==self.weak_spot):
-            self.hp-=4+basic_functions.roll_dice(4)
+            AchievementManage.Achieve("weak spot")
+            self.hp-=4+basic_functions.roll_dice(6)
             chat+=" That was a weak spot here!"
 
 
@@ -127,17 +129,21 @@ class BlueDragon(dragon):
     def damage(self, value, limb, chat, weapon):
         self.hp-=value*self.dmgReduce
         if(limb==self.weak_spot):
-            self.hp-=2+basic_functions.roll_dice(4)
+            self.hp-=2+basic_functions.roll_dice(6)
             chat+=" That was a weak spot here!"
+            AchievementManage.Achieve("weak spot")
         if(weapon=="flametrhower"):
             self.hp-=basic_functions.roll_dice(8)+4
             chat+=" The flamethrower is very effective against the icey dragon!"
+            AchievementManage.Achieve("weakness")
         elif weapon=="enchanted diamond sword":
             self.hp-=basic_functions.roll_dice(4)+2
             chat+=" The enchanted diamond sword is effective against the icey dragon!"
+            AchievementManage.Achieve("weakness")
         elif weapon == "fireball":
             self.hp -= basic_functions.roll_dice(12) + 3
             chat+=" The fireball is very effective against the icey dragon!"
+            AchievementManage.Achieve("weakness")
 
 
 
@@ -211,14 +217,17 @@ class RedDragon(dragon):
     def damage(self, value, limb, chat, weapon):
         self.hp-=value*self.dmgReduce
         if(limb==self.weak_spot):
-            self.hp-=2+basic_functions.roll_dice(4)
+            self.hp-=2+basic_functions.roll_dice(6)
             chat+=" That was a weak spot here!"
+            AchievementManage.Achieve("weak spot")
         if(weapon=="Obanium Sword"):
-            self.hp-=basic_functions.roll_dice(6)+3
+            self.hp-=basic_functions.roll_dice(6)+4
             chat+=" The Obanium is very effective against the red dragon!"
+            AchievementManage.Achieve("weakness")
         elif weapon=="Crystal Sword":
-            self.hp-=basic_functions.roll_dice(6)+3
+            self.hp-=basic_functions.roll_dice(6)+4
             chat+=" The enchanted diamond sword is effective against the red dragon!"
+            AchievementManage.Achieve("weakness")
 
 
 #greenish dragon - weak for darkness and poison - very low const
@@ -249,14 +258,17 @@ class GreenDragon(dragon):
     def damage(self, value, limb, chat, weapon):
         self.hp-=value*self.dmgReduce
         if(limb==self.weak_spot):
-            self.hp-=2+basic_functions.roll_dice(4)
+            self.hp-=2+basic_functions.roll_dice(6)
             chat+=" That was a weak spot here!"
+            AchievementManage.Achieve("weak spot")
         if(weapon=="Dark Sword"):
-            self.hp-=basic_functions.roll_dice(12)+6
+            self.hp-=basic_functions.roll_dice(12)+8
             chat+=" The Darkness is very effective against the green dragon!"
+            AchievementManage.Achieve("weakness")
         elif(weapon=="Ray of Doom"):
-            self.hp-=basic_functions.roll_dice(6)
+            self.hp-=basic_functions.roll_dice(12)
             chat+=" The Ray of Doom is  effective against the green dragon!"
+            AchievementManage.Achieve("weakness")
 
 #white great dragon - no weaknesses - only 8% to find - but secondary attack attacks const
 #and all dmg hits a bit higher - phisical damage has 50% reduction of dmg!

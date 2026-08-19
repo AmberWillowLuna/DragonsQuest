@@ -1,6 +1,7 @@
 # make a quests class that will make GUI inside the classes 
 from calendar import c
 import pygame
+from achievementManage import AchievementManage
 import button
 import ChatDisplay
 import basic_functions
@@ -183,6 +184,8 @@ class Quest:
             return False
         roll-10
         if roll >= dc:
+            AchievementManage.Achieve("first things first")
+            AchievementManage.Quests(self.name)
             return True
 
         # Failed -> learn from mistakes

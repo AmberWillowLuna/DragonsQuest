@@ -2,6 +2,7 @@ import pygame
 import random
 import player
 from ImageSprite import ImageSprite
+from achievementManage import AchievementManage
 
 def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
     
@@ -121,6 +122,7 @@ def Meditate(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font):
         player.char += 1
 
     time.add(1)
+    AchievementManage.Achieve("Budda's friend")
     chat += "You have meditated for a while, your mind feels refreshed"
 
     if z==0:
