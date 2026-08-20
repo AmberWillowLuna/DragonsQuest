@@ -150,8 +150,18 @@ class Quest:
 
             pygame.display.flip()
 
+    def OneWeakness(chat):
+        roll = basic_functions.roll_dice(100)
+        if roll <16:
+            chat += "You learn that the red dragon is weak to obanium and crystal."
+        elif roll<31:
+            chat += "You learn that the green dragon is weak to darkness and poison."
+        elif roll<46:
+            chat += "You learn that the icey dragon is weak to fire."
+        elif roll<61:
+            chat += "You learn that Grey dragon mostly attacks wisdom and const, so magic potions are useful!"
 
-    def resolve_option(self, option, player, time):
+    def resolve_option(self, option, player, time, chat):
 
         stat = option[0]
         value = option[1]
@@ -186,6 +196,28 @@ class Quest:
         if roll >= dc:
             AchievementManage.Achieve("first things first")
             AchievementManage.Quests(self.name)
+            
+            #learning weaknesses of the dragons!
+            if self.name=="Ancient Library" and stat == "time":
+                chat+="You find an ancient text which states all dragons weaknesses: icey blue - fire, red - obanium, crystal, green - darkness poison (low const), Grey - it mostly attacks wisdom and const, so magic potions are useful! "
+                AchievementManage.Achieve("Thats usefull!")
+                #one weakness:
+            elif self.name == "Ancient Library":
+                self.OneWeakness(chat)
+                AchievementManage.Achieve("Intresting...")
+            elif self.name == "Warehouse Job" and stat == "time":
+                self.OneWeakness(chat)
+                AchievementManage.Achieve("Intresting...")
+            elif self.name == "Track the owner" and stat == "wis":
+                self.OneWeakness(chat)
+                AchievementManage.Achieve("Intresting...")
+            elif self.name == "Merchant's Deal" and stat == "char":
+                self.OneWeakness(chat)
+                AchievementManage.Achieve("Intresting...")
+            elif self.name == "Noble Dispute":
+                self.OneWeakness(chat)
+                AchievementManage.Achieve("Intresting...")
+
             return True
 
         # Failed -> learn from mistakes
@@ -222,7 +254,7 @@ def RandomQuests():
 
     Quest(("char",12),("wis",14),
           "Ask about the missing backpack",
-          "Track the owner",
+          "Track the owner", #one time of dragon weakness
           22,
           "Missing Backpack",
           "A traveler misplaced an old backpack somewhere in the village. You can question the locals or search for clues yourself."),

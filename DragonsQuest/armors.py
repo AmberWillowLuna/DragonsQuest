@@ -102,7 +102,7 @@ class enchanted_armor(armor):
 
 class crystal_armor(armor):
         def __init__(self):
-            super().__init__("Enchanted armor", 1, "An enchanted armor that provides good protection.", 50)
+            super().__init__("Crystal armor", 1, "An enchanted armor that provides good protection.", 50)
         
         def OnHitAction(self, player, attacker, damage, chat):
             player.hp+=damage*0.1 

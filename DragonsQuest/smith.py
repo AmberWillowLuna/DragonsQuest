@@ -14,6 +14,7 @@ import colors
 import ChatDisplay
 import linesF
 from weapons import weapon
+from achievementManage import AchievementManage
 
 def Buy(player, chat, Allweapons, weaponary, weapon_size, b):
     #traj baj
@@ -236,6 +237,25 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
 
                 # ---------- Back ----------
                 elif backButton.is_clicked(pygame.mouse.get_pos(), event):
+
+                    if len(player.weapon)>2:
+                        AchievementManage.Achieve("Weapon collectioner")
+                    if len(player.armor)>2:
+                        AchievementManage.Achieve("Armor collectioner")
+
+                    for player_weapon in player.weapon:
+                        if player_weapon.name=="Arcanus Sword":
+                            AchievementManage.Achieve("Legendary weapon")
+                        elif player_weapon.name=="Terra Blade":
+                            AchievementManage.Achieve("Not that game 1")
+                        elif player_weapon.name=="Dark Sword":
+                            AchievementManage.Achieve("Not that game 2")
+                        elif player_weapon.name=="Obanium Sword":
+                            AchievementManage.Achieve("Not that game 3")
+
+                    for player_armor in player.armor:
+                        if player_armor.name=="Legendary armor":
+                            AchievementManage.Achieve("Legendary weapon")
                     chat += "You leave the smith's hut."
                     running = False
 
