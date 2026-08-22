@@ -186,7 +186,7 @@ class flamethrower(weapon):
     def attack(self, player, target, chat):
         chat += "smash... \n"
         if basic_functions.aim(player, target, self.acc):
-            dmg = basic_functions.roll_dice(10) + basic_functions.roll_dice(10) + basic_functions.roll_dice(10)
+            dmg = basic_functions.roll_dice(10) + basic_functions.roll_dice(10) + basic_functions.roll_dice(12)
             chat += f"{player.name} engulfs {target.type} in flames!"
         else:
             dmg = basic_functions.roll_dice(10)
@@ -198,7 +198,7 @@ class flamethrower(weapon):
 
 class mace_of_destruction(weapon):
     def __init__(self):
-        super().__init__("Mace of Destruction", 0, "A weapon of overwhelming force.", 72)
+        super().__init__("Mace of Destruction", 1, "A weapon of overwhelming force.", 72)
 
     def attack(self, player, target, chat):
         chat += "smash... \n"
@@ -213,7 +213,7 @@ class mace_of_destruction(weapon):
 
 class dark_sword(weapon):
     def __init__(self):
-        super().__init__("Dark Sword", 0, "Powerful but cursed.", 45)
+        super().__init__("Dark Sword", 2, "Powerful but cursed.", 45)
 
     def attack(self, player, target, chat):
         chat += "smash... \n"
@@ -221,16 +221,17 @@ class dark_sword(weapon):
             dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12) + basic_functions.roll_dice(12)+4
             chat += f"{player.name} channels dark power!"
             target.damage(dmg, player.limb, chat, self.name)
-        else:
-            AchievementManage.Achieve("Ouch, you traidor!")
-            if player.armor!="Rubin Amulet" and player.armor!="Crown of fools":
-                selfdmg = basic_functions.roll_dice(6)
-                player.damage(selfdmg)
-                chat += f"The darkness backfires for {selfdmg} damage!"
-            else:
-                selfdmg=basic_functions.roll_dice(2)
-                player.damage(selfdmg)
-                chat += f"{player.name}'s armor almost protects from the dark backlash."
+        else:          
+            if basic_functions.roll_dice(20) > 8:
+                AchievementManage.Achieve("Ouch, you traidor!")
+                if player.armor!="Rubin Amulet" and player.armor!="Crown of fools":
+                    selfdmg = basic_functions.roll_dice(4)-1
+                    player.damage(selfdmg)
+                    chat += f"The darkness backfires for {selfdmg} damage!"
+                else:
+                    selfdmg=basic_functions.roll_dice(2)-1
+                    player.damage(selfdmg)
+                    chat += f"{player.name}'s armor almost protects from the dark backlash."
         return chat
 
 

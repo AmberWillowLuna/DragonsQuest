@@ -169,7 +169,7 @@ class GreyDragon(dragon):
         chat+= "Grey dragon attacks with psychic mind control!"
         x=-3
         hitpoints=0
-        while basic_functions.roll_dice(20)+self.wis+self.int-20>player.wis+player.int-30+x:
+        while basic_functions.roll_dice(20)+self.wis+self.int-20>player.wis+player.int-30+x+player.Bwis+player.Bint:
             hitpoints+=max(basic_functions.roll_dice(4)+2-(player.char//5),1)
             x+=3
         chat+= f" you are hit by the psychic mind control for a while!! It dealt {hitpoints} damage"
@@ -194,7 +194,7 @@ class RedDragon(dragon):
         super().__init__(125, 125,15,8,13,10,9,10,13, 200) #AC 14?
     def Attack1(self, player, chat):
         chat+= "Red dragon attacks with spikey wings!!"
-        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC-11:
+        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
             player.damage(basic_functions.roll_dice(4)+basic_functions.roll_dice(8))
             chat+= " you have spikes in your body..."
         else:
@@ -202,7 +202,7 @@ class RedDragon(dragon):
     def Attack2(self, player, chat):
         chat+= "Red dragon attacks with a fire blast"
         hitpoints=1
-        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC-10:
+        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
             hitpoints+=basic_functions.roll_dice(8)+basic_functions.roll_dice(8)
             chat+= f" you are hit by the blast  It dealt {hitpoints} damage"
         else:
@@ -239,7 +239,7 @@ class GreenDragon(dragon):
         super().__init__(150, 150,15,8,5,10,9,10,16, 200) #AC 14?
     def Attack1(self, player, chat):
         chat+= "Green dragon tries to bite you!"
-        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC-10:
+        if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
             player.damage(basic_functions.roll_dice(10))
             chat+= " Oww... that hurts!"
         else:

@@ -324,5 +324,6 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         )
 
         chat.Display()
-
         pygame.display.flip()
+
+    return

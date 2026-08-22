@@ -132,6 +132,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 time.day=4
                 if TheDragon.hp<=0:
                     chat.value=" You have defeated the dragon! You win the game!"
+                    chat.Display()
                     AchievementManage.Achieve("The chosen one")
                     AchievementManage.DragonSlayed(TheDragon.type)
                     pygame.time.wait(2000)
@@ -170,5 +171,3 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
         # Update the display
         pygame.display.flip()
-    pygame.quit()
-    sys.exit()

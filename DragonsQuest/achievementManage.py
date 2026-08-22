@@ -328,10 +328,10 @@ class AchievementManage:
         "The chosen one": "Kill the final boss.",
 
         # Dragon achievements
-        "icey_dragon": "Slay an Icey Dragon.",
-        "grey_psychic": "Slay a Grey Psychic Dragon.",
-        "firery_dragon": "Slay a Firery Dragon.",
-        "greenish_dragon": "Slay a Greenish Dragon.",
+        "icey blue": "Slay an Icey Dragon.",
+        "grey psychic": "Slay a Grey Psychic Dragon.",
+        "firery red": "Slay a Firery Dragon.",
+        "greenish": "Slay a Greenish Dragon.",
 
         "four of a kind": (
             "Slay 4 different types of dragons."
