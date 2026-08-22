@@ -37,7 +37,7 @@ def Learning(chat, AllSpells, StudySpells, player, time, b, learning_points):
             if learn:
                 player.mana-=1
                 chat += f"You have learnt the spell {AllSpells[StudySpells[b]].name}"
-                if learningPoints.value[b]==1:
+                if learning_points.value[b]==1:
                     AchievementManage.Achieve("Mage potencial")
 
                 player.spells.append(AllSpells[StudySpells[b]])

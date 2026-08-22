@@ -2,6 +2,8 @@
 
 import json
 import os
+import pygame
+
 
 
 class AchievementManage:
@@ -244,12 +246,8 @@ class AchievementManage:
         """
         return cls._load()
 
-import pygame
-import json
-import os
 
 
-class AchievementManage:
     SAVE_FILE = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "achievements.json"
