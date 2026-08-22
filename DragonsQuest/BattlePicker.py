@@ -25,7 +25,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
     confirmButton = button.Button(
         30, 450, 220, 45,
         "Confirm",
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100, 255, 100)
     )
 
@@ -38,6 +38,8 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
 
     running = True
 
+    scale = 1.0 * SCREEN_WIDTH / 640
+
     while running:
 
         # recreate lists every frame so inventory updates immediately
@@ -49,7 +51,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
         # Weapons
         #############################
 
-        y = 60
+        y = 40
         for w in player.weapon:
 
             txt = ("● " if w == selected_weapon else "○ ") + w.name
@@ -57,12 +59,12 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
             weapon_buttons.append((
                 w,
                 button.Button(
-                    20,
-                    y,
-                    220,
-                    35,
+                    scale*10,
+                    scale*y,
+                    scale*180,
+                    scale*35,
                     txt,
-                    colors.LIGHT_BLUE,
+                    colors.NAVY_BLUE,
                     (100,255,100)
                 )
             ))
@@ -73,7 +75,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
         # Armors
         #############################
 
-        y = 60
+        y = 40
 
         for a in player.armor:
 
@@ -82,12 +84,12 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
             armor_buttons.append((
                 a,
                 button.Button(
-                    270,
-                    y,
-                    220,
-                    35,
+                    scale*210,
+                    scale*y,
+                    scale*180,
+                    scale*35,
                     txt,
-                    colors.LIGHT_BLUE,
+                    colors.NAVY_BLUE,
                     (100,255,100)
                 )
             ))

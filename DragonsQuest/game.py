@@ -130,6 +130,8 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 time.day=4
                 if TheDragon.hp<=0:
                     chat.VALUE=" You have defeated the dragon! You win the game!"
+                    AchievementManage.Achieve("The chosen one")
+                    AchievementManage.DragonSlayed(TheDragon.type)
                 #Fight the dragon!!!!!!!
         #NEW DAY - QUESTS RESETS
         if time.q==True:

@@ -1,3 +1,4 @@
+from achievementManage import AchievementManage
 import basic_functions
 import random
 import dragons
@@ -217,10 +218,11 @@ class dark_sword(weapon):
     def attack(self, player, target, chat):
         chat += "smash... \n"
         if basic_functions.aim(player, target, self.acc):
-            dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12) + basic_functions.roll_dice(12)
+            dmg = basic_functions.roll_dice(12) + basic_functions.roll_dice(12) + basic_functions.roll_dice(12)+4
             chat += f"{player.name} channels dark power!"
             target.damage(dmg, player.limb, chat, self.name)
         else:
+            AchievementManage.Achieve("Ouch, you traidor!")
             if player.armor!="Rubin Amulet" and player.armor!="Crown of fools":
                 selfdmg = basic_functions.roll_dice(6)
                 player.damage(selfdmg)

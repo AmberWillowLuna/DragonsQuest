@@ -1,5 +1,7 @@
 from re import S
 import pygame
+
+from achievementManage import AchievementManage
 pygame.init()
 import sys
 import random
@@ -15,7 +17,8 @@ import game
 from button import Button
 import colors
 import options
-import json
+
+
 
 #get screen size from settings file
 #as well as state
@@ -65,7 +68,7 @@ def main():
 
 
     start_button = Button(240*scale, 100*scale, 160*scale, 40*scale, "Start", colors.NAVY_BLUE, colors.GREEN)
-    continue_button = Button(240*scale, 160*scale, 160*scale, 40*scale, "Continue", colors.NAVY_BLUE, colors.GREEN)
+    achievements_button = Button(240*scale, 160*scale, 160*scale, 40*scale, "Achievements", colors.NAVY_BLUE, colors.GREEN)
     options_button = Button(240*scale, 220*scale, 160*scale, 40*scale, "Options", colors.NAVY_BLUE, colors.GREEN)
     exit_button = Button(240*scale, 280*scale, 160*scale, 40*scale, "Exit", colors.NAVY_BLUE, colors.GREEN)
 
@@ -83,18 +86,18 @@ def main():
             if start_button.is_clicked(mouse_pos, event):
                 start.start_game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock)
                 # Add your start game logic here
-            if options_button.is_clicked(mouse_pos, event):
+            elif options_button.is_clicked(mouse_pos, event):
                 options.options(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock)
                 # Add your options menu logic here
-            if continue_button.is_clicked(mouse_pos, event):
-                i=-1
-                # Add your continue game logic here
-            if exit_button.is_clicked(mouse_pos, event):
+            elif achievements_button.is_clicked(mouse_pos, event):
+                 AchievementManage.AchievementMenu(screen, SCREEN_WIDTH, SCREEN_HEIGHT)
+            elif exit_button.is_clicked(mouse_pos, event):
                 running = False
 
         # Check button hover
         start_button.check_hover(mouse_pos)
         options_button.check_hover(mouse_pos)
+        achievements_button.check_hover(mouse_pos)
         exit_button.check_hover(mouse_pos)
 
         # Draw everything
@@ -102,6 +105,7 @@ def main():
         title_text = font.render("Dragon's quest", True, colors.WHITE)
         screen.blit(title_text, (SCREEN_WIDTH // 2 - title_text.get_width() // 2, 100))
 
+        achievements_button.draw(screen)
         start_button.draw(screen)
         options_button.draw(screen)
         exit_button.draw(screen)

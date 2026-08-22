@@ -1,3 +1,4 @@
+from achievementManage import AchievementManage
 import dragons
 import basic_functions
 #here 6 enemies for 6 fighting villagers quest!
@@ -56,6 +57,7 @@ class goblin(dragons.dragon):
                 stolen = min(player.gold, basic_functions.roll_dice(4))
                 player.gold -= stolen
                 chat += f" It steals {stolen} gold!"
+                AchievementManage.Achieve("THIEEEF!")
             else:
                 chat += " But fails to steal anything."
         else:
@@ -152,6 +154,7 @@ class bandit(dragons.dragon):
         elif test > 15:
             self.hp-=basic_functions.roll_dice(4)
             chat += "You outsmart the bandit, and it hurts itself!"
+            AchievementManage.Achieve("Self harm is bad")
         else:
             chat += "You see through the bandit's trick."
 

@@ -1,5 +1,6 @@
 from types import NoneType
 import pygame
+from achievementManage import AchievementManage
 import button
 import ChatDisplay
 import linesF
@@ -30,7 +31,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
     AimButton = button.Button(
         20, 340, 220, 60,
         player.limb,
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100,255,100)
     )
 
@@ -43,28 +44,28 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
     attackButton = button.Button(
         20, 20, 220, 60,
         "Attack",
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100,255,100)
     )
 
     spellButton = button.Button(
         20, 100, 220, 60,
         "Spell",
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100,255,100)
     )
 
     itemButton = button.Button(
         20, 180, 220, 60,
         "Item",
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100,255,100)
     )
 
     defendButton = button.Button(
         20, 260, 220, 60,
         "Defend",
-        colors.LIGHT_BLUE,
+        colors.NAVY_BLUE,
         (100,255,100)
     )
 
@@ -218,6 +219,10 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
 
             if enemy.hp <= 0:
                 chat += f" You defeated the {enemy.type} !"
+                if enemy.type=="werewolf":
+                    AchievementManage.Achieve("Wild beast")
+                elif enemy.type=="gremlin":
+                    AchievementManage.Achieve("Lucky coins")  
                 player.gold+=enemy.gold
                 screen.fill(BLACK)
                 chat.Display()

@@ -217,11 +217,18 @@ class Quest:
             elif self.name == "Noble Dispute":
                 self.OneWeakness(chat)
                 AchievementManage.Achieve("Intresting...")
+            elif self.name=="Medicine Heist":
+                if player.hp<player.maxhp:
+                    player.heal(8)
+                    chat+= "you steal a bit of medicine and heal with it!"
+                    AchievementManage.Achieve("Silent thief")
 
             return True
 
         # Failed -> learn from mistakes
         self.progress += 1
+        if self.progress==2:
+            AchievementManage.Achieve("Practice makes perfect")
         return False
 
 
