@@ -125,15 +125,25 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 # Add your quests logic here
         # Game logic goes here
 
+
+
         if time.day==3:
                 Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, TheDragon, chat)
                 time.day=4
                 if TheDragon.hp<=0:
-                    chat.VALUE=" You have defeated the dragon! You win the game!"
+                    chat.value=" You have defeated the dragon! You win the game!"
                     AchievementManage.Achieve("The chosen one")
                     AchievementManage.DragonSlayed(TheDragon.type)
+                    pygame.time.wait(2000)
+                    running=False
                 #Fight the dragon!!!!!!!
         #NEW DAY - QUESTS RESETS
+
+        if player.hp<=0:
+            chat.value="You have died. Game over."
+            pygame.time.wait(2000)
+            running=False
+
         if time.q==True:
             time.q=False
             DailyQuests = quests.RandomQuests()

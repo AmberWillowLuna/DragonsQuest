@@ -12,10 +12,10 @@ class AchievementManage:
     # Achievements that represent dragon types.
     # These are used for "four of a kind".
     DRAGON_TYPES = {
-        "icey_dragon",
-        "grey_psychic",
-        "firery_dragon",
-        "greenish_dragon",
+        "icey blue",
+        "grey psychic",
+        "firery red",
+        "greenish",
     }
 
     @classmethod

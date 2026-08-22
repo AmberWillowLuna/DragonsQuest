@@ -78,7 +78,7 @@ class Quest:
 
                     if buttonA.is_clicked(mouse, event):
 
-                        if self.resolve_option(self.OptionA, player, time):
+                        if self.resolve_option(self.OptionA, player, time, chat):
                             player.gold += self.price
                             self.finished = 1
                             chat.value= f"Quest completed!\nYou received {self.price} gold."
@@ -98,7 +98,7 @@ class Quest:
 
                     elif buttonB.is_clicked(mouse, event):
 
-                        if self.resolve_option(self.OptionB, player, time):
+                        if self.resolve_option(self.OptionB, player, time, chat):
                             player.gold += self.price
                             self.finished = 1
                             chat.value = f"Quest completed!\nYou received {self.price} gold."
@@ -150,7 +150,7 @@ class Quest:
 
             pygame.display.flip()
 
-    def OneWeakness(chat):
+    def OneWeakness(self, chat):
         roll = basic_functions.roll_dice(100)
         if roll <16:
             chat += "You learn that the red dragon is weak to obanium and crystal."

@@ -235,7 +235,7 @@ class GreenDragon(dragon):
     def __init__(self):
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
-        self.type="greenish "
+        self.type="greenish"
         super().__init__(150, 150,15,8,5,10,9,10,16, 200) #AC 14?
     def Attack1(self, player, chat):
         chat+= "Green dragon tries to bite you!"
