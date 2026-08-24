@@ -98,7 +98,7 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
         "Hello handsome",
 
         "Vicious Mockery echoes in the tavern, but only the bard hears the insults",
-        "Never drink more than 5 health potions unless you enjoy the taste of regret",
+        "Never drink more than 5 health potions unless you enjoy the taste of wasting resources",
         "A well-aimed Magic Missile can solve most problems, but not the one with the angry owlbear",
         "Wisdom is the stat you forget until the rogue falls into a pit trap",
         "Flirting with a dragon is like poking a sleeping owlbear exciting but ill-advised",

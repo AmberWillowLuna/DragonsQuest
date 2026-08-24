@@ -23,6 +23,7 @@ class item:
         self.name = name
         self.description = description
         self.value = value
+        self.type="potion"
 
     def action():
         pass
@@ -32,6 +33,7 @@ class health_potion(item):
     def __init__(self, name, description, value):
         super().__init__(name, description, value)
         self.heal_amount = value
+        self.type="health potion"
 
     def action(self, player):
         if self.heal_amount==20:

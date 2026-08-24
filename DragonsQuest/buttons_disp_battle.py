@@ -2,7 +2,7 @@ import button
 import colors
 
 
-def PlayerSpellsToButtons(player):
+def PlayerSpellsToButtons(player, scale):
     """
     Returns:
         [(spell, button), (spell, button), ...]
@@ -10,15 +10,15 @@ def PlayerSpellsToButtons(player):
 
     buttons = []
 
-    y = 120
+    y = 20*scale
 
     for spell in player.spells:
 
         b = button.Button(
-            270,
-            y,
-            260,
-            45,
+            130*scale,
+            y*scale,
+            150*scale,
+            30*scale,
             spell.name,
             colors.GOLD,
             (255,255,120)
@@ -26,11 +26,11 @@ def PlayerSpellsToButtons(player):
 
         buttons.append((spell, b))
 
-        y += 55
+        y += 12*scale
 
     return buttons
 
-def PlayerItemsToButtons(player):
+def PlayerItemsToButtons(player, scale):
     """
     Returns:
         [(item, button), (item, button), ...]
@@ -38,15 +38,15 @@ def PlayerItemsToButtons(player):
 
     buttons = []
 
-    y = 120
+    y = 40*scale
 
     for item in player.inventory:
 
         b = button.Button(
-            270,
-            y,
-            260,
-            45,
+            130*scale,
+            y*scale,
+            150*scale,
+            30*scale,
             item.name,
             colors.GOLD,
             (255,255,120)
@@ -54,6 +54,6 @@ def PlayerItemsToButtons(player):
 
         buttons.append((item, b))
 
-        y += 55
+        y += 12*scale
 
     return buttons

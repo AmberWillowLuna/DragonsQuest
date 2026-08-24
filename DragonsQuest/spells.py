@@ -92,6 +92,7 @@ class hyperfocus(spell):
 
         player.mana -= 1
         player.Bacc += 4
+        player.BAC+=1
         chat.value= f"{player.name} gains +4 accuracy."
 
 
@@ -113,6 +114,7 @@ class turtleShells(spell):
 
         player.mana -= 1
         player.BAC += 4
+        player.Bacc+=1
         chat.value= f"{player.name} gains +4 AC."
 
 

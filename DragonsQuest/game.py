@@ -148,7 +148,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
             chat.value="You have died. Game over."
             chat.Display()
             pygame.display.flip()
-            pygame.time.wait(25000)
+            pygame.time.wait(2500)
             running=False
             return
 

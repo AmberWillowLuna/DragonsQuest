@@ -26,9 +26,10 @@ class Quest:
     def run(self, screen, SCREEN_WIDTH, SCREEN_HEIGHT,
         font, player, time, chat):
         time.add(1)
-        smallfont2 = pygame.font.SysFont("Arial", 16)
+        scale= 1.0*SCREEN_WIDTH/640
+        smallfont2 = pygame.font.SysFont("Arial", int(9*scale))
 
-        panel = pygame.Rect(SCREEN_WIDTH - 250, 0, 250, 250)
+        panel = pygame.Rect(SCREEN_WIDTH - 100*scale, 0, 100*scale, 100*scale)
         lines = linesF.update_lines(player, time.day, time)
 
         chat += self.description

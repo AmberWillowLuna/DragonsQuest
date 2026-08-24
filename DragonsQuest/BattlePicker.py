@@ -7,21 +7,21 @@ import linesF
 
 
 def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
+    scale = 1.0 * SCREEN_WIDTH / 640
 
-    smallfont = pygame.font.SysFont("Arial", 18)
+    smallfont = pygame.font.SysFont("Arial", int(10*scale))
     chat.value = "Choose your equipment (weapon and armor) before the battle."
     # ---------- Layout ----------
-    LEFT_WIDTH = SCREEN_WIDTH - 260      # reserve right panel
+    LEFT_WIDTH = SCREEN_WIDTH - int(100*scale)      # reserve right panel
     RIGHT_X = LEFT_WIDTH
 
-    panel = pygame.Rect(RIGHT_X, 0, 260, SCREEN_HEIGHT - 100)
+    panel = pygame.Rect(RIGHT_X, 0, scale*120, SCREEN_HEIGHT - 100)
 
     # Start with nothing selected
     selected_weapon = None
     selected_armor = None
 
     # ---------------- Buttons ----------------
-    scale = 1.0 * SCREEN_WIDTH / 640
 
     confirmButton = button.Button(
         15*scale, 300*scale, 110*scale, 25*scale,
@@ -118,7 +118,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
                 )
             ))
 
-            y += 45
+            y += 8*scale
 
         mouse = pygame.mouse.get_pos()
 
@@ -208,7 +208,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
 
         screen.blit(
             smallfont.render("Armor", True, (255,255,255)),
-            (90*scale,10*scale)
+            (200*scale,10*scale)
         )
 
         screen.blit(
@@ -230,14 +230,6 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
         confirmButton.draw(screen)
         backButton.draw(screen)
 
-        # Divider
-        pygame.draw.line(
-            screen,
-            (80,80,80),
-            (RIGHT_X,0),
-            (RIGHT_X,SCREEN_HEIGHT-200),
-            2
-        )
 
         # Stats panel
         lines = linesF.update_lines(player, 0, None)
