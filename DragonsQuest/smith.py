@@ -31,8 +31,6 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
     time.add(1)
     scale = 1.0*SCREEN_WIDTH/640
     # roulette of armors and weapons all:
-    weapon_size=len(Allweapons)
-    armors_size=len(Allarmors)
     # choose weapons that are not in player eq
     while True:
         weaponary = random.sample(range(1, len(Allweapons)), 3)
@@ -45,6 +43,15 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
 
         if all(Allarmors[i] not in player.armor for i in armory):
             break
+        
+    Weapons_A=[Allweapons[i] for i in weaponary]
+    Armors_A = [Allarmors[i] for i in armory]
+
+    if player.discountB==1:
+        for weapon in Weapons_A:
+            weapon.cost = int(weapon.cost * 0.85)
+        for armor in Armors_A:
+            armor.cost = int(armor.cost * 0.85)
 
     #defining things for displaying player stats
     smallfont2=pygame.font.SysFont("Arial", 16)
@@ -52,12 +59,13 @@ def Smith(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, Allarmo
     lines = linesF.update_lines(player, time.day, time)
     #buttons for smith
 
-    weapon1_button=button.Button(10 *scale, 12*scale, 220*scale, 30*scale, Allweapons[weaponary[0]].name+" "+str(Allweapons[weaponary[0]].cost), colors.NAVY_BLUE, colors.GREEN)
-    weapon2_button=button.Button(10 *scale, 52*scale, 220*scale, 30*scale, Allweapons[weaponary[1]].name+" "+str(Allweapons[weaponary[1]].cost) , colors.NAVY_BLUE, colors.GREEN)
-    weapon3_button=button.Button(10 *scale, 92*scale, 220*scale, 30*scale,Allweapons[weaponary[2]].name+" "+str(Allweapons[weaponary[2]].cost) , colors.NAVY_BLUE, colors.GREEN)
 
-    armor1_button=button.Button(10 *scale, 132*scale, 220*scale, 30*scale, Allarmors[armory[0]].name+" "+str(Allarmors[armory[0]].cost), colors.NAVY_BLUE, colors.GREEN)
-    armor2_button=button.Button(10 *scale, 172*scale, 220*scale, 30*scale, Allarmors[armory[1]].name+" "+str(Allarmors[armory[1]].cost), colors.NAVY_BLUE, colors.GREEN)
+    weapon1_button=button.Button(10 *scale, 12*scale, 220*scale, 30*scale, Weapons_A[0].name+" "+str(Weapons_A[0].cost), colors.NAVY_BLUE, colors.GREEN)
+    weapon2_button=button.Button(10 *scale, 52*scale, 220*scale, 30*scale, Weapons_A[1].name+" "+str(Weapons_A[1].cost) , colors.NAVY_BLUE, colors.GREEN)
+    weapon3_button=button.Button(10 *scale, 92*scale, 220*scale, 30*scale,Weapons_A[2].name+" "+str(Weapons_A[2].cost) , colors.NAVY_BLUE, colors.GREEN)
+
+    armor1_button=button.Button(10 *scale, 132*scale, 220*scale, 30*scale, Armors_A[0].name+" "+str(Armors_A[0].cost), colors.NAVY_BLUE, colors.GREEN)
+    armor2_button=button.Button(10 *scale, 172*scale, 220*scale, 30*scale, Armors_A[1].name+" "+str(Armors_A[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
     Reroll_button = button.Button(10 *scale, 212*scale, 220*scale, 30*scale, "Stay", colors.NAVY_BLUE, colors.GREEN)
     backButton =  button.Button(10 *scale, 252*scale, 220*scale, 30*scale, "Back", colors.NAVY_BLUE, colors.GREEN)

@@ -22,13 +22,14 @@ import colors
 import ChatDisplay
 from linesF import update_lines, draw_lines
 
-def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
+def ChatWithStranger(chat, player, dragon, uselessInfo, time):
     chat += " and sit next to stranger, he says: "
     roll=roll_dice(20)
+    randomFactRoll=roll_dice(len(uselessInfo))-1
     #day one
     if time.day==0:
         if roll<10:
-            chat+=uselessInfo[roll]
+            chat+=uselessInfo[randomFactRoll]
         elif roll<13:
             chat+="The dragon was harmed, it should have weaker "+ dragon.weak_spot+". You should aim for it" #it adds flat 1+1d4 dmg
         elif roll<17:
@@ -39,18 +40,18 @@ def ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time):
             player.discountB=1
     elif time.day==1:
         if roll<8:
-            chat+=uselessInfo[roll]
+            chat+=uselessInfo[randomFactRoll]
         elif roll<11:
             chat+="The treasure is located in the forest. Go now and you may get it"
-            treasure=1
+            player.treasure=1
         else:
             chat+="The dragon is definitley a "+ dragon.type+" type of dragon. You should prepare for it"
     elif time.day==2:
         if roll<7:
-            chat+=uselessInfo[roll]
+            chat+=uselessInfo[randomFactRoll]
         elif roll<10:
             chat+="The treasure is located in the forest. Go now and you may get it"
-            treasure=1
+            player.treasure=1
         elif roll<13:
             chat+="The dragon was harmed, it should have weaker "+ dragon.weak_spot+". You should aim for it" #it adds flat 1+1d4 dmg
         elif roll<17:
@@ -72,26 +73,71 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
 
     #buttons for potions
     potions = [items.draw_random_potion(), items.draw_random_potion()]
+  
+    #20 useless facts
+    uselessInfo = [
+        "healing potions heal",
+        "you should not drink more than 3 mana potions",
+        "dark sword may bite u!",
+        "dragons are dangerous",
+        "dragons are goregous",
+        "men are so wierd",
+        "Wienna flirts with Ken",
+        "Arthur went abord",
+        "king will be missing in three days",
+        "food is important for survival",
+        "Bless you!",
+        "arcana gets bonus dmg by ur wisdom",
+        "There are 4 types of dragons",
+        "dragons have 2 weaknesses types",
+        "Legends says there is a rare fifth type of dragon",
+        "Coffe a day keeps u awake",
+        "someone flirts with someone",
+        "You can die in this battle",
+        "Wienna flirts with Ben",
+        "Hello handsome",
+
+        "Vicious Mockery echoes in the tavern, but only the bard hears the insults",
+        "Never drink more than 5 health potions unless you enjoy the taste of regret",
+        "A well-aimed Magic Missile can solve most problems, but not the one with the angry owlbear",
+        "Wisdom is the stat you forget until the rogue falls into a pit trap",
+        "Flirting with a dragon is like poking a sleeping owlbear exciting but ill-advised",
+        "The Shillelagh spell works best when you are already drunk",
+        "A Charm Person spell lasts until the target realizes you are a halfling",
+        "Never trust a merchant who sells potions labeled '100% Safe (probably)'",
+        "The Thaumaturgy cantrip is useless, but it makes you feel like a real spellcaster",
+        "A Dancing Lights spell is the perfect distraction for pickpockets",
+        "If you hear Bless You, its either a cleric or a trap",
+        "Fire Bolt is great for cooking, but terrible for diplomacy",
+        "The Minor Illusion spell works until someone touches it",
+        "Never split the party unless you enjoy watching your friends die",
+        "Sacred Flame is holy, but it still burns like hell",
+        "A Healing Potion tastes like copper and regret",
+        "Sleep is the only spell that makes orcs more dangerous when it wears off",
+        "The Guidance cantrip is useless, but it makes you feel divine",
+        "Never ask a dragon if its goregous it might take offense",
+        "Thunderwave is great for clearing out tavern brawls, but terrible for your hearing",
+        "You learn that the red dragon is weak to obanium and crystal",
+        "You learn that the green dragon is weak to darkness and poison",
+        "You learn that the icey dragon is weak to fire",
+        "You learn that Grey dragon mostly attacks wisdom and const, so magic potions are useful"
+    ]
+
+
+    player.treasure = 0
+
+
+    ChatWithStranger(chat, player, dragon, uselessInfo, time)
+    if player.discountA==1:
+                        chat+=" You have a discount for potions! (-15%)"
+                        potions[0].cost=int(potions[0].cost*0.85)
+                        potions[1].cost=int(potions[1].cost*0.85)
 
     potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
     potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
     stayButton = button.Button(50, 300, 400, 100, "Stay", colors.NAVY_BLUE, colors.GREEN)
     backButton = button.Button(50, 400, 400, 100, "Back", colors.NAVY_BLUE, colors.GREEN)
-  
-    #20 useless facts
-    uselessInfo= ["healing potions heal", "you should not drink more than 3 mana potions", "dark sword may bite u!", "dragons are dangerous",
-                  "dragons are goregous", "men are so wierd", "Wienna flirts with Ken", "Arthur went abord", "king will be missing in three days",
-                  "food is important for survival", "Bless you!", "arcana gets bonus dmg by ur wisdom", "There are 4 types of dragons",
-                  "dragons have 2 weaknesses types", "Legends says there is a rare fifth type of dragon", "Coffe a day keeps u awake",
-                  "someone flirts with someone", "You can die in this battle", "Wienna flirts with Ben", "Hello handsome"
-                  ]
-
-
-    treasure = 0
-
-
-    ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
 
     update_lines(player, time.day, time)
     running = True
@@ -113,8 +159,9 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                         player.gold -= potions[0].cost
                         player.inventory.append(potions[0])
                         potions[0]= items.draw_random_potion()
+                        if player.discountA==1:
+                            potions[0].cost=int(potions[0].cost*0.85)
                         potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
-
 
                 elif potion2_button.is_clicked(pygame.mouse.get_pos(), event):
                     if player.gold < potions[1].cost:
@@ -124,6 +171,8 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                         player.gold -= potions[1].cost
                         player.inventory.append(potions[1])
                         potions[1]= items.draw_random_potion()
+                        if player.discountA==1:
+                            potions[1].cost=int(potions[1].cost*0.85)
                         potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
                 elif stayButton.is_clicked(pygame.mouse.get_pos(), event):
@@ -138,21 +187,26 @@ def Tavern(player, time, chat, screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, dragon
                     pygame.time.wait(500) 
                     
                     potions = [items.draw_random_potion(), items.draw_random_potion()]
-                    
+                    ChatWithStranger(chat, player, dragon, uselessInfo, time)
+                    if player.discountA==1:
+                        chat+=" You have a discount for potions! (-15%)"
+                        potions[0].cost=int(potions[0].cost*0.85)
+                        potions[1].cost=int(potions[1].cost*0.85)
                     potion1_button=button.Button(20, 100, 440, 100, potions[0].name+" "+str(potions[0].cost), colors.NAVY_BLUE, colors.GREEN)
                     potion2_button=button.Button(20, 200, 440, 100, potions[1].name+" "+str(potions[1].cost), colors.NAVY_BLUE, colors.GREEN)
 
-                    ChatWithStranger(chat, player, dragon, treasure, uselessInfo, time)
                     if time.q == True:
                         running=False
-                        treasure=0
+                        player.treasure=0
+                        player.discountA=0
+                        player.discountB=0
                     # Add your stay logic here
                 elif backButton.is_clicked(pygame.mouse.get_pos(), event):
                     chat.value ="You leave the tavern."
-                    if treasure==1:
+                    if player.treasure==1:
                         chat+=" You have found the treasure!"
                         player.gold+=20+roll_dice(10)
-                        treasure=0
+                        player.treasure=0
                     running = False
                 lines=update_lines(player, time.day, time)
                     # Add your back logic here

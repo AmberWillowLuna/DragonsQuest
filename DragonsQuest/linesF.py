@@ -18,7 +18,7 @@ def update_lines(player, day, time):
     ]
     if time is not None:
         k.append(f"Day: {time.day}")
-        k.append(f"Time: {time.value} / 16")
+        k.append(f"Time: {time.value} / 20")
 
     k.append(f"Weapons: ")
     for weapon in player.weapon:

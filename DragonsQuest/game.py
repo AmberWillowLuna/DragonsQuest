@@ -30,7 +30,7 @@ class TimeClass:
         self.q=False
     def add(self, amount):
         self.value+=amount
-        if self.value>15:
+        if self.value>19:
             self.value=0
             self.day+=1
             self.q=True
@@ -67,7 +67,7 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
     #fireball, self cure, hyperfocus, turtle shells, ray of doom, poisonous breath, arcanus shot
     AllSpells=[spells.fireball(), spells.selfCure(), spells.hyperfocus(), spells.turtleShells(), spells.rayOfDoom(), spells.poisonousBreath(), spells.arcanusShot()]
     #drawing 3 spells to learn
-    StudySpells = random.sample(range(1, 7), 3)
+    StudySpells = random.sample(range(0, 6), 3)
     #weapons
     AllWeapons = [weapons.basic_dagger(), weapons.iron_sword(), weapons.steel_sword(), weapons.miths_hammer(), weapons.galaxyDagger(), weapons.terra_blade(), weapons.enchanted_diamond_sword(), weapons.legendary_dragon_slayer(), weapons.obanium_sword(), weapons.crystal_sword(), weapons.crystal_sword(), weapons.magic_bow(), weapons.flamethrower(), weapons.mace_of_destruction(), weapons.dark_sword(), weapons.arcanus_sword()]
     #armors
@@ -131,25 +131,36 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
                 Battle.Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, TheDragon, chat)
                 time.day=4
                 if TheDragon.hp<=0:
+                    screen.fill((0, 0, 0))
                     chat.value=" You have defeated the dragon! You win the game!"
                     chat.Display()
                     AchievementManage.Achieve("The chosen one")
                     AchievementManage.DragonSlayed(TheDragon.type)
-                    pygame.time.wait(2000)
+                    pygame.display.flip()
+                    pygame.time.wait(2500)
                     running=False
+                    return
                 #Fight the dragon!!!!!!!
         #NEW DAY - QUESTS RESETS
 
         if player.hp<=0:
+            screen.fill((0, 0, 0))
             chat.value="You have died. Game over."
-            pygame.time.wait(2000)
+            chat.Display()
+            pygame.display.flip()
+            pygame.time.wait(25000)
             running=False
+            return
 
         if time.q==True:
             time.q=False
             DailyQuests = quests.RandomQuests()
             enemy=drawRandomEnemy()
             StudySpells = random.sample(range(1, 7), 3)
+            player.discountA=0
+            player.discountB=0
+            if player.mana_exhaust<3:
+                player.mana_exhaust+=1
 
             #reset quests and
 
@@ -171,3 +182,5 @@ def game(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock, player):
 
         # Update the display
         pygame.display.flip()
+
+    return

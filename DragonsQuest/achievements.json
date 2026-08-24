@@ -26,19 +26,19 @@
     "Legendary armor": 0,
     "Wild beast": 1,
     "Self harm is bad": 1,
-    "THIEEEF!": 0,
+    "THIEEEF!": 1,
     "Ouch, you traidor!": 1,
     "Lucky coins": 1,
     "Silent thief": 1,
     "Practice makes perfect": 1,
     "Mage potencial": 1,
     "The chosen one": 1,
-    "icey blue": 0,
+    "icey blue": 1,
     "grey psychic": 0,
-    "firery red": 0,
+    "firery red": 1,
     "greenish": 1,
     "four of a kind": 0,
-    "Dragon slayer": 0,
+    "Dragon slayer": 1,
     "quests": [
         "Village Brawl",
         "Missing Backpack",
@@ -57,5 +57,5 @@
         "Warehouse Job",
         "Lost Child"
     ],
-    "Number of killed dragons": 2
+    "Number of killed dragons": 7
 }

@@ -36,29 +36,25 @@ def options(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock):
 
             # Check button clicks
             if back_button.is_clicked(mouse_pos, event):
-                #print("Back button clicked!")
                 running = False
             elif res_button.is_clicked(mouse_pos, event):
                 # Cycle through resolutions
-                current_res_index = resolutions.index(res_button.text.split(": ")[1])
+                current_res_index = resolutions.index(res_button.text.split(": "))
                 new_res_index = (current_res_index + 1) % len(resolutions)
                 res_button.text = f"Resolution: {resolutions[new_res_index]}"
-
                 new_width, new_height = map(int, resolutions[new_res_index].split("x"))
 
             elif screen_states.is_clicked(mouse_pos, event):
-                # Cycle through screen states
-                current_state_index = 0
-                if screen_states.text=="Fullscreen":
-                    current_res_index=1
+                # Define the list of screen states (e.g., ["Fullscreen", "Windowed"])
+                screen_statesA = ["Fullscreen", "Windowed"]
+                current_state_index = screen_statesA.index(screen_states.text)
                 new_state_index = (current_state_index + 1) % len(screen_statesA)
                 screen_states.text = screen_statesA[new_state_index]
 
-
             elif SaveAndExit.is_clicked(mouse_pos, event):
                 # Save settings to file
-                new_resolution = res_button.text.split(": ")[1]
-                new_state = screen_states.text.split(": ")[1]
+                new_resolution = res_button.text.split(": ")
+                new_state = screen_states.text  # No need to split if the text is already the state
                 with open("settings.json", "w", encoding="utf-8") as file:
                     json.dump({"resolution": new_resolution, "state": new_state}, file, indent=4)
                 running = False
@@ -68,9 +64,9 @@ def options(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock):
         #back_button.check_hover(mouse_pos)
 
         # Draw everything
-        screen.fill(colors.NAVY_BLUE)
+        screen.fill(colors.BLACK)
         title_text = font.render("Options", True, colors.LIGHT_BLUE)
-        screen.blit(title_text, (SCREEN_WIDTH // 2 - title_text.get_width() // 2, 100))
+        screen.blit(title_text, (SCREEN_WIDTH // 2, 100))
 
         res_button.draw(screen)
         screen_states.draw(screen)

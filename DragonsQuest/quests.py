@@ -6,11 +6,7 @@ import button
 import ChatDisplay
 import basic_functions
 import linesF
-
-WHITE = (255, 255, 255)
-GRAY = (170, 170, 170)
-GREEN = (100, 220, 100)
-RED = (220, 100, 100)
+import colors
 
 
 class Quest:
@@ -40,22 +36,22 @@ class Quest:
         buttonA = button.Button(
             20*scale, 80*scale, 225*scale, 40*scale,
             self.text1,
-            GREEN,
-            (0, 255, 0)
+            colors.NAVY_BLUE,
+            colors.GREEN
         )
 
         buttonB = button.Button(
             20*scale, 140*scale, 225*scale, 40*scale,
             self.text2,
-            GREEN,
-            (0, 255, 0)
+            colors.NAVY_BLUE,
+            colors.GREEN
         )
 
         backButton = button.Button(
             20*scale, 200*scale, 225*scale, 40*scale,
             "Back",
-            RED,
-            (0, 255, 0)
+            colors.NAVY_BLUE,
+            colors.GREEN
         )
 
         running = True
@@ -152,14 +148,15 @@ class Quest:
 
     def OneWeakness(self, chat):
         roll = basic_functions.roll_dice(100)
-        if roll <16:
-            chat += "You learn that the red dragon is weak to obanium and crystal."
-        elif roll<31:
-            chat += "You learn that the green dragon is weak to darkness and poison."
-        elif roll<46:
-            chat += "You learn that the icey dragon is weak to fire."
+        if roll <21:
+            chat += "You learn that the red dragon is weak to obanium and crystal"
+        elif roll<41:
+            chat += "You learn that the green dragon is weak to darkness and poison"
         elif roll<61:
-            chat += "You learn that Grey dragon mostly attacks wisdom and const, so magic potions are useful!"
+            chat += "You learn that the icey dragon is weak to fire"
+        elif roll<81:
+            chat += "You learn that Grey dragon mostly attacks wisdom and const, so magic potions are useful"
+
 
     def resolve_option(self, option, player, time, chat):
 
@@ -171,25 +168,26 @@ class Quest:
             return True
 
         # Effective DC becomes lower after failures
-        dc = max(5, value - min(self.progress, self.max_help))
 
+        dc = max(5, value - min(self.progress, self.max_help))
+        #so normally you should do -10 but to make the game easier I made -8, because I'd set the dc level a bit too high
         if stat == "str":
-            roll = basic_functions.roll_dice(20) + player.str + player.Bstr
+            roll = basic_functions.roll_dice(20) + player.str + player.Bstr-8
 
         elif stat == "dex":
-            roll = basic_functions.roll_dice(20) + player.dex + player.Bdex
+            roll = basic_functions.roll_dice(20) + player.dex + player.Bdex-8
 
         elif stat == "const":
-            roll = basic_functions.roll_dice(20) + player.const + player.Bconst
+            roll = basic_functions.roll_dice(20) + player.const + player.Bconst-8
 
         elif stat == "wis":
-            roll = basic_functions.roll_dice(20) + player.wis + player.Bwis
+            roll = basic_functions.roll_dice(20) + player.wis + player.Bwis-8
 
         elif stat == "int":
-            roll = basic_functions.roll_dice(20) + player.int + player.Bint
+            roll = basic_functions.roll_dice(20) + player.int + player.Bint-8
 
         elif stat == "char":
-            roll = basic_functions.roll_dice(20) + player.char + player.Bchar
+            roll = basic_functions.roll_dice(20) + player.char + player.Bchar-8
         else:
             return False
         roll-10

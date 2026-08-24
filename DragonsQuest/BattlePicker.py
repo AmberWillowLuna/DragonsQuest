@@ -21,24 +21,25 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
     selected_armor = None
 
     # ---------------- Buttons ----------------
+    scale = 1.0 * SCREEN_WIDTH / 640
 
     confirmButton = button.Button(
-        30, 450, 220, 45,
+        15*scale, 300*scale, 110*scale, 25*scale,
         "Confirm",
         colors.NAVY_BLUE,
         (100, 255, 100)
     )
 
     backButton = button.Button(
-        280, 450, 220, 45,
+        140*scale, 300*scale, 110*scale, 25*scale,
         "Back",
-        colors.RED,
+        colors.NAVY_BLUE,
         (255, 120, 120)
     )
 
     running = True
 
-    scale = 1.0 * SCREEN_WIDTH / 640
+    
 
     while running:
 
@@ -51,7 +52,7 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
         # Weapons
         #############################
 
-        y = 40
+        y = 8*scale
         for w in player.weapon:
 
             txt = ("● " if w == selected_weapon else "○ ") + w.name
@@ -69,13 +70,13 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
                 )
             ))
 
-            y += 45
+            y += 12*scale
 
         #############################
         # Armors
         #############################
 
-        y = 40
+        y = 8*scale
 
         for a in player.armor:
 
@@ -94,23 +95,23 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
                 )
             ))
 
-            y += 45
+            y += 12*scale
 
         #############################
         # Items
         #############################
 
-        y = 250
+        y = 50*scale
 
         for item in player.inventory:
 
             item_buttons.append((
                 item,
                 button.Button(
-                    20,
-                    y,
-                    220,
-                    35,
+                    8*scale,
+                    y*scale,
+                    110*scale,
+                    scale*25,
                     item.name,
                     colors.GOLD,
                     (255,255,120)
@@ -202,17 +203,17 @@ def ChooseEquipment(screen, SCREEN_WIDTH, SCREEN_HEIGHT, player, chat):
         # Titles
         screen.blit(
             smallfont.render("Weapons", True, (255,255,255)),
-            (20,20)
+            (8*scale,10*scale)
         )
 
         screen.blit(
             smallfont.render("Armor", True, (255,255,255)),
-            (270,20)
+            (90*scale,10*scale)
         )
 
         screen.blit(
             smallfont.render("Items", True, (255,255,255)),
-            (20,215)
+            (8*scale,140*scale)
         )
 
         # Draw buttons

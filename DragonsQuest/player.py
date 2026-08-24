@@ -38,6 +38,7 @@ class Player:
         self.spells = [];
         self.mana=3; # 3 spell sloty - ka¿dy gracz mo¿e rzuciæ 3 zaklêcia w walce
         self.mana_exhaust=3;
+        self.heal_exhaust=4; # four potions before curse
 
         self.limb="torso"
 
