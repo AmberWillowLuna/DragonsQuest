@@ -103,13 +103,16 @@ class AchievementManage:
         if quest_name not in data["quests"]:
             data["quests"].append(quest_name)
 
-            print(f"Quest completed: {quest_name}")
+            #print(f"Quest completed: {quest_name}")
 
             # Check quest progress achievements
             cls._check_quest_achievements(data)
 
             cls._save(data)
             return True
+
+
+
 
         # Quest was already completed before
         return False
@@ -201,7 +204,7 @@ class AchievementManage:
         number of original quests in your game.
         """
 
-        TOTAL_ORIGINAL_QUESTS = 100  # CHANGE THIS
+        TOTAL_ORIGINAL_QUESTS = 16
 
         completed_quests = len(data.get("quests", []))
 

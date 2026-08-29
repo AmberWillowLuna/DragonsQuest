@@ -19,7 +19,7 @@ def options(screen, SCREEN_WIDTH, SCREEN_HEIGHT, font, clock):
         settings = json.load(file)
 
     STATE = settings["state"]
-    Resolution = settings["resolution"]
+    Resolution = settings["Resolution"]
 
 
     res_button = button.Button(240*scale, 100*scale, 220*scale, 40*scale, f"Resolution: {Resolution}", colors.NAVY_BLUE, colors.GREEN)

@@ -1,3 +1,4 @@
+import time
 from types import NoneType
 import pygame
 from achievementManage import AchievementManage
@@ -166,14 +167,16 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                 ###############################
 
                 elif fleeButton.is_clicked(mouse, event):
+                    if enemy.spi!="d":
+                        if basic_functions.roll_dice(20) + player.dex-10 > 10:
+                            chat += " You escaped."
+                            return False
 
-                    if basic_functions.roll_dice(20) + player.dex-10 > 10:
-                        chat += " You escaped."
-                        return False
-
+                        else:
+                            chat += " You failed to escape."
+                            actions_left -=1
                     else:
-                        chat += " You failed to escape."
-                        actions_left -=1
+                        chat = " You can't escape from this battle."
 
                 elif AimButton.is_clicked(mouse, event):
                     current_index = AllAimPlaces.index(player.limb)

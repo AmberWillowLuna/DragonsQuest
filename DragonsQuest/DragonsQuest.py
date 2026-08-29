@@ -46,7 +46,7 @@ def main():
         settings = json.load(file)
 
     STATE = settings["state"]
-    Resolution = settings["resolution"]
+    Resolution = settings["Resolution"]
 
     new_width, new_height = map(int, Resolution.split("x"))
     SCREEN_WIDTH = new_width

@@ -39,7 +39,7 @@ class dragon:
         self.Bwis = 0
         self.Bchar = 0
         self.dmgReduce=1 # % of dmg reduction
-        
+        self.spi='e'
         self.ult=0
         self.gold=gold
 
@@ -99,6 +99,7 @@ class BlueDragon(dragon):
         super().__init__( 160, 160,15,8,14,10,9,10,14, 200) #AC 14?
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
+        self.spi='d'
 
     def Attack1(self, player, chat):
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
@@ -154,10 +155,12 @@ class BlueDragon(dragon):
 #psychic grey dragon - mostly attacks wis and const saving throws 
 class GreyDragon(dragon):
     def __init__(self):
+        super().__init__(140, 140,12,8,13,13,13,13,13, 200) #AC 14?
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="grey psychic"
-        super().__init__(140, 140,12,8,13,13,13,13,13, 200) #AC 14?
+        self.spi='d'
+
     def Attack1(self, player, chat):
         chat+= "Grey dragon attacks with psychic blast!"
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.wis+player.Bwis-12:
@@ -170,8 +173,8 @@ class GreyDragon(dragon):
         x=-3
         hitpoints=0
         while basic_functions.roll_dice(20)+self.wis+self.int-20>player.wis+player.int-30+x+player.Bwis+player.Bint:
-            hitpoints+=max(basic_functions.roll_dice(4)+2-(player.char//5),1)
-            x+=3
+            hitpoints+=max(basic_functions.roll_dice(4)+2-(player.char//4),1)
+            x+=5
         chat+= f" you are hit by the psychic mind control for a while!! It dealt {hitpoints} damage"
         player.damage(hitpoints)
     def Attack3(self, player, chat):
@@ -188,10 +191,12 @@ class GreyDragon(dragon):
 #firery red dragon - weak for obanium and cristal
 class RedDragon(dragon):
     def __init__(self):
+        super().__init__(125, 125,15,8,13,10,9,10,13, 200) #AC 14?
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="firery red"
-        super().__init__(125, 125,15,8,13,10,9,10,13, 200) #AC 14?
+        self.spi='d'
+
     def Attack1(self, player, chat):
         chat+= "Red dragon attacks with spikey wings!!"
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
@@ -233,10 +238,12 @@ class RedDragon(dragon):
 #greenish dragon - weak for darkness and poison - very low const
 class GreenDragon(dragon):
     def __init__(self):
+        super().__init__(150, 150,15,8,5,10,9,10,16, 200) #AC 14?
         spots=["head", "arms", "legs", "torso", "wings", "tail"]
         self.weak_spot=spots[random.randint(0,len(spots)-1)]
         self.type="greenish"
-        super().__init__(150, 150,15,8,5,10,9,10,16, 200) #AC 14?
+        self.spi='d'
+
     def Attack1(self, player, chat):
         chat+= "Green dragon tries to bite you!"
         if basic_functions.roll_dice(20)+self.acc+self.Bacc>player.AC+player.BAC:
