@@ -45,7 +45,7 @@ def main():
     with open("settings.json", "r", encoding="utf-8") as file:
         settings = json.load(file)
 
-    STATE = settings["state"]
+    STATE = settings["State"]
     Resolution = settings["Resolution"]
 
     new_width, new_height = map(int, Resolution.split("x"))
