@@ -307,7 +307,7 @@ class AchievementManage:
         ),
 
         "THIEEEF!": "Get robbed by a goblin.",
-        "Ouch, you traidor!": (
+        "Ouch, you traitor!": (
             "Get hit by your own sword."
         ),
 
@@ -317,7 +317,7 @@ class AchievementManage:
             "Heal while completing the steal medicine quest."
         ),
 
-        "Im a failure!": "Fail a quest twice in a row.",
+        "Im a faliure!": "Fail a quest twice in a row.",
 
         "Mage potencial": (
             "Learn a spell on the first try."

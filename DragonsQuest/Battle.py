@@ -176,7 +176,7 @@ def Battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT,
                             chat += " You failed to escape."
                             actions_left -=1
                     else:
-                        chat = " You can't escape from this battle."
+                        chat.value = " You can't escape from this battle."
 
                 elif AimButton.is_clicked(mouse, event):
                     current_index = AllAimPlaces.index(player.limb)
