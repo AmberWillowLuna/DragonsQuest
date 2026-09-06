@@ -249,12 +249,7 @@ class AchievementManage:
         """
         return cls._load()
 
-
-
-    SAVE_FILE = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)),
-        "achievements.json"
-    )
+    SAVE_FILE = "achievements.json"
 
     # Achievement descriptions
     ACHIEVEMENT_DESCRIPTIONS = {
@@ -724,23 +719,12 @@ class AchievementManage:
 
             else:
 
-                for quest in quests:
-
-                    # Don't draw outside quest box
-                    if quest_y > (
-                        quest_box_y
-                        + quest_box_height
-                        - 25
-                    ):
-                        break
-
-                    quest_surface = description_font.render(
-                        f"- {quest}",
+                quest_surface = description_font.render(
+                        f"Quests completed: {len(quests)}/24",
                         True,
                         colors.WHITE
-                    )
-
-                    screen.blit(
+                )
+                screen.blit(
                         quest_surface,
                         (
                             40,
@@ -748,7 +732,7 @@ class AchievementManage:
                         )
                     )
 
-                    quest_y += 25
+
 
             # -------------------------
             # BACK BUTTON
